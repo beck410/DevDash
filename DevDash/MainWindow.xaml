@@ -1,8 +1,13 @@
 ﻿<Window x:Class="DevDash.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="700" Width="1000">
+    <StackPanel Width="900" Height="650" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,0,46,19">
+        <TextBlock VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" FontSize="50">Dev Dash</TextBlock>
+        <StackPanel Height="100" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Width="100" Margin="0,0,10,0" Height="50">Current Projects</Button>
+            <Button Width="100" Margin="10,0,0,0"  Height="50">Past Projects</Button>
+        </StackPanel>
+        <Button Height="20px" Width="150"  VerticalAlignment="Bottom">+ Create New Project</Button>
+    </StackPanel>
 </Window>
