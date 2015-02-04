@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace DevDash {
   /// <summary>
@@ -20,6 +20,23 @@ namespace DevDash {
   public partial class MainWindow : Window {
     public MainWindow() {
       InitializeComponent();
+
+    }
+
+    private void Current_Projects_Button_Click(object sender, RoutedEventArgs e) {
+
+    }
+
+    private void Past_Projects_Button_Click(object sender, RoutedEventArgs e) {
+
+    }
+
+    private void Main_New_Project_Button_Click(object sender, RoutedEventArgs e) {
+
+    }
+
+    private void check_Current_Project_List_State() {
+
     }
   }
 }

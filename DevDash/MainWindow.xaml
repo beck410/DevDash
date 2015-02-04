@@ -5,9 +5,9 @@
     <StackPanel Width="900" Height="650" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,0,46,19">
         <TextBlock VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" FontSize="50">Dev Dash</TextBlock>
         <StackPanel Height="100" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button Width="100" Margin="0,0,10,0" Height="50">Current Projects</Button>
-            <Button Width="100" Margin="10,0,0,0"  Height="50">Past Projects</Button>
+            <Button x:Name="Current_Projects_Button" IsEnabled="false" Width="100" Margin="0,0,10,0" Height="50" Click="Current_Projects_Button_Click">Current Projects</Button>
+            <Button x:Name="Past_Projects_Button" IsEnabled="false" Width="100" Margin="10,0,0,0"  Height="50" Click="Past_Projects_Button_Click">Past Projects</Button>
         </StackPanel>
-        <Button Height="20px" Width="150"  VerticalAlignment="Bottom">+ Create New Project</Button>
+        <Button x:Name="Main_New_Project_Button" Height="20px" Width="150"  VerticalAlignment="Bottom" Click="Main_New_Project_Button_Click">+ Create New Project</Button>
     </StackPanel>
 </Window>
