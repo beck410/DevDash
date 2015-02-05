@@ -2,12 +2,21 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="700" Width="1000">
-    <StackPanel Width="900" Height="650" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,0,46,19">
+    <StackPanel Width="900" Height="650" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,-6,46,25">
         <TextBlock VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" FontSize="50">Dev Dash</TextBlock>
         <StackPanel Height="100" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button x:Name="Current_Projects_Button" Width="100" Margin="0,0,10,0" Height="50" Click="Current_Projects_Button_Click">Current Projects</Button>
             <Button x:Name="Past_Projects_Button" Width="100" Margin="10,0,0,0"  Height="50" Click="Past_Projects_Button_Click">Past Projects</Button>
         </StackPanel>
-        <Button x:Name="Main_New_Project_Button" Height="20px" Width="150"  VerticalAlignment="Bottom" Click="Main_New_Project_Button_Click">+ Create New Project</Button>
+        <StackPanel HorizontalAlignment="center">
+            <TextBlock FontSize="24">Add New Project</TextBlock>
+            <Label FontSize="16" Margin="0,15,0,0">Project Name</Label>
+            <TextBox x:Name="New_Project_Name" Width="220" Height="20" Margin="0,5,0,0"></TextBox>
+            <Label FontSize="16" Margin="0,15,0,0">Github URL</Label>
+            <TextBox x:Name="New_Project_Github" Width="220" Height="20" Margin="0,5,0,0"></TextBox>
+            <Label FontSize="16" Margin="0,15,0,0">Project Description</Label>
+            <TextBox x:Name="New_Project_Description" Width="220" Height="20" Margin="0,5,0,0"></TextBox>
+            <Button x:Name="Main_New_Project_Button" Height="20px" Width="220" VerticalAlignment="Bottom" Click="Main_New_Project_Button_Click" Content="+ Create New Project" Margin="0,20,0,0"/>
+        </StackPanel>
     </StackPanel>
 </Window>
