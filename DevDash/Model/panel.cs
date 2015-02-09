@@ -4,9 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Panels
-{
-    public class Class1
-    {
-    }
+namespace DevDash.Model {
+  class panel {
+  }
 }

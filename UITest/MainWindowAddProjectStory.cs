@@ -1,55 +1,100 @@
 ﻿﻿using System;
-using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TestStack.White;
-using TestStack.White.Factory;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.WindowItems;
-using TestStack.BDDfy;
 
 namespace UITest {
   [TestClass]
-  public class MainWindowAddProjectStory {
-
-    private static Window window;
-    private static Application application;
-    private static Button New_Project_Button;
+  public class MainWindowAddProjectStory : TestHelper {
 
     [ClassInitialize]
-    public static void Setup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext _context){
-      var applicationDir = _context.DeploymentDirectory;
-      var applicationPath = Path.Combine(applicationDir, "..\\..\\..\\DevDash\\bin\\Debug\\DevDash");
-      application = Application.Launch(applicationPath);
-      window = application.GetWindow("MainWindow", InitializeOption.NoCache);
-      New_Project_Button = window.Get<Button>("Main_New_Project_Button");
+    public static void Setup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext _context) {
+      TestHelper.Setup(_context);
     }
-
-    void WhenTheNewProjectButtonIsClicked() {
-      New_Project_Button.Click();
-    }
-
-    void GivenTheMainWindowIsOpen() {
-      Assert.IsTrue(window.IsFocussed);
-    }
-
-    void ThenTheNewProjectWindowShouldOpen() {
-      //New Window
-    }
-
-    void AndThenNewProjectcreateButtonIsDisabled() {
-      Assert.IsFalse(New_Project_Button.Enabled);
-    } 
 
     [TestMethod]
-    public void MainPageAddNewProjectButtonTest(){
-      this.BDDfy();
+      public void TestNewProjectFormWithOnlyValidProjectName()
+      {
+      GivenTheNewProjectFormisEmpty();
+      GivenThereAreNoProjectsInProjectsList("projects list");
+      GivenIHaveFilledInFormField("pass in textbox name","pass in name");
+      WhenIClick("button name");
+      ThenIShouldSeeProjectList("project list");
+      AndIShouldSeeXProjectsInProjectList("count","project list");
+      AndIShouldSeeTheProjectInTheProjectList("project name", "project list");
+      }
+
+
+
+    [TestMethod]
+    public void TestNewProjectFormWithAllValidFields() {
+      GivenTheNewProjectFormisEmpty();
+      GivenThereAreNoProjectsInProjectsList("projects list");
+      GivenIHaveFilledInFormField("pass in textbox name","pass in name");
+      GivenIHaveFilledInFormField("pass in textbox name","pass in github link");
+      GivenIHaveFilledInFormField("pass in textbox name","pass in project desciption");
+      WhenIClick("button name");
+      ThenIShouldSeeProjectList("project list");
+      AndIShouldSeeXProjectsInProjectList("count","project list");
+      AndIShouldSeeTheProjectInTheProjectList("project name", "project list");
+    }
+
+    [TestMethod]
+    public void TestNewProjectFormWithInvalidProjectName() {
+      GivenTheNewProjectFormisEmpty();
+      GivenThereAreNoProjectsInProjectsList("projects list");
+      GivenIHaveFilledInFormField("pass in textbox name","pass in invalid name");
+      WhenIClick("button name");
+      ThenIShouldSeeErrorMessage("error message", "textblock name");
+      AndIShouldSeeXProjectsInTheProjectList("error message", "textblock name");
+    }
+
+
+
+    [TestMethod]
+    public void TestNewProjectFormWithInvalidGitHubLink() {
+      GivenTheNewProjectFormisEmpty();
+      GivenThereAreNoProjectsInProjectsList("projects list");
+      GivenIHaveFilledInFormField("pass in textbox name","pass in valid name");
+      GivenIHaveFilledInFormField("pass in textbox name","pass in invalid github link");
+      WhenIClick("button name");
+      ThenIShouldSeeErrorMessage("error message", "textblock name");
+      AndIShouldSeeXProjectsInTheProjectList("project list", "0");
+    }
+    
+    [TestMethod]
+    public void TestNewProjectWithInvalidDescription() {
+      GivenTheNewProjectFormisEmpty();
+      GivenThereAreNoProjectsInProjectsList("projects list");
+      GivenIHaveFilledInFormField("pass in textbox name","pass in valid name");
+      GivenIHaveFilledInFormField("pass in textbox name","pass in description longer than 500 characters");
+      WhenIClick("button name");
+      ThenIShouldSeeErrorMessage("error message", "textblock name");
+      AndIShouldSeeXProjectsInTheProjectList("project list", "0");
+    }
+
+    [TestMethod]
+    public void TestNewProjectWithExistingProjectsInProjectList() {
+      GivenTheNewProjectFormisEmpty();
+      GivenThereAreXProjectsInProjectsList("projects list","2");
+      GivenIHaveFilledInFormField("pass in textbox name","pass in name");
+      WhenIClick("button name");
+      ThenIShouldSeeProjectList("project list");
+      AndIShouldSeeXProjectsInProjectList("count","project list");
+      AndIShouldSeeTheProjectInTheProjectList("project name", "3");
+    }
+
+
+
+    [TestMethod]
+    public void TestNewProjectWithNoInformationEntered() { 
+      GivenTheNewProjectFormisEmpty();
+      WhenIClick("button name"); 
+      ThenIShouldSeeErrorMessage("error message", "textblock name");
+      AndIShouldSeeXProjectsInTheProjectList("project list", "0");
     }
 
     [ClassCleanup]
-    public static void TearDown()
-    {
-        window.Close();
-        application.Close();
+    public static void CleanUp() {
+      TestHelper.CleanThisUp();
     }
   }
 }
