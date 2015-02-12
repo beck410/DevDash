@@ -5,17 +5,23 @@ using System.Threading.Tasks;
 namespace Projects {
   public class Project {
 
-    public Project(string name) {
+    public int ProjectId { get; set; }
+    public string ProjectName { get; set; }
+    public int ProjectState { get; set; }
+
+    public Project( string name, int state) {
       if (Has_White_Space(name))
         throw new ArgumentException("name contains spaces");
       else
-        this.name = name;
+        this.ProjectName = name;
+      
+      this.ProjectState = state;
     }
 
-    private string name;
-    public string Name {
-      get { return this.name; }
+    public Project(string name) {
+
     }
+
     private bool Has_White_Space(string name) {
       for (int i = 0; i < name.Length; i++) {
         if (char.IsWhiteSpace(name[i]))

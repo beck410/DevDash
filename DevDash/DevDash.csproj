@@ -73,7 +73,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\panel.cs" />
+    <Compile Include="Model\DescriptionPanel.cs" />
+    <Compile Include="Model\GithubPanel.cs" />
+    <Compile Include="Model\Note.cs" />
+    <Compile Include="Model\NotesPanel.cs" />
     <Compile Include="Model\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
