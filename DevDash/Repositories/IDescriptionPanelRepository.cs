@@ -12,6 +12,7 @@ namespace DevDash.Repositories {
     DescriptionPanel GetById(int id);
     void Add(DescriptionPanel description);
     void Delete(int id);
+    void EditDescription(int id, string description);
     void Clear();
   }
 }
