@@ -51,6 +51,7 @@ namespace DevDash.Model {
 
    private void _AddRequiredDetails(object name, object state, object startDate){
      string projectname = name.ToString();
+
     if (Has_Spaces(projectname) || String.IsNullOrWhiteSpace(projectname))
       throw new ArgumentException("name contains spaces");
     else
@@ -68,4 +69,4 @@ namespace DevDash.Model {
      return false;
    }
   }
-}
+} 
