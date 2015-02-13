@@ -43,12 +43,6 @@ namespace TestDevDash.UnitTests {
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
-    public void TestProjectConstructorWithNoParams() {
-      Project project = new Project();
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
     public void TestProjectConstructorWithEmptyName() {
       Project project = new Project("",0,"03/05/2012");
     }
