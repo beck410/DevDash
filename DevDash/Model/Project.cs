@@ -16,6 +16,10 @@ namespace DevDash.Model {
     public string ProjectEndDate { get; set; }
     public string GithubLink { get; set; }
 
+    public Project() {
+
+    }
+
     public Project(params object[] details) {
       //required params order: name,state, startdate,enddate, link
       int paramCount = details.Count();
