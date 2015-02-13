@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace DevDash.Model {
-  class DescriptionPanel {
+  public class DescriptionPanel {
 
     public int DescriptionId { get; set; }
     public int ProjectId { get; set; }
@@ -15,8 +15,15 @@ namespace DevDash.Model {
 
 
     public DescriptionPanel(string description, int projectId) {
+      _IsEmptyDescription(description);
+
       this.ProjectId = projectId;
       this.Description = description;
+    }
+
+    private void _IsEmptyDescription(string description){
+      if (string.IsNullOrWhiteSpace(description))
+        throw new ArgumentException("no description provided");
     }
   }
 }
