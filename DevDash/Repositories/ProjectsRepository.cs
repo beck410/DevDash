@@ -18,25 +18,32 @@ namespace DevDash.Repositories {
     private ProjectContext _dbContext;
 
    //Project DB Methods
-    public IEnumerable<Project> All() {
       //return qu.ToList<Project>();
-      throw new NotImplementedException();
+    public List<Project> All() {
+      var query = from Project in _dbContext.Projects
+                  select Project;
+      return query.ToList<Project>();
     }
 
     public List<Project> AllPastProjects() {
-      throw new NotImplementedException();
+      var query = _dbContext.Projects.Where(x => x.ProjectState == 0);
+
+     return query.ToList();
     }
 
     public List<Project> AllCurrentProjects() {
-      throw new NotImplementedException();
+     var query = _dbContext.Projects.Where(x => x.ProjectState == 1);
+
+     return query.ToList();
     }
  
     public int GetCount(){
-      throw new NotImplementedException();
+      return _dbContext.Projects.Count<Project>();
     }
 
     public void Add(Project P) {
-      throw new NotImplementedException();
+      _dbContext.Projects.Add(P);
+      _dbContext.SaveChanges();
     }
 
     public void Delete(Project P) {
@@ -44,11 +51,13 @@ namespace DevDash.Repositories {
     }
 
     public void Clear() {
-      throw new NotImplementedException();
+      var projects = this.All();
+      _dbContext.Projects.RemoveRange(projects);
+      _dbContext.SaveChanges();
     }
 
     public Project GetById(int id) {
-      throw new NotImplementedException();
+      return _dbContext.Projects.Find(id);
     }
   }
 }
