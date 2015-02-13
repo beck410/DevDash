@@ -14,8 +14,9 @@ namespace DevDash {
     public int ProjectState { get; set; }
     public DateTime ProjectStartDate { get; set; }
     public DateTime ProjectEndDate { get; set; }
+    public string GithubLink { get; set; }
 
-    public Project( string name, int state, DateTime start, DateTime end) {
+    public Project( string name, int state, DateTime start, DateTime end, string link) {
       if (Has_White_Space(name))
         throw new ArgumentException("name contains spaces");
       else
@@ -24,6 +25,7 @@ namespace DevDash {
       this.ProjectState = state;
       this.ProjectStartDate = start;
       this.ProjectEndDate = end;
+      this.GithubLink = link;
     }
 
     public Project(string name) {
