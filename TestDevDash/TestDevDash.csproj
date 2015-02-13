@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>337ac27d-84f2-48e5-82aa-fefea6c0892f</ProjectGuid>
+    <ProjectGuid>{CC1ACEB3-4AEA-420F-BD43-08FA4BF19B17}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TestDevDash</RootNamespace>
@@ -50,8 +50,17 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTests\TestProject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UserTests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DevDash\DevDash.csproj">
+      <Project>{e473c34f-1424-4964-99b7-9867d303b321}</Project>
+      <Name>DevDash</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

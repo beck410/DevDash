@@ -6,31 +6,58 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace DevDash {
+namespace DevDash.Model {
   public class Project {
 
     public int ProjectId { get; set; }
-    public string ProjectName { get; set; }
-    public int ProjectState { get; set; }
-    public DateTime ProjectStartDate { get; set; }
-    public DateTime ProjectEndDate { get; set; }
+    public string ProjectName { get; set; } //required
+    public int ProjectState { get; set; } //required
+    public string ProjectStartDate { get; set; } //required
+    public string ProjectEndDate { get; set; }
     public string GithubLink { get; set; }
 
-    public Project( string name, int state, DateTime start, DateTime end, string link) {
-      if (Has_White_Space(name))
-        throw new ArgumentException("name contains spaces");
-      else
-        this.ProjectName = name;
+    public Project(params object[] details) {
+      //required params order: name,state, startdate,enddate, link
+      int paramCount = details.Count();
       
-      this.ProjectState = state;
-      this.ProjectStartDate = start;
-      this.ProjectEndDate = end;
-      this.GithubLink = link;
+      switch (paramCount) {
+        case 0:
+        case 1:
+        case 2:
+         throw new ArgumentException("All Required details not included");
+        case 3:
+          _AddRequiredDetails(details[0], details[1], details[2]);
+         break;
+        case 4:
+          _AddRequiredDetails(details[0], details[1], details[2]);
+          _AddLinkOrEndDate(details[3]);
+          break;
+        case 5:
+          _AddRequiredDetails(details[0], details[1], details[2]);
+          this.ProjectEndDate = details[3].ToString();
+          this.GithubLink = details[4].ToString();
+          break;
+        default:
+          throw new ArgumentException("No name,start date or state given for new project");
+      }
     }
 
-    public Project(string name) {
-
+    private void _AddLinkOrEndDate( object param) {
+      if(param.GetType() == "string".GetType())
+        this.GithubLink = param.ToString();
+      else
+        this.ProjectEndDate = param.ToString();
     }
+
+   private void _AddRequiredDetails(object name, object state, object startDate){
+    if (Has_White_Space(name.ToString()))
+      throw new ArgumentException("name contains spaces");
+    else
+      this.ProjectName = name.ToString();
+
+    this.ProjectState = (int)state;
+    this.ProjectStartDate = startDate.ToString();
+  }
 
     private bool Has_White_Space(string name) {
       for (int i = 0; i < name.Length; i++) {
