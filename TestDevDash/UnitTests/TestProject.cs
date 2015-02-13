@@ -47,6 +47,18 @@ namespace TestDevDash.UnitTests {
       Project project = new Project();
     }
 
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void TestProjectConstructorWithEmptyName() {
+      Project project = new Project("",0,"03/05/2012");
+    }
+
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void TestProjectConstructorWithWhiteSpaceForName() {
+       Project project = new Project("  ",0,"03/05/2012");
+    }
+
 
   }
 }

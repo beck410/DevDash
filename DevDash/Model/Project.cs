@@ -50,21 +50,22 @@ namespace DevDash.Model {
     }
 
    private void _AddRequiredDetails(object name, object state, object startDate){
-    if (Has_White_Space(name.ToString()))
+     string projectname = name.ToString();
+    if (Has_Spaces(projectname) || String.IsNullOrWhiteSpace(projectname))
       throw new ArgumentException("name contains spaces");
     else
-      this.ProjectName = name.ToString();
+      this.ProjectName = projectname;
 
     this.ProjectState = (int)state;
     this.ProjectStartDate = startDate.ToString();
   }
 
-    private bool Has_White_Space(string name) {
-      for (int i = 0; i < name.Length; i++) {
-        if (char.IsWhiteSpace(name[i]))
-          return true;
-      }
-      return false;
-    }
+   private bool Has_Spaces(string name) {
+     for (int i = 0; i < name.Length; i++) {
+       if (char.IsWhiteSpace(name[i]))
+         return true;
+     }
+     return false;
+   }
   }
 }
