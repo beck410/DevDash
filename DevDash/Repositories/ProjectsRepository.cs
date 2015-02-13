@@ -7,7 +7,7 @@ using DevDash.Model;
 using System.Data.Entity;
 
 namespace DevDash.Repositories {
-  class ProjectsRepository : IProjectRepository{
+  public class ProjectsRepository : IProjectRepository{
 
     public ProjectsRepository(){
       _dbContext = new ProjectContext();
@@ -17,9 +17,20 @@ namespace DevDash.Repositories {
     //set up for db local
     private ProjectContext _dbContext;
 
+   //Project DB Methods
+    public IEnumerable<Project> All() {
+      //return qu.ToList<Project>();
+      throw new NotImplementedException();
+    }
 
+    public List<Project> AllPastProjects() {
+      throw new NotImplementedException();
+    }
 
-    //Project DB Methods
+    public List<Project> AllCurrentProjects() {
+      throw new NotImplementedException();
+    }
+ 
     public int GetCount(){
       throw new NotImplementedException();
     }
