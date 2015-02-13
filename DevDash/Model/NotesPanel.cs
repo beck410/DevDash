@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace DevDash.Model {
-  class NotesPanel {
+  public class NotesPanel {
 
     public int NotesPanelId { get; set; }
     public int ProjectId { get; set; }

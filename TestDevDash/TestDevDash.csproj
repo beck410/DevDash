@@ -52,6 +52,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests\TestProject.cs" />
+    <Compile Include="UnitTests\TestProjectDescriptionPanel.cs" />
+    <Compile Include="UnitTests\TestNotesPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UserTests\" />
