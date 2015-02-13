@@ -59,6 +59,10 @@ namespace TestDevDash.UnitTests {
        Project project = new Project("  ",0,"03/05/2012");
     }
 
-
+    [TestMethod]
+    [ExpectedException(typeof(ArgumentException))]
+    public void TestProjectConstructorWithNameAndLinkAndStartDate() {
+       Project project = new Project("simpleShapes","02/02/2014","http://www.website.com");
+    }
   }
 }
