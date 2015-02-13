@@ -54,6 +54,7 @@
     <Compile Include="UnitTests\TestProject.cs" />
     <Compile Include="UnitTests\TestProjectDescriptionPanel.cs" />
     <Compile Include="UnitTests\TestNotesPanel.cs" />
+    <Compile Include="UnitTests\TestNote.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UserTests\" />
