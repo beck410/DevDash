@@ -26,7 +26,7 @@ namespace TestDevDash.UnitTests {
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
-    public void TestProjectDescriptionConstructorWithDoulbeMoreDescription() { 
+    public void TestProjectDescriptionConstructorWhiteSpaceForDescription() {
       DescriptionPanel panel = new DescriptionPanel("     ",1);
     }
   }
