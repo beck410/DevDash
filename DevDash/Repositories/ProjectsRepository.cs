@@ -14,6 +14,10 @@ namespace DevDash.Repositories {
       _dbContext.Projects.Load();
     }
 
+    public ProjectContext Context() {
+      return _dbContext;
+    }
+
     //set up for db local
     private ProjectContext _dbContext;
 
