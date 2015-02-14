@@ -10,8 +10,23 @@ using TestStack.White.UIItems.Finders;
 
 namespace TestDevDash.UserTests {
   [TestClass]
-  public class ZeroStateUserTest {
+  public class ZeroStateUserTest : TestHelper {
     
+    [ClassInitialize]
+    public static void SetUpTests(TestContext _context) {
+      TestHelper.SetUpClass(_context);
+    }
+
+    [TestInitialize]
+    public void SetUpTests() {
+      TestHelper.TestPrep();
+    }
+
+    [TestCleanup]
+    public void CleanUp() {
+      TestHelper.CleanThisUp();
+    }
+
     [TestMethod]
     public void TestZeroStateWithNoProjectsInDB() {
       
