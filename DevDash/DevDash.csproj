@@ -66,7 +66,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Repositories\DescriptionPanelRepository.cs" />
+    <Compile Include="Repositories\IDescriptionPanelRepository.cs" />
+    <Compile Include="Repositories\INoteRepository.cs" />
+    <Compile Include="Repositories\INotesPaneRepository.cs" />
     <Compile Include="Repositories\IProjectRepository.cs" />
+    <Compile Include="Repositories\NoteRepository.cs" />
+    <Compile Include="Repositories\NotesPanelRepository.cs" />
     <Compile Include="Repositories\ProjectsRepository.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

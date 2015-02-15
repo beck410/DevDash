@@ -28,9 +28,6 @@ namespace TestDevDash.RepoTests {
       repo.Clear();
     }
     
-    [TestMethod]
-    public void TestMethod1() {
 
-    }
   }
 }

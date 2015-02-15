@@ -27,5 +27,10 @@ namespace DevDash.Repositories {
     public void Clear() {
       throw new NotImplementedException();
     }
+
+
+    public void EditDescription(int id, string description) {
+      throw new NotImplementedException();
+    }
   }
 }

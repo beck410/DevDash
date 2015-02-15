@@ -5,8 +5,8 @@
     <StackPanel Width="900" Height="650" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,-6,46,25">
         <TextBlock VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" FontSize="50">Dev Dash</TextBlock>
         <StackPanel Height="100" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button x:Name="Current_Projects_Button" Width="100" Margin="0,0,10,0" Height="50" Click="Current_Projects_Button_Click">Current Projects</Button>
-            <Button x:Name="Past_Projects_Button" Width="100" Margin="10,0,0,0"  Height="50" Click="Past_Projects_Button_Click">Past Projects</Button>
+            <Button x:Name="Current_Projects_Button" Width="100" Margin="0,0,10,0" Height="50" >Current Projects</Button>
+            <Button x:Name="Past_Projects_Button" Width="100" Margin="10,0,0,0"  Height="50" >Past Projects</Button>
         </StackPanel>
         <StackPanel x:Name="New_Project_Header" HorizontalAlignment="center">
             <TextBlock FontSize="24">Add New Project</TextBlock>
@@ -16,7 +16,7 @@
             <TextBox x:Name="New_Project_Github" Width="220" Height="20" Margin="0,5,0,0"></TextBox>
             <Label x:Name="New_Project_Desciption_label" FontSize="16" Margin="0,15,0,0">Project Description</Label>
             <TextBox x:Name="New_Project_Description" Width="220" Height="20" Margin="0,5,0,0"></TextBox>
-            <Button x:Name="Main_New_Project_Button" Height="20px" Width="220" VerticalAlignment="Bottom" Click="Main_New_Project_Button_Click" Content="+ Create New Project" Margin="0,20,0,0"/>
+            <Button x:Name="Main_New_Project_Button" Height="20px" Width="220" VerticalAlignment="Bottom"  Content="+ Create New Project" Margin="0,20,0,0"/>
         </StackPanel>
     </StackPanel>
 </Window>
