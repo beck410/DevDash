@@ -30,9 +30,9 @@ namespace TestDevDash.UserTests {
       AndIShouldSee("Current_Projects_Listbox");
       AndIShouldSeeXNumberOfProjectsInListBox(3,"Current_Projects_Listbox");
       AndIShouldSee("List_Add_New_Project");
-      AndIShouldSee("View_Button");
-      AndIShouldSee("Delete_Button");
-      AndIShouldSee("Move_Button");
+      AndIShouldSee("View_Current_Project_Button");
+      AndIShouldSee("Delete_Current_Project_Button");
+      AndIShouldSee("Move_Current_Project_Button");
     }
 
     [TestMethod]
@@ -44,9 +44,7 @@ namespace TestDevDash.UserTests {
       AndIShouldNotSee("Current_Projects_Listbox");
       AndIShouldSeeXNumberOfProjectsInListBox(0,"Current_Projects_Listbox");
       AndIShouldSee("No_Current_Projects_Message");
-      AndIShouldNotSee("List_Add_New_Project");
-      AndIShouldNotSee("View_Current_Project");
-      AndIShouldNotSee("DeleteCurrentProject");
+      AndIShouldSee("List_Add_New_Project");
     }
   }
 }

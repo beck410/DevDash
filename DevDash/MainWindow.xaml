@@ -31,9 +31,9 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Width="650" Margin="10,10,5,10">
                             <TextBlock Text="{Binding ProjectName}" Margin="0,0,100,0"/>
-                            <Button x:Name="Move_Button" Content="Move To Past Projects" Margin="20,0,0,0"/>
-                            <Button x:Name="Delete_Button" Content="Delete" Margin="20,0,0,0"/>
-                            <Button x:Name="View_Button" Content="View Dashboard" Margin="20,0,0,0"/>
+                            <Button x:Name="Move_Current_Project_Button" Content="Move To Past Projects" Margin="20,0,0,0"/>
+                            <Button x:Name="Delete_Current_Project_Button" Content="Delete" Margin="20,0,0,0"/>
+                            <Button x:Name="View_Current_Project_Button" Content="View Dashboard" Margin="20,0,0,0"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

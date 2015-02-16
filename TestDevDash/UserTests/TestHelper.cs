@@ -84,8 +84,8 @@ namespace TestDevDash.UserTests {
       Assert.IsFalse(element.Visible);
     }
 
-    public void AndIShouldNotSee(string p) {
-      ThenIShouldNotSee(p);
+    public void AndIShouldNotSee(string name) {
+      ThenIShouldNotSee(name);
     }
 
     public void WhenIClick(string button_name) {
