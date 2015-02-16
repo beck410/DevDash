@@ -30,6 +30,7 @@ namespace TestDevDash.UserTests {
       AndIShouldSee("Current_Projects_Listbox");
       AndIShouldSeeXNumberOfProjectsInListBox(3,"Current_Projects_Listbox");
       AndIShouldSee("List_Add_New_Project");
+      AndIShouldSee("View_Past_Projects_Button");
       AndIShouldSee("View_Current_Project_Button");
       AndIShouldSee("Delete_Current_Project_Button");
       AndIShouldSee("Move_Current_Project_Button");
@@ -40,8 +41,9 @@ namespace TestDevDash.UserTests {
       GivenThereAreNoXProjects("current");
       WhenIClick("Current_Projects_Button");
       ThenIShouldNotSee("Past_Projects_Button");
-      ThenIShouldNotSee("Current_Projects_Button");
+      AndIShouldNotSee("Current_Projects_Button");
       AndIShouldNotSee("Current_Projects_Listbox");
+      AndIShouldSee("View_Past_Projects_Button");
       AndIShouldSeeXNumberOfProjectsInListBox(0,"Current_Projects_Listbox");
       AndIShouldSee("No_Current_Projects_Message");
       AndIShouldSee("List_Add_New_Project");
