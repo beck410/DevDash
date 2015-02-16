@@ -42,9 +42,19 @@ namespace DevDash {
     }
 
     private void View_Current_Projects(object sender, RoutedEventArgs e) {
+
+      var current_projects = project_repo.AllCurrentProjects();
       Main_View.Visibility = Visibility.Collapsed;
-      Current_Projects_List.Visibility = Visibility.Visible;
-      Current_Projects_Listbox.DataContext = project_repo.AllCurrentProjects();
+      Current_Projects_Listbox.DataContext = current_projects;
+
+      if (current_projects.Count == 0) {
+        Current_Projects_List.Visibility = Visibility.Visible;
+        Current_Projects_Listbox.Visibility = Visibility.Collapsed;
+      }
+      else {
+        Current_Projects_List.Visibility = Visibility.Visible;
+        No_Current_Projects_Message.Visibility = Visibility.Collapsed;
+      }
     }
 
     private void Button_Click(object sender, RoutedEventArgs e) {

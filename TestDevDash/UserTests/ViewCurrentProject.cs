@@ -26,6 +26,7 @@ namespace TestDevDash.UserTests {
       ThenIShouldNotSee("Current_Projects_Button");
       AndIShouldNotSee("Past_Projects_Button");
       AndIShouldNotSee("Main_New_Project_Button");
+      AndIShouldNotSee("No_Current_Projects_Message");
       AndIShouldSee("Current_Projects_Listbox");
       AndIShouldSeeXNumberOfProjectsInListBox(3,"Current_Projects_Listbox");
       AndIShouldSee("List_Add_New_Project");
@@ -38,10 +39,11 @@ namespace TestDevDash.UserTests {
     public void ViewCurrentProjectListWithNoCurrentProjectsInDB() {
       GivenThereAreNoXProjects("current");
       WhenIClick("Current_Projects_Button");
-      ThenIShouldNotSee("Main_View");
-      AndIShouldSee("Current_Projects_List");
-      AndIShouldSeeXNumberOfProjectsInListBox(0,"Current_Projects_List");
-      AndIShouldSee("No_Projects_Message");
+      ThenIShouldNotSee("Past_Projects_Button");
+      ThenIShouldNotSee("Current_Projects_Button");
+      AndIShouldNotSee("Current_Projects_Listbox");
+      AndIShouldSeeXNumberOfProjectsInListBox(0,"Current_Projects_Listbox");
+      AndIShouldSee("No_Current_Projects_Message");
       AndIShouldNotSee("List_Add_New_Project");
       AndIShouldNotSee("View_Current_Project");
       AndIShouldNotSee("DeleteCurrentProject");

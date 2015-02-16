@@ -46,7 +46,7 @@ namespace TestDevDash.UserTests {
     // USER TEST FUNCTIONS 
     
     public void GivenThereAreNoXProjects(string p) {
-      throw new NotImplementedException();
+      Assert.AreEqual(0, ProjectRepo.AllCurrentProjects().Count);
     }
 
     public void GivenThereAreXProjects(string project_type) {
@@ -70,7 +70,7 @@ namespace TestDevDash.UserTests {
     public void AndIShouldSeeXNumberOfProjectsInListBox(int project_number, string name) {
       SearchCriteria search_criteria = SearchCriteria.ByAutomationId(name).AndIndex(0);
       ListBox list_box = (ListBox)window.Get(search_criteria);
-      Assert.AreEqual(3, ProjectRepo.AllCurrentProjects().Count);
+      Assert.AreEqual(project_number, ProjectRepo.AllCurrentProjects().Count);
       Assert.AreEqual(project_number,list_box.Items.Count);
     }
 
