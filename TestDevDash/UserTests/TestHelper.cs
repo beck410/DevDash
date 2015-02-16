@@ -67,11 +67,20 @@ namespace TestDevDash.UserTests {
 
       Assert.AreEqual(3,ProjectRepo.GetCount());
     }
-    public void AndIShouldSeeXNumberOfProjectsInListBox(int project_number, string name) {
+    public void AndIShouldSeeXNumberOfProjectsInXListBox(int project_number, string name, string project_type) {
       SearchCriteria search_criteria = SearchCriteria.ByAutomationId(name).AndIndex(0);
+
       ListBox list_box = (ListBox)window.Get(search_criteria);
-      Assert.AreEqual(project_number, ProjectRepo.AllCurrentProjects().Count);
-      Assert.AreEqual(project_number,list_box.Items.Count);
+
+      if(project_type == "current") {
+        Assert.AreEqual(project_number,ProjectRepo.AllCurrentProjects().Count);
+        Assert.AreEqual(project_number,list_box.Items.Count);
+      }
+
+      if (project_type == "past") {
+        Assert.AreEqual(project_number,ProjectRepo.AllPastProjects().Count);
+        Assert.AreEqual(project_number,list_box.Items.Count);
+      }
     }
 
     public void AndIShouldSee(string name) {

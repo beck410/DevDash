@@ -26,19 +26,6 @@ namespace DevDash {
 
     public MainWindow() {
       InitializeComponent();
-      //project_repo.Add(new Project("angular",1,"03/17/2014"));
-      //project_repo.Add(new Project("js",1,"03/17/2014"));
-      //project_repo.Add(new Project("penny",0,"03/17/2014"));
-
-      //List<Project> current_projects = new List<Project>();
-      //current_projects.Add(new Project("angular",1,"02/03/2014"));
-      //current_projects.Add(new Project("js",1,"02/03/2014"));
-      //current_projects.Add(new Project("csharp",1,"02/03/2014"));
-
-    }
-
-    private void View_Past_Projects(object sender, RoutedEventArgs e) {
-
     }
 
     private void View_Current_Projects(object sender, RoutedEventArgs e) {
@@ -55,6 +42,24 @@ namespace DevDash {
         Current_Projects_List.Visibility = Visibility.Visible;
         No_Current_Projects_Message.Visibility = Visibility.Collapsed;
       }
+    }
+
+    private void View_Past_Projects(object sender, RoutedEventArgs e) {
+
+      var past_projects = project_repo.AllPastProjects();
+      Past_Projects_Listbox.DataContext = past_projects;
+
+      Main_View.Visibility = Visibility.Collapsed;
+
+      if (past_projects.Count == 0) {
+        Past_Projects_List.Visibility = Visibility.Visible;
+        Past_Projects_Listbox.Visibility = Visibility.Collapsed;
+      }
+      else {
+        Past_Projects_List.Visibility = Visibility.Visible;
+        No_Past_Projects_Message.Visibility = Visibility.Collapsed;
+      }
+      
     }
 
     private void Button_Click(object sender, RoutedEventArgs e) {
