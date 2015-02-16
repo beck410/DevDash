@@ -101,5 +101,61 @@ namespace TestDevDash.UserTests {
       Button button = window.Get<Button>(button_name);
       button.Click();
     }
+
+    public void AndIShouldSeeXNameInXListbox() {
+      throw new NotImplementedException();
+    }
+
+    public void AndIShouldSeeXNumberOfProjectsInXListBox() {
+      throw new NotImplementedException();
+    }
+
+    public void AndIClick() {
+      throw new NotImplementedException();
+    }
+
+    public void AndIFillEndDate() {
+      throw new NotImplementedException();
+    }
+
+    public void AndIFillStartDate() {
+      throw new NotImplementedException();
+    }
+
+    public void AndIFillProjectDescription() {
+      throw new NotImplementedException();
+    }
+
+    public void WhenIFillGithubLink() {
+      throw new NotImplementedException();
+    }
+
+    public void WhenIFillProjectName() {
+      throw new NotImplementedException();
+    }
+
+    public void ThenIShouldSee(string p) {
+      throw new NotImplementedException();
+    }
+
+    public void AndIAmAmOnMainWindow() {
+      throw new NotImplementedException();
+    }
+
+    public void GivenThereAreNoProjects() {
+      throw new NotImplementedException();
+    }
+
+    public void GivenThereAreXProjects() {
+      throw new NotImplementedException();
+    }
+
+    public void AndDBShouldHaveXProjects() {
+      throw new NotImplementedException();
+    }
+
+    public void ThenIShouldSeeErrorMessage() {
+      throw new NotImplementedException();
+    }
   }
 }

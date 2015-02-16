@@ -21,28 +21,94 @@ namespace TestDevDash.UserTests {
     }
 
     [TestMethod]
-    public void AddFirstProjectToDB() {
-      throw new NotImplementedException();
+    public void AddFirstProjectToDBWithAllFields() {
+      GivenThereAreNoProjects();
+      AndIAmAmOnMainWindow();
+      ThenIShouldSee("Main_New_Project_Button");
+      WhenIFillProjectName();
+      WhenIFillGithubLink();
+      AndIFillProjectDescription();
+      AndIFillStartDate();
+      AndIFillEndDate();
+      AndIClick();
+      ThenIShouldSee("Current_Projects_Listbox");
+      AndIShouldNotSee("Main_View");
+      AndIShouldSeeXNumberOfProjectsInXListBox();
+      AndIShouldSeeXNameInXListbox();
+    }
+
+    
+
+    [TestMethod]
+    public void AddFirstProjectToDBWithRequiredFields() {
+      GivenThereAreNoProjects();
+      AndIAmAmOnMainWindow();
+      ThenIShouldSee("Main_New_Project_Button");
+      WhenIFillProjectName();
+      AndIFillProjectDescription();
+      AndIFillStartDate();
+      AndIClick();
+      ThenIShouldSee("Current_Projects_Listbox");
+      AndIShouldNotSee("Main_View");
+      AndIShouldSeeXNumberOfProjectsInXListBox();
+      AndIShouldSeeXNameInXListbox();
     }
 
     [TestMethod]
-    public void AddProjectToDBWithExistingProjects() { 
-      throw new NotImplementedException();
+    public void AddProjectToDBWithExistingProjects() {
+      GivenThereAreXProjects();
+      AndIAmAmOnMainWindow();
+      ThenIShouldSee("Main_New_Project_Button");
+      WhenIFillProjectName();
+      WhenIFillGithubLink();
+      AndIFillProjectDescription();
+      AndIFillStartDate();
+      AndIFillEndDate();
+      AndIClick();
+      ThenIShouldSee("Current_Projects_Listbox");
+      AndIShouldNotSee("Main_View");
+      AndIShouldSeeXNumberOfProjectsInXListBox();
+      AndIShouldSeeXNameInXListbox();;
+    }
+
+    
+
+    [TestMethod]
+    public void AddProjectWithNoData() {
+      GivenThereAreNoProjects();
+      AndIAmAmOnMainWindow();
+      ThenIShouldSee("Main_New_Project_Button");
+      WhenIClick();
+      ThenIShouldSeeErrorMessage();
+      AndDBShouldHaveXProjects();
+    }
+
+
+    [TestMethod]
+    public void AddProjectWithInvalidName() {
+      GivenThereAreNoProjects();
+      AndIAmAmOnMainWindow();
+      ThenIShouldSee("Main_New_Project_Button");
+      WhenIFillProjectName();
+      WhenIFillGithubLink();
+      AndIFillProjectDescription();
+      AndIFillStartDate();
+      AndIFillEndDate();
+      AndIClick();
+      ThenIShouldSeeErrorMessage();
+      AndDBShouldHaveXProjects();
     }
 
     [TestMethod]
-    public void AddProjectWithValidData() { 
-      throw new NotImplementedException();
-    }
-
-    [TestMethod]
-    public void AddProjectWithNoName() { 
-      throw new NotImplementedException();
-    }
-
-    [TestMethod]
-    public void AddProjectWithInvalidArguments() { 
-      throw new NotImplementedException();
+    public void AddProjectWithInvalidNumberOfArguments() { 
+       GivenThereAreNoProjects();
+      AndIAmAmOnMainWindow();
+      ThenIShouldSee("Main_New_Project_Button");
+      WhenIFillProjectName();
+      WhenIFillGithubLink();
+      AndIClick();
+      ThenIShouldSeeErrorMessage();
+      AndDBShouldHaveXProjects();
     }
   }
 }

@@ -28,7 +28,7 @@
                     <Button x:Name="View_Past_Projects_Button" Margin="10,20,0,0" Width="120" Content="Past Projects"/>
                 </StackPanel>
             </StackPanel>
-            <TextBlock Margin="10,10,0,0" x:Name="No_Current_Projects_Message">No Current Projects To Show</TextBlock>
+            <TextBlock Margin="10,10,0,0" FontSize="30" HorizontalAlignment="Center" x:Name="No_Current_Projects_Message">No Current Projects To Show</TextBlock>
             <ListBox x:Name="Current_Projects_Listbox" HorizontalAlignment="Center" Height="437" Width="700" Margin="0,5,0,0" ItemsSource="{Binding}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
