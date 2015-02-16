@@ -9,6 +9,13 @@ using System.Data.Entity;
 namespace DevDash.Repositories {
   public class ProjectsRepository : IProjectRepository{
 
+    //set up for db local
+    private ProjectContext _dbContext;
+
+    public DbSet<Project> GetDbSet() {
+      return _dbContext.Projects;
+    }
+
     public ProjectsRepository(){
       _dbContext = new ProjectContext();
       _dbContext.Projects.Load();
@@ -17,9 +24,6 @@ namespace DevDash.Repositories {
     public ProjectContext Context() {
       return _dbContext;
     }
-
-    //set up for db local
-    private ProjectContext _dbContext;
 
    //Project DB Methods
       //return qu.ToList<Project>();

@@ -9,7 +9,7 @@ namespace TestDevDash.UserTests {
 
     [ClassInitialize]
     public static void SetUpTests(TestContext _context) {
-      TestHelper.SetUpClass(_context); 
+      TestHelper.SetUpClass(_context);
     }
 
     [TestInitialize]
@@ -23,20 +23,14 @@ namespace TestDevDash.UserTests {
     }
 
     [TestMethod]
-    public void TestZeroStateWithNoProjectsInDB() {
-      
-    }
-    
-    [TestMethod]
-    public void TestZeroStateWithOnlyCurrentProjectsInDB() {
-    }
+    public void TestZeroState(){
+      Button past = window.Get<Button>("Past_Projects_Button");
+      Button current = window.Get<Button>("Current_Projects_Button");
+      Button add = window.Get<Button>("Main_New_Project_Button");
 
-    [TestMethod]
-    public void TestZeroStateWithOnlyPastProjectsInDB() {
+      Assert.IsTrue(past.Enabled);
+      Assert.IsTrue(current.Enabled);
+      Assert.IsTrue(add.Enabled);
     }
-
-    [TestMethod]
-    public void TestZeroStateWithCurrentAndPastProjectsInDB() {
-    }
-  }
+  } 
 }

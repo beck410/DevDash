@@ -1,5 +1,6 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,38 +12,45 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-
+using System.Windows.Shapes;
+using System.Data.Entity;
+using DevDash.Model;
+using DevDash.Repositories;
+using DevDash;
 
 namespace DevDash {
-  /// <summary>
-  /// Interaction logic for MainWindow.xaml
-  /// </summary>
+
   public partial class MainWindow : Window {
+
+    public static ProjectsRepository project_repo = new ProjectsRepository();
+
     public MainWindow() {
       InitializeComponent();
-      Check_Current_Project_List_State(true);
-      Check_Past_Project_List_State(true);
+      //project_repo.Add(new Project("angular",1,"03/17/2014"));
+      //project_repo.Add(new Project("js",1,"03/17/2014"));
+      //project_repo.Add(new Project("penny",0,"03/17/2014"));
+
+      //List<Project> current_projects = new List<Project>();
+      //current_projects.Add(new Project("angular",1,"02/03/2014"));
+      //current_projects.Add(new Project("js",1,"02/03/2014"));
+      //current_projects.Add(new Project("csharp",1,"02/03/2014"));
+
     }
 
-    public void Current_Projects_Button_Click(object sender, RoutedEventArgs e) {
+    private void View_Past_Projects(object sender, RoutedEventArgs e) {
 
     }
 
-    public void Past_Projects_Button_Click(object sender, RoutedEventArgs e) {
+    private void View_Current_Projects(object sender, RoutedEventArgs e) {
+      Main_View.Visibility = Visibility.Collapsed;
+      Current_Projects_List.Visibility = Visibility.Visible;
+      Current_Projects_Listbox.DataContext = project_repo.AllCurrentProjects();
+    }
+
+    private void Button_Click(object sender, RoutedEventArgs e) {
 
     }
 
-    public void Main_New_Project_Button_Click(object sender, RoutedEventArgs e) {
-      // TODO: open new window
-      Main_New_Project_Button.IsEnabled = false;
-    }
 
-    public void Check_Current_Project_List_State(bool projectsExist) {
-      Current_Projects_Button.IsEnabled = projectsExist;
-    }
-
-    public void Check_Past_Project_List_State(bool projectsExist) {
-      Past_Projects_Button.IsEnabled = projectsExist;
-    }
   }
 }
