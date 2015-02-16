@@ -3,21 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="700" Width="1000">
     <Grid>
-        <StackPanel x:Name="Main_View" Width="900" Height="650" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,-6,46,25">
+        <StackPanel x:Name="Main_View" Width="900" Height="650" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="33,0,59,10">
             <TextBlock VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" FontSize="50">Dev Dash</TextBlock>
             <StackPanel Height="100" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Button x:Name="Current_Projects_Button" Width="100" Margin="0,25,10,25" Height="50" Click="View_Current_Projects" Content="Current Projects"/>
                 <Button x:Name="Past_Projects_Button" Width="100" Margin="10,0,0,0"  Height="50" Click="View_Past_Projects" Content="Past Projects"/>
             </StackPanel>
-            <StackPanel x:Name="New_Project_Header" HorizontalAlignment="center">
+            <StackPanel x:Name="New_Project_Header" Width="400" HorizontalAlignment="center">
                 <TextBlock FontSize="24">Add New Project</TextBlock>
                 <Label x:Name="New_Project_Name_label" FontSize="16" Margin="0,15,0,0">Project Name</Label>
-                <TextBox x:Name="New_Project_Name" Width="220" Height="20" Margin="0,5,0,0"></TextBox>
-                <Label x:Name="New_Project_Github_label" FontSize="16" Margin="0,15,0,0">Github URL</Label>
-                <TextBox x:Name="New_Project_Github" Width="220" Height="20" Margin="0,5,0,0"></TextBox>
+                <TextBox x:Name="New_Project_Name" Height="20" Margin="0,5,0,0"></TextBox> 
+                <Label x:Name="New_Project_Start_Date_label" FontSize="16" Margin="0,15,0,0">Start Date</Label>
+                <DatePicker x:Name="New_Project_Start_Date"/>
+                <Label x:Name="New_Project_End_Date_label" FontSize="16" Margin="0,15,0,0">End Date</Label>
+                <DatePicker x:Name="New_Project_End_Date" />
                 <Label x:Name="New_Project_Desciption_label" FontSize="16" Margin="0,15,0,0">Project Description</Label>
-                <TextBox x:Name="New_Project_Description" Width="220" Height="20" Margin="0,5,0,0"></TextBox>
-                <Button x:Name="Main_New_Project_Button" Height="20px" Width="220" VerticalAlignment="Bottom"  Content="+ Create New Project" Margin="0,20,0,0"/>
+                <TextBox x:Name="New_Project_Description" Height="20" Margin="0,5,0,0"></TextBox>
+                <Label x:Name="New_Project_Github_label" FontSize="16" Margin="0,15,0,0">Github URL</Label>
+                <TextBox x:Name="New_Project_Github" Height="20" Margin="0,5,0,0"></TextBox>
+                <Button x:Name="Main_New_Project_Button" Height="20px" VerticalAlignment="Bottom"  Content="+ Create New Project" Margin="0,20,0,0"/>
             </StackPanel>
         </StackPanel>
         <StackPanel x:Name="Current_Projects_List" Visibility="Collapsed" Width="887" Height="536" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,0,59,102">
