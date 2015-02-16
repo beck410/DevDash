@@ -75,6 +75,7 @@
     <Compile Include="UnitTests\TestNotesPanel.cs" />
     <Compile Include="UnitTests\TestNote.cs" />
     <Compile Include="UserTests\TestHelper.cs" />
+    <Compile Include="UserTests\AddNewProjectFromMainWindow.cs" />
     <Compile Include="UserTests\ViewPastProjects.cs" />
     <Compile Include="UserTests\ViewCurrentProject.cs" />
     <Compile Include="UserTests\ZeroStateUserTest.cs" />
