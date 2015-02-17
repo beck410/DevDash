@@ -51,8 +51,15 @@ namespace TestDevDash.UserTests {
       Assert.AreEqual(0,ProjectRepo.GetCount());
     }
    
-    public void GivenThereAreNoXProjects(string p) {
-      Assert.AreEqual(0, ProjectRepo.AllCurrentProjects().Count);
+    public void GivenThereAreNoXProjects(string project_type) {
+      if(project_type == "current")
+        Assert.AreEqual(0, ProjectRepo.AllCurrentProjects().Count);
+      else
+        Assert.AreEqual(0, ProjectRepo.AllPastProjects().Count);
+    }
+
+    public void AndIAmOnCurrentProjectsList() {
+ 	    throw new NotImplementedException();
     }
 
     public void GivenThereAreXProjects(string project_type) {
