@@ -13,50 +13,24 @@ namespace TestDevDash.UnitTests {
       Assert.AreEqual("02/02/2015", project.ProjectStartDate);
       Assert.AreEqual("03/02/2015", project.ProjectEndDate);
       Assert.AreEqual("http://github.com/beck410/simpleShapes", project.GithubLink);
-    }
-
-    [TestMethod]
-    public void TestProjectConstructorWithOnyRequiredParams() {
-      Project project = new Project("simpleShapes",0,"02/05/2014");
-      Assert.AreEqual("simpleShapes", project.ProjectName);
-      Assert.AreEqual(0, project.ProjectState);
-      Assert.AreEqual("02/05/2014", project.ProjectStartDate);
-      Assert.IsNull(project.ProjectEndDate);
-      Assert.IsNull(project.GithubLink);
-    }
-
-    [TestMethod]
-    public void TestProjectConstructorWithRequiredParamsAndLink() {
-      Project project = new Project("simpleShapes",1,"02/06/2015","http://github.com/beck410/simpleShapes");
-      Assert.AreEqual("simpleShapes", project.ProjectName);
-      Assert.AreEqual(1, project.ProjectState);
-      Assert.AreEqual("http://github.com/beck410/simpleShapes", project.GithubLink);
-      Assert.AreEqual("02/06/2015", project.ProjectStartDate);
-      Assert.IsNull(project.ProjectEndDate);
-    }
+    } 
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void TestProjectConstructorWithNameSpaces() {
-      Project project = new Project("simple shapes",0,"05/05/2013");
+      Project project = new Project("simple shapes",0,"05/05/2013","05/20/2013","http://github.com/simple_shapes");
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void TestProjectConstructorWithEmptyName() {
-      Project project = new Project("",0,"03/05/2012");
+      Project project = new Project("",0,"03/05/2012","05/20/2013","http://github.com/simple_shapes");
     }
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
     public void TestProjectConstructorWithWhiteSpaceForName() {
-       Project project = new Project("  ",0,"03/05/2012");
-    }
-
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
-    public void TestProjectConstructorWithNameAndLinkAndStartDate() {
-       Project project = new Project("simpleShapes","02/02/2014","http://www.website.com");
+       Project project = new Project("  ",0,"03/05/2012","05/20/2013","http://github.com/simple_shapes");
     }
   }
 }
