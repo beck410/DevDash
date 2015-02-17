@@ -44,7 +44,13 @@ namespace TestDevDash.UserTests {
     }
 
     // USER TEST FUNCTIONS 
-    
+
+    //given there are/not projects 
+ 
+    public void GivenThereAreNoProjects() {
+      Assert.AreEqual(0,ProjectRepo.GetCount());
+    }
+   
     public void GivenThereAreNoXProjects(string p) {
       Assert.AreEqual(0, ProjectRepo.AllCurrentProjects().Count);
     }
@@ -52,14 +58,14 @@ namespace TestDevDash.UserTests {
     public void GivenThereAreXProjects(string project_type) {
 
       if (project_type == "current") {
-        ProjectRepo.Add(new Project("angular_project",1,"02/03/2015"));
-        ProjectRepo.Add(new Project("js_project",1,"10/03/2015"));
-        ProjectRepo.Add(new Project("CSharp_project",1,"02/21/2015"));
+        ProjectRepo.Add(new Project("angular_project",1,"02/03/2015","02/20/2015","http://github.com/angular_project"));
+        ProjectRepo.Add(new Project("js_project",1,"10/03/2015","10/20/2015","http://github.com/js_project"));
+        ProjectRepo.Add(new Project("CSharp_project",1,"02/21/2015", "02/28/2015","http://github.com/csharp"));
       }
       else if(project_type == "past"){
-        ProjectRepo.Add(new Project("angular_project",0,"02/03/2015"));
-        ProjectRepo.Add(new Project("js_project",0,"10/03/2015"));
-        ProjectRepo.Add(new Project("CSharp_project",0,"02/21/2015"));
+        ProjectRepo.Add(new Project("angular_project",0,"02/03/2015","02/20/2015","http://github.com/angular_project"));
+        ProjectRepo.Add(new Project("js_project",0,"10/03/2015","10/20/2015","http://github.com/js_project"));
+        ProjectRepo.Add(new Project("CSharp_project",0,"02/21/2015", "02/28/2015","http://github.com/csharp"));
       }
       else {
         throw new ArgumentException("Not a valid project type");
@@ -67,8 +73,11 @@ namespace TestDevDash.UserTests {
 
       Assert.AreEqual(3,ProjectRepo.GetCount());
     }
-    public void AndIShouldSeeXNumberOfProjectsInXListBox(int project_number, string name, string project_type) {
-      SearchCriteria search_criteria = SearchCriteria.ByAutomationId(name).AndIndex(0);
+
+    // I should not/see 
+
+    public void AndIShouldSeeXNumberOfProjectsInXListBox(int project_number, string list, string project_type) {
+      SearchCriteria search_criteria = SearchCriteria.ByAutomationId(list).AndIndex(0);
 
       ListBox list_box = (ListBox)window.Get(search_criteria);
 
@@ -81,6 +90,10 @@ namespace TestDevDash.UserTests {
         Assert.AreEqual(project_number,ProjectRepo.AllPastProjects().Count);
         Assert.AreEqual(project_number,list_box.Items.Count);
       }
+    }
+
+    public void ThenIShouldSee(string element) {
+      AndIShouldSee(element);
     }
 
     public void AndIShouldSee(string name) {
@@ -102,60 +115,59 @@ namespace TestDevDash.UserTests {
       button.Click();
     }
 
-    public void AndIShouldSeeXNameInXListbox() {
-      throw new NotImplementedException();
+    public void AndIShouldSeeXNameInXListbox(string name, string list) {
+      SearchCriteria searchCriteria = SearchCriteria.ByAutomationId(list).AndIndex(0);
+      ListBox list_box = (ListBox)window.Get(searchCriteria);
+      var item = list_box.Items.Find(i => i.Text == name);
+      Assert.AreEqual(name, item.Text);
+      
     }
 
-    public void AndIShouldSeeXNumberOfProjectsInXListBox() {
-      throw new NotImplementedException();
+    public void AndIClick(string element) {
+      WhenIClick(element);
     }
 
-    public void AndIClick() {
-      throw new NotImplementedException();
+    public void AndIFillEndDate(DateTime date) {
+       DateTimePicker picker = window.Get<DateTimePicker>("New_Project_End_Date");
+      picker.Date = date;
+      Assert.AreEqual(date, picker.Date);
     }
 
-    public void AndIFillEndDate() {
-      throw new NotImplementedException();
+    public void AndIFillStartDate(DateTime date) {
+      DateTimePicker picker = window.Get<DateTimePicker>("New_Project_Start_Date");
+      picker.Date = date;
+      Assert.AreEqual(date, picker.Date);
     }
 
-    public void AndIFillStartDate() {
-      throw new NotImplementedException();
+    public void AndIFillGithubLink(string link) {
+      TextBox textbox = window.Get<TextBox>("New_Project_Github");
+      textbox.SetValue(link);
+      Assert.AreEqual(link, textbox.Text);
     }
 
-    public void AndIFillProjectDescription() {
-      throw new NotImplementedException();
+    public void WhenIFillProjectName(string name) {
+      TextBox textbox = window.Get<TextBox>("New_Project_Name");
+      textbox.SetValue(name);
+      Assert.AreEqual(name, textbox.Text);
     }
 
-    public void WhenIFillGithubLink() {
-      throw new NotImplementedException();
-    }
-
-    public void WhenIFillProjectName() {
-      throw new NotImplementedException();
-    }
-
-    public void ThenIShouldSee(string p) {
-      throw new NotImplementedException();
-    }
 
     public void AndIAmAmOnMainWindow() {
-      throw new NotImplementedException();
+      Button past_project = window.Get<Button>("Current_Projects_Button");
+        Button current_project = window.Get<Button>("Past_Projects_Button");
+      Assert.IsTrue(past_project.Enabled); 
+      Assert.IsTrue(current_project.Enabled); 
     }
 
-    public void GivenThereAreNoProjects() {
-      throw new NotImplementedException();
+    public void AndDBShouldHaveXProjects(int count) {
+      int db_count = ProjectRepo.GetCount();
+      Assert.AreEqual(count,db_count);
     }
 
-    public void GivenThereAreXProjects() {
-      throw new NotImplementedException();
-    }
-
-    public void AndDBShouldHaveXProjects() {
-      throw new NotImplementedException();
-    }
-
-    public void ThenIShouldSeeErrorMessage() {
-      throw new NotImplementedException();
+    public void ThenIShouldSeeErrorMessage(string element,string error_message) {
+      var error = window.Get(SearchCriteria.ByAutomationId(element));
+      
+      Assert.IsTrue(error.Visible);
     }
   }
 }

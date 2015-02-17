@@ -25,16 +25,17 @@ namespace TestDevDash.UserTests {
       GivenThereAreNoProjects();
       AndIAmAmOnMainWindow();
       ThenIShouldSee("Main_New_Project_Button");
-      WhenIFillProjectName();
-      WhenIFillGithubLink();
-      AndIFillProjectDescription();
-      AndIFillStartDate();
-      AndIFillEndDate();
-      AndIClick();
+      WhenIFillProjectName("angular_project");
+      AndIFillGithubLink("http://www.github.com/angular_project"); 
+      AndIFillStartDate(new DateTime(2015, 02, 11));
+      AndIFillEndDate(new DateTime(2015, 03, 11));
+      AndIClick("Main_New_Project_Button");
       ThenIShouldSee("Current_Projects_Listbox");
-      AndIShouldNotSee("Main_View");
-      AndIShouldSeeXNumberOfProjectsInXListBox();
-      AndIShouldSeeXNameInXListbox();
+      AndIShouldNotSee("Current_Projects_Button");
+      AndIShouldNotSee("New_Project_Error");
+      AndIShouldNotSee("Past_Projects_Button");
+      AndIShouldSeeXNumberOfProjectsInXListBox(1,"Current_Projects_Listbox","current");
+      AndIShouldSeeXNameInXListbox("angular_project","Current_Projects_Listbox");
     }
 
     
@@ -44,31 +45,33 @@ namespace TestDevDash.UserTests {
       GivenThereAreNoProjects();
       AndIAmAmOnMainWindow();
       ThenIShouldSee("Main_New_Project_Button");
-      WhenIFillProjectName();
-      AndIFillProjectDescription();
-      AndIFillStartDate();
-      AndIClick();
+      WhenIFillProjectName("csharp-project");
+      AndIFillStartDate(new DateTime(2015,01,30));
+      AndIClick("Main_New_Project_Button");
       ThenIShouldSee("Current_Projects_Listbox");
-      AndIShouldNotSee("Main_View");
-      AndIShouldSeeXNumberOfProjectsInXListBox();
-      AndIShouldSeeXNameInXListbox();
+      AndIShouldNotSee("Current_Projects_Button");
+      AndIShouldNotSee("Past_Projects_Button");
+      AndIShouldNotSee("New_Project_Error");
+      AndIShouldSeeXNumberOfProjectsInXListBox(1,"Current_Projects_Listbox","current");
+      AndIShouldSeeXNameInXListbox("csharp-project","Current_Projects_Listbox");
     }
 
     [TestMethod]
     public void AddProjectToDBWithExistingProjects() {
-      GivenThereAreXProjects();
+      GivenThereAreXProjects("current");
       AndIAmAmOnMainWindow();
       ThenIShouldSee("Main_New_Project_Button");
-      WhenIFillProjectName();
-      WhenIFillGithubLink();
-      AndIFillProjectDescription();
-      AndIFillStartDate();
-      AndIFillEndDate();
-      AndIClick();
+      WhenIFillProjectName("js_project");
+      AndIFillGithubLink("http://github.com/js_project");
+      AndIFillStartDate(new DateTime(2015,01,30));
+      AndIFillEndDate(new DateTime(2015,02,15));
+      AndIClick("Main_New_Project_Button");
       ThenIShouldSee("Current_Projects_Listbox");
-      AndIShouldNotSee("Main_View");
-      AndIShouldSeeXNumberOfProjectsInXListBox();
-      AndIShouldSeeXNameInXListbox();;
+      AndIShouldNotSee("Current_Projects_Button");
+      AndIShouldNotSee("Past_Projects_Button");
+      AndIShouldNotSee("New_Project_Error");
+      AndIShouldSeeXNumberOfProjectsInXListBox(4,"Current_Projects_Listbox","current");
+      AndIShouldSeeXNameInXListbox("js_project","Current_Projects_Listbox");
     }
 
     
@@ -78,9 +81,9 @@ namespace TestDevDash.UserTests {
       GivenThereAreNoProjects();
       AndIAmAmOnMainWindow();
       ThenIShouldSee("Main_New_Project_Button");
-      WhenIClick();
-      ThenIShouldSeeErrorMessage();
-      AndDBShouldHaveXProjects();
+      WhenIClick("Main_New_Project_Button");
+      ThenIShouldSeeErrorMessage("New_Project_Error","Name, Description and Start Date are Required To Add A Project");
+      AndDBShouldHaveXProjects(0);
     }
 
 
@@ -89,26 +92,13 @@ namespace TestDevDash.UserTests {
       GivenThereAreNoProjects();
       AndIAmAmOnMainWindow();
       ThenIShouldSee("Main_New_Project_Button");
-      WhenIFillProjectName();
-      WhenIFillGithubLink();
-      AndIFillProjectDescription();
-      AndIFillStartDate();
-      AndIFillEndDate();
-      AndIClick();
-      ThenIShouldSeeErrorMessage();
-      AndDBShouldHaveXProjects();
-    }
-
-    [TestMethod]
-    public void AddProjectWithInvalidNumberOfArguments() { 
-       GivenThereAreNoProjects();
-      AndIAmAmOnMainWindow();
-      ThenIShouldSee("Main_New_Project_Button");
-      WhenIFillProjectName();
-      WhenIFillGithubLink();
-      AndIClick();
-      ThenIShouldSeeErrorMessage();
-      AndDBShouldHaveXProjects();
+      WhenIFillProjectName("css project");
+      AndIFillGithubLink("http://github.com/css_project");;
+      AndIFillStartDate(new DateTime(2015,02,17));
+      AndIFillEndDate(new DateTime(2015,02,25));
+      AndIClick("Main_New_Project_Button");
+      ThenIShouldSeeErrorMessage("New_Project_Error","Please Put In Valid Project Name - no spaces");
+      AndDBShouldHaveXProjects(0);
     }
   }
 }

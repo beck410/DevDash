@@ -35,12 +35,12 @@ namespace DevDash {
       Current_Projects_Listbox.DataContext = current_projects;
 
       if (current_projects.Count == 0) {
+        No_Current_Projects_Message.Visibility = Visibility.Visible;
         Current_Projects_List.Visibility = Visibility.Visible;
         Current_Projects_Listbox.Visibility = Visibility.Collapsed;
       }
       else {
         Current_Projects_List.Visibility = Visibility.Visible;
-        No_Current_Projects_Message.Visibility = Visibility.Collapsed;
       }
     }
 
@@ -52,6 +52,7 @@ namespace DevDash {
       Main_View.Visibility = Visibility.Collapsed;
 
       if (past_projects.Count == 0) {
+        No_Past_Projects_Message.Visibility = Visibility.Visible;
         Past_Projects_List.Visibility = Visibility.Visible;
         Past_Projects_Listbox.Visibility = Visibility.Collapsed;
       }
@@ -62,10 +63,38 @@ namespace DevDash {
       
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e) {
+    private void Create_New_Project(object sender, RoutedEventArgs e) {
 
+      New_Project_Error.Visibility = Visibility.Collapsed;
+      string project_name = New_Project_Name.Text;
+      string start_date = New_Project_Start_Date.SelectedDate.ToString();
+      string end_date = New_Project_End_Date.SelectedDate.ToString();
+      string github = New_Project_Github.Text;
+
+      if (Has_Spaces(project_name)) {
+        New_Project_Error.Visibility = Visibility.Visible;
+        New_Project_Error.Text = "Please Put In Valid Project Name - no spaces";
+        return;
+      }  
+
+      if (project_name == "") {
+        New_Project_Error.Visibility = Visibility.Visible;
+        New_Project_Error.Text = "Name is Required To Add A Project";
+        return;
+      }
+
+      project_repo.Add(new Project(project_name, 1, start_date, end_date, github));
+      Current_Projects_Listbox.DataContext = project_repo.AllCurrentProjects();
+      Main_View.Visibility = Visibility.Collapsed;
+      Current_Projects_List.Visibility = Visibility.Visible;
     }
 
-
+    private bool Has_Spaces(string name) {
+     for (int i = 0; i < name.Length; i++) {
+       if (char.IsWhiteSpace(name[i]))
+         return true;
+     }
+     return false;
+   }
   }
 }
