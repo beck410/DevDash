@@ -107,8 +107,17 @@ namespace TestDevDash.UserTests {
       AndIShouldSeeXNumberOfProjectsInXListBox(project_number, list, project_type);
     }
 
-    public void WhenIClickXItemButton(int project_number, string list, string button) {
-      throw new NotImplementedException();
+    public void ThenIClickProjectDeleteButton(string button) {
+      Button delete_btn = window.Get<Button>("Delete_Current_Project_Button");
+      delete_btn.Click();
+    }
+
+    public void WhenISelect(int index, string list ) {
+      SearchCriteria search_criteria = SearchCriteria.ByAutomationId(list).AndIndex(0);
+
+      ListBox list_box = (ListBox)window.Get(search_criteria);
+      list_box.Select(0);
+      Assert.IsTrue(list_box.Item(0).IsSelected);
     }
 
     public void ThenIShouldSee(string element) {
@@ -139,7 +148,6 @@ namespace TestDevDash.UserTests {
       ListBox list_box = (ListBox)window.Get(searchCriteria);
       var item = list_box.Items.Find(i => i.Text == name);
       Assert.AreEqual(name, item.Text);
-      
     }
 
     public void AndIClick(string element) {

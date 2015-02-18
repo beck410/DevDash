@@ -14,7 +14,7 @@ namespace DevDash.Repositories {
     List<Project> AllCurrentProjects();
     int GetCount();
     void Add(Project P);
-    void Delete(Project P);
+    void Delete(int P);
     void Clear();
     Project GetById(int id);
   }

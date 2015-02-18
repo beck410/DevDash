@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace DevDash.Model {
-  public class Project {
+  public class Project : INotifyPropertyChanged {
 
     public int ProjectId { get; set; }
     public string ProjectName { get; set; } //required
@@ -15,7 +15,7 @@ namespace DevDash.Model {
     public string ProjectStartDate { get; set; } //required
     public string ProjectEndDate { get; set; }
     public string GithubLink { get; set; }
-
+    public event PropertyChangedEventHandler PropertyChanged;
     public Project() {
 
     }

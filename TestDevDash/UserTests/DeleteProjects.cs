@@ -26,7 +26,7 @@ namespace TestDevDash.UserTests {
       WhenIClick("Past_Projects_Button");
       ThenIAmOnCurrentProjectsList();
       AndIShouldSeeXNumberOfProjectsInXListBox(3,"Past_Projects_Listbox","past");
-      WhenIClickXItemButton(0,"Past_Projects_Listbox","Delete_Past_Project_Button"); 
+      ThenIClickProjectDeleteButton("past"); 
       ThenIShouldSeeXNumberOfProjectsInXListBox(2,"Past_Projects_Listbox","past");
       AndDBShouldHaveXProjects(2);
     }
@@ -37,7 +37,8 @@ namespace TestDevDash.UserTests {
       WhenIClick("Current_Projects_Button");
       ThenIAmOnCurrentProjectsList();
       AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
-      WhenIClickXItemButton(0,"Current_Projects_Listbox","Delete_Current_Project_Button"); 
+      WhenISelect(0,"Current_Projects_Listbox");
+      ThenIClickProjectDeleteButton("Delete_Current_Project_Button");
       ThenIShouldSeeXNumberOfProjectsInXListBox(2,"Current_Projects_Listbox","current");
       AndDBShouldHaveXProjects(2);
 

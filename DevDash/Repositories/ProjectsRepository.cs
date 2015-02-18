@@ -54,8 +54,10 @@ namespace DevDash.Repositories {
       _dbContext.SaveChanges();
     }
 
-    public void Delete(Project P) {
-      throw new NotImplementedException();
+    public void Delete(int id) {
+      var project = _dbContext.Projects.Where(x => x.ProjectId == id);
+      _dbContext.Projects.RemoveRange(project);
+      _dbContext.SaveChanges();
     }
 
     public void Clear() {

@@ -32,13 +32,13 @@
                 </StackPanel>
             </StackPanel>
             <TextBlock Margin="10,10,0,0" FontSize="30" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="No_Current_Projects_Message">No Current Projects To Show</TextBlock>
-            <ListBox x:Name="Current_Projects_Listbox" HorizontalAlignment="Center" Height="391" Width="700" Margin="94,5,93,0" ItemsSource="{Binding}">
+            <ListBox x:Name="Current_Projects_Listbox" HorizontalAlignment="Center" Height="391" Width="700" Margin="94,5,93,0" ItemsSource="{Binding NotifyOnSourceUpdated=True}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Width="650" Margin="10,10,5,10">
-                            <TextBlock Text="{Binding ProjectName}" Margin="0,0,100,0"/>
+                            <TextBlock Text="{Binding ProjectName, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="0,0,100,0"/>
                             <Button x:Name="Move_Current_Project_Button" Content="Move To Past Projects" Margin="20,0,0,0"/>
-                            <Button x:Name="Delete_Current_Project_Button" Content="Delete" Margin="20,0,0,0"/>
+                            <Button x:Name="Delete_Current_Project_Button" Click="Delete_Current_Project" Content="Delete" Margin="20,0,0,0"/>
                             <Button x:Name="View_Current_Project_Button" Content="View Dashboard" Margin="20,0,0,0"/>
                         </StackPanel>
                     </DataTemplate>
@@ -53,11 +53,11 @@
                 </StackPanel>
             </StackPanel>
             <TextBlock Margin="10,10,0,0" x:Name="No_Past_Projects_Message" HorizontalAlignment="Center" FontSize="30" Visibility="Collapsed" Height="40">No Past Projects To Show</TextBlock>
-            <ListBox x:Name="Past_Projects_Listbox" HorizontalAlignment="Center" Height="300" Width="700" Margin="0,5,0,0" ItemsSource="{Binding}">
+            <ListBox x:Name="Past_Projects_Listbox" HorizontalAlignment="Center" Height="300" Width="700" Margin="0,5,0,0" ItemsSource="{Binding NotifyOnSourceUpdated=True}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Width="650" Margin="10,10,5,10">
-                            <TextBlock Text="{Binding ProjectName}" Margin="0,0,100,0"/>
+                            <TextBlock Text="{Binding ProjectName, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="0,0,100,0"/>
                             <Button x:Name="Delete_Past_Project_Button" Content="Delete" Margin="20,0,0,0"/>
                             <Button x:Name="View_Current_Project_Button" Content="View Current Projects" Margin="20,0,0,0"/>
                         </StackPanel>

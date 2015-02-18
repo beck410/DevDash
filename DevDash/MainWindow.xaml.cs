@@ -23,14 +23,13 @@ namespace DevDash {
   public partial class MainWindow : Window {
 
     public static ProjectsRepository project_repo = new ProjectsRepository();
+    public List<Project> current_projects = project_repo.AllCurrentProjects();
 
     public MainWindow() {
       InitializeComponent();
     }
 
     private void View_Current_Projects(object sender, RoutedEventArgs e) {
-
-      var current_projects = project_repo.AllCurrentProjects();
       Main_View.Visibility = Visibility.Collapsed;
       Current_Projects_Listbox.DataContext = current_projects;
 
@@ -97,6 +96,12 @@ namespace DevDash {
     public void Switch_To_Past_Projects(object sender, RoutedEventArgs e){
       Current_Projects_List.Visibility = Visibility.Collapsed;
       View_Past_Projects(sender, e);
+    }
+
+    public void Delete_Current_Project(object sender, RoutedEventArgs e) {
+      Project project = (Project)Current_Projects_Listbox.SelectedItem;
+      int project_id = project.ProjectId;
+      project_repo.Delete(project_id);
     }
 
     private bool Has_Spaces(string name) {
