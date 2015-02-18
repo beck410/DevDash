@@ -31,7 +31,6 @@ namespace TestDevDash.UserTests {
       AndIShouldSee("Past_Projects_Listbox");
       AndIShouldSeeXNumberOfProjectsInXListBox(3,"Past_Projects_Listbox","past");
       AndIShouldSee("View_Current_Projects_Button");
-      AndIShouldSee("View_Past_Project_Button");
       AndIShouldSee("Delete_Past_Project_Button");
     }
 

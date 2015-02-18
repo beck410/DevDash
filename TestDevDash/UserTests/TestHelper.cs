@@ -103,6 +103,14 @@ namespace TestDevDash.UserTests {
       }
     }
 
+    public void ThenIShouldSeeXNumberOfProjectsInXListBox(int project_number, string list, string project_type) {
+      AndIShouldSeeXNumberOfProjectsInXListBox(project_number, list, project_type);
+    }
+
+    public void WhenIClickXItemButton(int project_number, string list, string button) {
+      throw new NotImplementedException();
+    }
+
     public void ThenIShouldSee(string element) {
       AndIShouldSee(element);
     }

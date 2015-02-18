@@ -30,7 +30,6 @@ namespace TestDevDash.UserTests {
       AndIFillStartDate(new DateTime(2015, 02, 11));
       AndIFillEndDate(new DateTime(2015, 03, 11));
       AndIClick("Main_New_Project_Button");
-      ThenIShouldSee("Current_Projects_Listbox");
       AndIShouldNotSee("Current_Projects_Button");
       AndIShouldNotSee("New_Project_Error");
       AndIShouldNotSee("Past_Projects_Button");
@@ -49,7 +48,6 @@ namespace TestDevDash.UserTests {
       AndIFillStartDate(new DateTime(2015,01,30));
       AndIClick("Main_New_Project_Button");
       ThenIShouldSee("Current_Projects_Listbox");
-      AndIShouldNotSee("Current_Projects_Button");
       AndIShouldNotSee("Past_Projects_Button");
       AndIShouldNotSee("New_Project_Error");
       AndIShouldSeeXNumberOfProjectsInXListBox(1,"Current_Projects_Listbox","current");
@@ -68,7 +66,6 @@ namespace TestDevDash.UserTests {
       AndIClick("Main_New_Project_Button");
       ThenIShouldSee("Current_Projects_Listbox");
       AndIShouldNotSee("Current_Projects_Button");
-      AndIShouldNotSee("Past_Projects_Button");
       AndIShouldNotSee("New_Project_Error");
       AndIShouldSeeXNumberOfProjectsInXListBox(4,"Current_Projects_Listbox","current");
       AndIShouldSeeXNameInXListbox("js_project","Current_Projects_Listbox");

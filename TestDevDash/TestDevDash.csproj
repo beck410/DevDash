@@ -76,9 +76,8 @@
     <Compile Include="UnitTests\TestNote.cs" />
     <Compile Include="UserTests\TestHelper.cs" />
     <Compile Include="UserTests\AddNewProjectFromMainWindow.cs" />
-    <Compile Include="UserTests\DeleteCurrentProject.cs" />
+    <Compile Include="UserTests\DeleteProjects.cs" />
     <Compile Include="UserTests\MoveCurrentProjectToPastProjectList.cs" />
-    <Compile Include="UserTests\DeletePastProject.cs" />
     <Compile Include="UserTests\NavigateToCurrentProjectsFromPastProjectList.cs" />
     <Compile Include="UserTests\NavigateToPastProjectsFromCurrentProjectsList.cs" />
     <Compile Include="UserTests\ViewPastProjects.cs" />
