@@ -3,13 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="700" Width="1000">
     <Grid>
-        <StackPanel x:Name="Main_View" Width="900" Height="650" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="36,0,56,0">
+        <StackPanel x:Name="Main_View" Width="900" Height="573" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="33,0,59,77">
             <TextBlock VerticalAlignment="Top" Margin="346,10,345,0" HorizontalAlignment="Center" FontSize="50"><Run Text="Dev Dash"/></TextBlock>
             <StackPanel Height="60" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Button x:Name="Current_Projects_Button" Width="100" Margin="0,0,10,0" Height="50" Click="View_Current_Projects" Content="Current Projects"/>
                 <Button x:Name="Past_Projects_Button" Width="100" Margin="10,0,0,0"  Height="50" Click="View_Past_Projects" Content="Past Projects"/>
             </StackPanel>
-            <StackPanel x:Name="New_Project_Header" Width="400" HorizontalAlignment="center" Height="282">
+            <StackPanel x:Name="New_Project_Header" Width="400" HorizontalAlignment="center" Height="382" Margin="250,0">
                 <TextBlock FontSize="24"><Run Text="Add New Project"/></TextBlock>
                 <TextBlock x:Name="New_Project_Error" Margin="20,10,20,10" Visibility="Collapsed" FontSize="18"/>
                 <Label x:Name="New_Project_Name_label" FontSize="16" Margin="0,15,0,0" Content="Project Name (Required)"/>
