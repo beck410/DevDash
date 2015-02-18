@@ -89,6 +89,16 @@ namespace DevDash {
       Current_Projects_List.Visibility = Visibility.Visible;
     }
 
+    public void Switch_To_Current_Projects(object sender, RoutedEventArgs e) {
+      Past_Projects_List.Visibility = Visibility.Collapsed;
+      View_Current_Projects(sender,e);
+    }
+
+    public void Switch_To_Past_Projects(object sender, RoutedEventArgs e){
+      Current_Projects_List.Visibility = Visibility.Collapsed;
+      View_Past_Projects(sender, e);
+    }
+
     private bool Has_Spaces(string name) {
      for (int i = 0; i < name.Length; i++) {
        if (char.IsWhiteSpace(name[i]))

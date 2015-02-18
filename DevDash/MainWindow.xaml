@@ -3,36 +3,36 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="700" Width="1000">
     <Grid>
-        <StackPanel x:Name="Main_View" Width="900" Height="650" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="33,-46,59,65">
-            <TextBlock VerticalAlignment="Top" Margin="0,10,0,0" HorizontalAlignment="Center" FontSize="50">Dev Dash</TextBlock>
-            <StackPanel Height="100" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button x:Name="Current_Projects_Button" Width="100" Margin="0,25,10,25" Height="50" Click="View_Current_Projects" Content="Current Projects"/>
+        <StackPanel x:Name="Main_View" Width="900" Height="650" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="36,0,56,0">
+            <TextBlock VerticalAlignment="Top" Margin="346,10,345,0" HorizontalAlignment="Center" FontSize="50"><Run Text="Dev Dash"/></TextBlock>
+            <StackPanel Height="60" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button x:Name="Current_Projects_Button" Width="100" Margin="0,0,10,0" Height="50" Click="View_Current_Projects" Content="Current Projects"/>
                 <Button x:Name="Past_Projects_Button" Width="100" Margin="10,0,0,0"  Height="50" Click="View_Past_Projects" Content="Past Projects"/>
             </StackPanel>
-            <StackPanel x:Name="New_Project_Header" Width="400" HorizontalAlignment="center">
-                <TextBlock FontSize="24">Add New Project</TextBlock>
-                <TextBlock x:Name="New_Project_Error" Margin="20,10,20,10" Visibility="Collapsed" FontSize="18"></TextBlock>
-                <Label x:Name="New_Project_Name_label" FontSize="16" Margin="0,15,0,0">Project Name (Required)</Label>
-                <TextBox x:Name="New_Project_Name" Height="20" Margin="0,5,0,0"></TextBox> 
-                <Label x:Name="New_Project_Start_Date_label" FontSize="16" Margin="0,15,0,0">Start Date</Label>
+            <StackPanel x:Name="New_Project_Header" Width="400" HorizontalAlignment="center" Height="282">
+                <TextBlock FontSize="24"><Run Text="Add New Project"/></TextBlock>
+                <TextBlock x:Name="New_Project_Error" Margin="20,10,20,10" Visibility="Collapsed" FontSize="18"/>
+                <Label x:Name="New_Project_Name_label" FontSize="16" Margin="0,15,0,0" Content="Project Name (Required)"/>
+                <TextBox x:Name="New_Project_Name" Height="20" Margin="0,5,0,0"/>
+                <Label x:Name="New_Project_Start_Date_label" FontSize="16" Margin="0,15,0,0" Content="Start Date"/>
                 <DatePicker x:Name="New_Project_Start_Date"/>
-                <Label x:Name="New_Project_End_Date_label" FontSize="16" Margin="0,15,0,0">End Date</Label>
+                <Label x:Name="New_Project_End_Date_label" FontSize="16" Margin="0,15,0,0" Content="End Date"/>
                 <DatePicker x:Name="New_Project_End_Date" />
-                <Label x:Name="New_Project_Github_label" FontSize="16" Margin="0,15,0,0">Github URL</Label>
-                <TextBox x:Name="New_Project_Github" Height="20" Margin="0,5,0,0"></TextBox>
+                <Label x:Name="New_Project_Github_label" FontSize="16" Margin="0,15,0,0" Content="Github URL" Height="38"/>
+                <TextBox x:Name="New_Project_Github" Height="20" Margin="0,5,0,0"/>
                 <Button x:Name="Main_New_Project_Button" Click="Create_New_Project" Height="20px" VerticalAlignment="Bottom"  Content="+ Create New Project" Margin="0,20,0,0"/>
             </StackPanel>
         </StackPanel>
-        <StackPanel x:Name="Current_Projects_List" Visibility="Collapsed" Width="887" Height="536" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,0,59,102">
-            <StackPanel Height="92">
+        <StackPanel x:Name="Current_Projects_List" Visibility="Collapsed" Orientation="Vertical" Width="887" Height="536" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,0,59,102">
+            <StackPanel Height="120">
                 <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="50">Current Projects</TextBlock>
                 <StackPanel Orientation="Horizontal" Width="260" HorizontalAlignment="Center">
-                    <Button x:Name="List_Add_New_Project"  Margin="0,20,10,0" Width="120" Content="+ Add New Project"/>
-                    <Button x:Name="View_Past_Projects_Button" Margin="10,20,0,0" Width="120" Content="Past Projects"/>
+                    <Button x:Name="List_Add_New_Project"  Margin="0,10,20,0" Width="120" Content="+ Add New Project"/>
+                    <Button x:Name="View_Past_Projects_Button" Margin="0,10,0,0" Click="Switch_To_Past_Projects" Width="120" Content="Past Projects"/>
                 </StackPanel>
             </StackPanel>
             <TextBlock Margin="10,10,0,0" FontSize="30" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="No_Current_Projects_Message">No Current Projects To Show</TextBlock>
-            <ListBox x:Name="Current_Projects_Listbox" HorizontalAlignment="Center" Height="437" Width="700" Margin="0,5,0,0" ItemsSource="{Binding}">
+            <ListBox x:Name="Current_Projects_Listbox" HorizontalAlignment="Center" Height="391" Width="700" Margin="94,5,93,0" ItemsSource="{Binding}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Width="650" Margin="10,10,5,10">
@@ -45,11 +45,11 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
-       <StackPanel x:Name="Past_Projects_List" Width="887" Height="536" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,0,59,102" Visibility="Collapsed">
+        <StackPanel x:Name="Past_Projects_List" Width="887" Height="536" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,0,59,102" Visibility="Collapsed">
             <StackPanel Height="144" Margin="0,20,0,0">
                 <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="50">Past Projects</TextBlock>
                 <StackPanel Orientation="Horizontal" Width="260" HorizontalAlignment="Center">
-                    <Button x:Name="View_Current_Projects_Button" Margin="70,20,0,0" Width="120" Content="Current Projects"/>
+                    <Button x:Name="View_Current_Projects_Button" Click="Switch_To_Current_Projects" Margin="70,20,0,0" Width="120" Content="Current Projects"/>
                 </StackPanel>
             </StackPanel>
             <TextBlock Margin="10,10,0,0" x:Name="No_Past_Projects_Message" HorizontalAlignment="Center" FontSize="30" Visibility="Collapsed" Height="40">No Past Projects To Show</TextBlock>
@@ -59,7 +59,7 @@
                         <StackPanel Orientation="Horizontal" Width="650" Margin="10,10,5,10">
                             <TextBlock Text="{Binding ProjectName}" Margin="0,0,100,0"/>
                             <Button x:Name="Delete_Past_Project_Button" Content="Delete" Margin="20,0,0,0"/>
-                            <Button x:Name="View_Past_Project_Button" Content="View Dashboard" Margin="20,0,0,0"/>
+                            <Button x:Name="View_Current_Project_Button" Content="View Current Projects" Margin="20,0,0,0"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

@@ -59,7 +59,11 @@ namespace TestDevDash.UserTests {
     }
 
     public void AndIAmOnCurrentProjectsList() {
- 	    throw new NotImplementedException();
+      ThenIAmOnCurrentProjectsList();
+    }
+
+    public void ThenIAmOnCurrentProjectsList() {
+      Button back_button = window.Get<Button>("View_Past_Projects_Button");
     }
 
     public void GivenThereAreXProjects(string project_type) {

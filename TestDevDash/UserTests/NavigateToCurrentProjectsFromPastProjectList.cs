@@ -21,25 +21,23 @@ namespace TestDevDash.UserTests {
     }
     [TestMethod]
     public void CurrentProjectsListFromPastProjectWhenThereAreCurrentProjects() {
-      GivenThereAreXProjects("past");      
-      WhenIClick("Current_Projects_Button");
+      GivenThereAreXProjects("current");      
+      WhenIClick("Past_Projects_Button");
       ThenIAmOnCurrentProjectsList();
-      WhenIClick("");
-      ThenIShouldNotSee("Past_Projects_Listbox");
-      AndIShouldSee("Current_Projects_Button");
-      AndIShouldSee("Past_Projects_Button");
+      WhenIClick("View_Current_Projects_Button");
+      ThenIShouldNotSee("View_Current_Projects_Button");
+      AndIShouldSee("View_Past_Projects_Button");
       AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
     }
 
     [TestMethod]
-    public void CurrentProjectsFromCurrentProjectsWhenNoProjects() {
+    public void CurrentProjectsFromPastProjectsWhenNoProjects() {
       GivenThereAreNoXProjects("past");
-      WhenIClick("Current_Projects_Button");
+      WhenIClick("Past_Projects_Button");
       ThenIAmOnCurrentProjectsList();
-      WhenIClick("Past_Projects_Back_Button");
-      ThenIShouldNotSee("Past_Projects_Listbox");
-      AndIShouldSee("Current_Projects_Button");
-      AndIShouldSee("Past_Projects_Button");
+      WhenIClick("View_Current_Projects_Button");
+      AndIShouldNotSee("View_Current_Projects_Button");
+      AndIShouldSee("View_Past_Projects_Button");
       AndIShouldSeeXNumberOfProjectsInXListBox(0,"Current_Projects_Listbox","current");
     } 
   }
