@@ -26,7 +26,8 @@ namespace TestDevDash.UserTests {
       WhenIClick("Past_Projects_Button");
       ThenIAmOnCurrentProjectsList();
       AndIShouldSeeXNumberOfProjectsInXListBox(3,"Past_Projects_Listbox","past");
-      ThenIClickProjectDeleteButton("past"); 
+      WhenISelect(0,"Past_Projects_Listbox");
+      AndIClick("Delete_Past_Project_Button"); 
       ThenIShouldSeeXNumberOfProjectsInXListBox(2,"Past_Projects_Listbox","past");
       AndDBShouldHaveXProjects(2);
     }
@@ -38,10 +39,31 @@ namespace TestDevDash.UserTests {
       ThenIAmOnCurrentProjectsList();
       AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
       WhenISelect(0,"Current_Projects_Listbox");
-      ThenIClickProjectDeleteButton("Delete_Current_Project_Button");
+      AndIClick("Delete_Current_Project_Button");
       ThenIShouldSeeXNumberOfProjectsInXListBox(2,"Current_Projects_Listbox","current");
       AndDBShouldHaveXProjects(2);
+    }
 
+    [TestMethod]
+    public void DeletePastProjectWithoutSelectingFirst() {
+      GivenThereAreXProjects("past");
+      WhenIClick("Past_Projects_Button");
+      ThenIAmOnCurrentProjectsList();
+      AndIShouldSeeXNumberOfProjectsInXListBox(3,"Past_Projects_Listbox","past");
+      AndIClick("Delete_Past_Project_Button");
+      ThenIShouldSeeXNumberOfProjectsInXListBox(3,"Past_Projects_Listbox","past");
+      AndIShouldSee("Delete_Past_Project_Message"); 
+    }
+
+    [TestMethod]
+    public void DeleteCurrentProjectWithoutSelectingFirst() {
+      GivenThereAreXProjects("current");
+      WhenIClick("Current_Projects_Button");
+      ThenIAmOnCurrentProjectsList();
+      AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
+      AndIClick("Delete_Current_Project_Button");
+      ThenIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
+      AndIShouldSee("Delete_Current_Project_Message"); 
     }
   }
 }

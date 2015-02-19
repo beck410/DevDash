@@ -107,10 +107,6 @@ namespace TestDevDash.UserTests {
       AndIShouldSeeXNumberOfProjectsInXListBox(project_number, list, project_type);
     }
 
-    public void ThenIClickProjectDeleteButton(string button) {
-      Button delete_btn = window.Get<Button>("Delete_Current_Project_Button");
-      delete_btn.Click();
-    }
 
     public void WhenISelect(int index, string list ) {
       SearchCriteria search_criteria = SearchCriteria.ByAutomationId(list).AndIndex(0);
@@ -127,7 +123,7 @@ namespace TestDevDash.UserTests {
     public void AndIShouldSee(string name) {
       var element = window.Get(SearchCriteria.ByAutomationId(name));
       Assert.IsTrue(element.Visible);
-    }
+    } 
 
     public void ThenIShouldNotSee(string name) {
       var element = window.Get(SearchCriteria.ByAutomationId(name));

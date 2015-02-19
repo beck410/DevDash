@@ -101,9 +101,28 @@ namespace DevDash {
 
     public void Delete_Current_Project(object sender, RoutedEventArgs e) {
       Project project = (Project)Current_Projects_Listbox.SelectedItem;
+
+      if (project == null) {
+        Delete_Current_Project_Message.Visibility = Visibility.Visible;
+        return;
+      }
+
       project_repo.Delete(project.ProjectId);
       Current_Projects_Listbox.DataContext = null;
       Current_Projects_Listbox.DataContext = project_repo.AllCurrentProjects();
+    }
+
+    public void Delete_Past_Project(object sender, RoutedEventArgs e) {
+      Project project = (Project)Past_Projects_Listbox.SelectedItem;
+
+      if (project == null) {
+        Delete_Past_Project_Message.Visibility = Visibility.Visible;
+        return;
+      }
+
+      project_repo.Delete(project.ProjectId);
+      Past_Projects_Listbox.DataContext = null;
+      Past_Projects_Listbox.DataContext = project_repo.AllPastProjects();
     }
 
     private bool Has_Spaces(string name) {
