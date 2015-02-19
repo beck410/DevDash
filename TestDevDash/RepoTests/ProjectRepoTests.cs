@@ -108,7 +108,28 @@ namespace TestDevDash.RepoTests {
       Assert.AreEqual(3, repo.All().Count);
       repo.Delete(last_project);
       Assert.AreEqual(2, repo.All().Count);
+    }
 
+    [TestMethod]
+    public void TestProjectMoveProject() {
+      Project angular = new Project("Angular_Project", 1, "02/14/2015","04/01/2015", "http://www.github.com/Angular_Project"); 
+      Project js = new Project("JS_Project",1,"02/14/2015","04/01/2015","http://www.github.com/Angular_Project");
+      Project cSharp = new Project("CSharp_Project",1,"02/14/2015","04/01/2015","http://www.github.com/Angular_Project");
+
+      repo.Add(angular);
+      repo.Add(js);
+      repo.Add(cSharp);
+
+      int project_id = repo.AllCurrentProjects().Find(c => c.ProjectName == "Angular_Project").ProjectId;
+      Assert.AreEqual(3, repo.All().Count);
+      Assert.AreEqual(3, repo.AllCurrentProjects().Count);
+      Assert.AreEqual(0, repo.AllPastProjects().Count);
+
+      repo.MoveProject(project_id);
+
+      Assert.AreEqual(3, repo.All().Count);
+      Assert.AreEqual(2, repo.AllCurrentProjects().Count);
+      Assert.AreEqual(1, repo.AllPastProjects().Count);
     }
   }
 }

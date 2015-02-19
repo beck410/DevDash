@@ -69,5 +69,17 @@ namespace DevDash.Repositories {
     public Project GetById(int id) {
       return _dbContext.Projects.Find(id);
     }
+
+    public void MoveProject(int id) {
+      var query = from project in _dbContext.Projects
+                  where project.ProjectId == id
+                  select project;
+
+      foreach (Project project in query) {
+        project.ProjectState = 0;
+      }
+
+      _dbContext.SaveChanges();
+    }
   }
 }
