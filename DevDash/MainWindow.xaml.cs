@@ -23,7 +23,6 @@ namespace DevDash {
   public partial class MainWindow : Window {
 
     public static ProjectsRepository project_repo = new ProjectsRepository();
-    public List<Project> current_projects = project_repo.AllCurrentProjects();
 
     public MainWindow() {
       InitializeComponent();
@@ -31,7 +30,9 @@ namespace DevDash {
 
     private void View_Current_Projects(object sender, RoutedEventArgs e) {
       Main_View.Visibility = Visibility.Collapsed;
-      Current_Projects_Listbox.DataContext = current_projects;
+      List<Project> current_projects = project_repo.AllCurrentProjects();
+
+      Current_Projects_Listbox.DataContext = current_projects; 
 
       if (current_projects.Count == 0) {
         No_Current_Projects_Message.Visibility = Visibility.Visible;
@@ -100,8 +101,9 @@ namespace DevDash {
 
     public void Delete_Current_Project(object sender, RoutedEventArgs e) {
       Project project = (Project)Current_Projects_Listbox.SelectedItem;
-      int project_id = project.ProjectId;
-      project_repo.Delete(project_id);
+      project_repo.Delete(project.ProjectId);
+      Current_Projects_Listbox.DataContext = null;
+      Current_Projects_Listbox.DataContext = project_repo.AllCurrentProjects();
     }
 
     private bool Has_Spaces(string name) {
