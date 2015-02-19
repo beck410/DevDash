@@ -71,7 +71,7 @@ namespace DevDash {
       string end_date = New_Project_End_Date.SelectedDate.ToString();
       string github = New_Project_Github.Text;
 
-      if (Has_Spaces(project_name)) {
+      if (_Has_Spaces(project_name)) {
         New_Project_Error.Visibility = Visibility.Visible;
         New_Project_Error.Text = "Please Put In Valid Project Name - no spaces";
         return;
@@ -108,8 +108,7 @@ namespace DevDash {
       }
 
       project_repo.Delete(project.ProjectId);
-      Current_Projects_Listbox.DataContext = null;
-      Current_Projects_Listbox.DataContext = project_repo.AllCurrentProjects();
+      _DatabindProjects(Current_Projects_Listbox, "current");
     }
 
     public void Delete_Past_Project(object sender, RoutedEventArgs e) {
@@ -121,8 +120,7 @@ namespace DevDash {
       }
 
       project_repo.Delete(project.ProjectId);
-      Past_Projects_Listbox.DataContext = null;
-      Past_Projects_Listbox.DataContext = project_repo.AllPastProjects();
+      _DatabindProjects(Past_Projects_Listbox, "past");
     }
 
     public void Move_To_Past_Projects(object sender, RoutedEventArgs e) { 
@@ -134,13 +132,22 @@ namespace DevDash {
       }
 
       project_repo.MoveProject(project.ProjectId);
-      Current_Projects_Listbox.DataContext = null;
-      Current_Projects_Listbox.DataContext = project_repo.AllCurrentProjects();
-      Past_Projects_Listbox.DataContext = null;
-      Past_Projects_Listbox.DataContext = project_repo.AllPastProjects();
+
+      _DatabindProjects(Current_Projects_Listbox, "current");
+      _DatabindProjects(Past_Projects_Listbox, "past");
     }
 
-    private bool Has_Spaces(string name) {
+    private void _DatabindProjects(ListBox element,string type) {
+      element.DataContext = null;
+      
+      if(type == "current")
+        element.DataContext = project_repo.AllCurrentProjects();
+
+      if(type == "past")
+        element.DataContext = project_repo.AllPastProjects();
+    }
+
+    private bool _Has_Spaces(string name) {
      for (int i = 0; i < name.Length; i++) {
        if (char.IsWhiteSpace(name[i]))
          return true;
