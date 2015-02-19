@@ -28,11 +28,22 @@ namespace TestDevDash.UserTests {
       AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
       WhenISelect(0,"Current_Projects_Listbox");
       AndIClick("Move_Current_Project_Button");
-      AndThereAreXProjectsInXDB(2,"current");
-      ThenIShouldNotSee("View_Past_Projects_Button");
-      AndIShouldSee("View_Current_Projects_Button");
+      AndThereAreXProjectsInXDB(2,"current"); 
       AndThereAreXProjectsInXDB(4,"past");
-      AndIShouldSeeXNumberOfProjectsInXListBox(4,"Past_Projects_Listbox","past");
+      AndIShouldSeeXNumberOfProjectsInXListBox(2,"Current_Projects_Listbox","current");
+    }
+
+    [TestMethod]
+    public void MoveCurrentProjectWithoutSelectingFirst() {
+      GivenThereAreXProjects("current");
+      WhenIClick("Current_Projects_Button");
+      ThenIAmOnCurrentProjectsList();
+      AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
+      AndIClick("Move_Current_Project_Button");
+      ThenIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
+      AndThereAreXProjectsInXDB(0,"past");
+      AndThereAreXProjectsInXDB(3,"current");
+      AndIShouldSee("Delete_Current_Project_Message"); 
     }
   }
 }

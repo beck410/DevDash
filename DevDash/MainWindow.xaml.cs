@@ -125,6 +125,21 @@ namespace DevDash {
       Past_Projects_Listbox.DataContext = project_repo.AllPastProjects();
     }
 
+    public void Move_To_Past_Projects(object sender, RoutedEventArgs e) { 
+      Project project = (Project)Current_Projects_Listbox.SelectedItem;
+
+      if (project == null) {
+        Delete_Current_Project_Message.Visibility = Visibility.Visible;
+        return;
+      }
+
+      project_repo.MoveProject(project.ProjectId);
+      Current_Projects_Listbox.DataContext = null;
+      Current_Projects_Listbox.DataContext = project_repo.AllCurrentProjects();
+      Past_Projects_Listbox.DataContext = null;
+      Past_Projects_Listbox.DataContext = project_repo.AllPastProjects();
+    }
+
     private bool Has_Spaces(string name) {
      for (int i = 0; i < name.Length; i++) {
        if (char.IsWhiteSpace(name[i]))
