@@ -72,17 +72,19 @@ namespace TestDevDash.UserTests {
         ProjectRepo.Add(new Project("angular_project",1,"02/03/2015","02/20/2015","http://github.com/angular_project"));
         ProjectRepo.Add(new Project("js_project",1,"10/03/2015","10/20/2015","http://github.com/js_project"));
         ProjectRepo.Add(new Project("CSharp_project",1,"02/21/2015", "02/28/2015","http://github.com/csharp"));
+
+        Assert.AreEqual(3,ProjectRepo.AllCurrentProjects().Count);
       }
       else if(project_type == "past"){
         ProjectRepo.Add(new Project("angular_project",0,"02/03/2015","02/20/2015","http://github.com/angular_project"));
         ProjectRepo.Add(new Project("js_project",0,"10/03/2015","10/20/2015","http://github.com/js_project"));
         ProjectRepo.Add(new Project("CSharp_project",0,"02/21/2015", "02/28/2015","http://github.com/csharp"));
+
+        Assert.AreEqual(3,ProjectRepo.AllPastProjects().Count);
       }
       else {
         throw new ArgumentException("Not a valid project type");
       }
-
-      Assert.AreEqual(3,ProjectRepo.GetCount());
     }
 
     // I should not/see 
@@ -185,6 +187,18 @@ namespace TestDevDash.UserTests {
     public void AndDBShouldHaveXProjects(int count) {
       int db_count = ProjectRepo.GetCount();
       Assert.AreEqual(count,db_count);
+    }
+
+    public void AndThereAreXProjectsInXDB(int count, string type) {
+      int projects;
+      if (type == "current") {
+        projects = ProjectRepo.AllCurrentProjects().Count;
+      }
+      else {
+        projects = ProjectRepo.AllPastProjects().Count;
+      }
+
+      Assert.AreEqual(count, projects);
     }
 
     public void ThenIShouldSeeErrorMessage(string element,string error_message) {
