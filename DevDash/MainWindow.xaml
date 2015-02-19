@@ -27,7 +27,7 @@
             <StackPanel Height="120">
                 <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="50">Current Projects</TextBlock>
                 <StackPanel Orientation="Horizontal" Width="260" HorizontalAlignment="Center">
-                    <Button x:Name="List_Add_New_Project"  Margin="0,10,20,0" Width="120" Content="+ Add New Project"/>
+                    <Button x:Name="List_Add_New_Project" Click="New_Project_Modal"  Margin="0,10,20,0" Width="120" Content="+ Add New Project"/>
                     <Button x:Name="View_Past_Projects_Button" Margin="0,10,0,0" Click="Switch_To_Past_Projects" Width="120" Content="Past Projects"/>
                 </StackPanel>
             </StackPanel>

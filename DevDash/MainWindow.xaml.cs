@@ -137,6 +137,11 @@ namespace DevDash {
       _DatabindProjects(Past_Projects_Listbox, "past");
     }
 
+    public void New_Project_Modal(object sender, RoutedEventArgs e) {
+      var new_project_modal = new AddProjectModal();
+      new_project_modal.ShowDialog();
+    }
+
     private void _DatabindProjects(ListBox element,string type) {
       element.DataContext = null;
       
@@ -146,6 +151,7 @@ namespace DevDash {
       if(type == "past")
         element.DataContext = project_repo.AllPastProjects();
     }
+
 
     private bool _Has_Spaces(string name) {
      for (int i = 0; i < name.Length; i++) {
