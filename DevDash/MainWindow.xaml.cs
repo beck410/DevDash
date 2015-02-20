@@ -52,24 +52,17 @@ namespace DevDash {
       string project_name = New_Project_Name.Text;
       string start_date = New_Project_Start_Date.SelectedDate.ToString();
       string end_date = New_Project_End_Date.SelectedDate.ToString();
-      string github = New_Project_Github.Text;
+      string github = New_Project_Github.Text;  
 
-      if (_Has_Spaces(project_name)) {
+      if(_Valid_Name(project_name) == false){
         _show_error(New_Project_Error, true);
-        New_Project_Error.Text = "Please Put In Valid Project Name - no spaces";
-        return;
-      }
-
-      if (project_name == "") {
-        _show_error(New_Project_Error, true);
-        New_Project_Error.Text = "Name is Required To Add A Project";
         return;
       }
 
       project_repo.Add(new Project(project_name, 1, start_date, end_date, github));
-        _show_view(Main_View, false);
-        _show_view(Current_Projects_List, true);
-        _DatabindProjects(Current_Projects_Listbox,"current");
+      _show_view(Main_View, false);
+      _show_view(Current_Projects_List, true);
+      _DatabindProjects(Current_Projects_Listbox,"current");
     }
 
     public void Switch_To_Current_Projects(object sender, RoutedEventArgs e) {
@@ -143,13 +136,19 @@ namespace DevDash {
         element.DataContext = project_repo.AllPastProjects();
     }
 
-    public bool _Has_Spaces(string name) {
+    private bool _Valid_Name(string name) {
+      bool valid = true;
       for (int i = 0; i < name.Length; i++) {
         if (char.IsWhiteSpace(name[i]))
-          return true;
+          valid = false;
       }
-      return false;
+
+      if (name == "")
+        valid = false;
+
+      return valid;
     }
+
 
     private void _show_view(StackPanel panel, bool visible) {
       if (visible == false)

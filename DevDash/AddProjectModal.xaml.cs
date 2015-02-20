@@ -49,7 +49,7 @@ public static ProjectsRepository project_repo = new ProjectsRepository();
       this.Close();
     }
 
-    public bool _Valid_Name(string name) {
+    private bool _Valid_Name(string name) {
       bool valid = true;
       for (int i = 0; i < name.Length; i++) {
         if (char.IsWhiteSpace(name[i]))

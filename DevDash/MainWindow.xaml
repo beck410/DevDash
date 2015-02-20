@@ -11,7 +11,7 @@
             </StackPanel>
             <StackPanel x:Name="New_Project_Header" Width="400" HorizontalAlignment="center" Height="382" Margin="250,0">
                 <TextBlock FontSize="24"><Run Text="Add New Project"/></TextBlock>
-                <TextBlock x:Name="New_Project_Error" Margin="20,10,20,10" Visibility="Collapsed" FontSize="18"/>
+                <TextBlock x:Name="New_Project_Error" Margin="20,10,20,10" Visibility="Collapsed" FontSize="18">Valid Project Name is Required - No Spaces</TextBlock>
                 <Label x:Name="New_Project_Name_label" FontSize="16" Margin="0,15,0,0" Content="Project Name (Required)"/>
                 <TextBox x:Name="New_Project_Name" Height="20" Margin="0,5,0,0"/>
                 <Label x:Name="New_Project_Start_Date_label" FontSize="16" Margin="0,15,0,0" Content="Start Date"/>
