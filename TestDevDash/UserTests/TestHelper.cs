@@ -109,7 +109,6 @@ namespace TestDevDash.UserTests {
       AndIShouldSeeXNumberOfProjectsInXListBox(project_number, list, project_type);
     }
 
-
     public void WhenISelect(int index, string list ) {
       SearchCriteria search_criteria = SearchCriteria.ByAutomationId(list).AndIndex(0);
 

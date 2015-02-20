@@ -80,6 +80,7 @@
     <Compile Include="UserTests\MoveCurrentProjectToPastProjectList.cs" />
     <Compile Include="UserTests\NavigateToCurrentProjectsFromPastProjectList.cs" />
     <Compile Include="UserTests\NavigateToPastProjectsFromCurrentProjectsList.cs" />
+    <Compile Include="UserTests\NewProjectFromModal.cs" />
     <Compile Include="UserTests\ViewPastProjects.cs" />
     <Compile Include="UserTests\ViewCurrentProject.cs" />
     <Compile Include="UserTests\ZeroStateUserTest.cs" />
