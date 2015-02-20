@@ -140,6 +140,11 @@ namespace DevDash {
     public void New_Project_Modal(object sender, RoutedEventArgs e) {
       var new_project_modal = new AddProjectModal();
       new_project_modal.ShowDialog();
+
+      _DatabindProjects(Current_Projects_Listbox, "current");
+      if ((bool)new_project_modal.DialogResult) {
+        _DatabindProjects(Current_Projects_Listbox, "current");
+      }
     }
 
     private void _DatabindProjects(ListBox element,string type) {
@@ -152,8 +157,7 @@ namespace DevDash {
         element.DataContext = project_repo.AllPastProjects();
     }
 
-
-    private bool _Has_Spaces(string name) {
+    public bool _Has_Spaces(string name) {
      for (int i = 0; i < name.Length; i++) {
        if (char.IsWhiteSpace(name[i]))
          return true;
