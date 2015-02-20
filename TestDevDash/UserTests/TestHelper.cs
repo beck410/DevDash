@@ -205,5 +205,33 @@ namespace TestDevDash.UserTests {
       
       Assert.IsTrue(error.Visible);
     }
+
+    public void AndIClickInModal(string modal_name, string element) {
+      var project_modal = window.ModalWindow(modal_name);
+      var btn = project_modal.Get(SearchCriteria.ByAutomationId(element));
+      btn.Click();
+    }
+
+    public void WhenIFillModalProjectName(string name) {
+      var project_modal = window.ModalWindow("AddProjectModal");
+      var textbox = project_modal.Get(SearchCriteria.ByAutomationId("Modal_New_Project_Name"));
+      textbox.SetValue(name);
+    }
+
+    public void AndIShouldSeeInModal(string name, string element) {
+      ThenIShouldSeeInModal(name, element);
+    }
+
+    public void ThenIShouldSeeInModal(string modal_name, string modal_element) {
+      var project_modal = window.ModalWindow(modal_name);
+      var element = project_modal.Get(SearchCriteria.ByAutomationId(modal_element));
+      Assert.IsTrue(element.Visible);
+    }
+
+    public void ThenIShouldSeeErrorMessageInModal(string modal_name, string modal_element) {
+      var project_modal = window.ModalWindow(modal_name);
+      var element = project_modal.Get(SearchCriteria.ByAutomationId(modal_element));
+      Assert.IsTrue(element.Visible);
+    }
   }
 }

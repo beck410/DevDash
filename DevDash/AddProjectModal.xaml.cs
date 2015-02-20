@@ -34,21 +34,14 @@ public static ProjectsRepository project_repo = new ProjectsRepository();
       string end_date = Modal_New_Project_End_Date.SelectedDate.ToString();
       string github = Modal_New_Project_Github.Text;
 
-      if (_Has_Spaces(project_name)) {
-        Modal_New_Project_Error.Visibility = Visibility.Visible;
-        Modal_New_Project_Error.Text = "Please Put In Valid Project Name - no spaces";
-        return;
-      }  
-
-      if (project_name == "") {
-        Modal_New_Project_Error.Visibility = Visibility.Visible;
-        Modal_New_Project_Error.Text = "Name is Required To Add A Project";
+      if (_Valid_Name(project_name) == true) {
+        project_repo.Add(new Project(project_name, 1, start_date, end_date, github));
+        DialogResult = true;
         return;
       }
-
-      project_repo.Add(new Project(project_name, 1, start_date, end_date, github));
-
-      DialogResult = true;
+      else {
+        Modal_New_Project_Error.Visibility = Visibility.Visible;
+      }      
     }
 
     private void Close_btn(object sender, RoutedEventArgs e) {
@@ -56,12 +49,17 @@ public static ProjectsRepository project_repo = new ProjectsRepository();
       this.Close();
     }
 
-    public bool _Has_Spaces(string name) {
+    public bool _Valid_Name(string name) {
+      bool valid = true;
       for (int i = 0; i < name.Length; i++) {
-       if (char.IsWhiteSpace(name[i]))
-         return true;
+        if (char.IsWhiteSpace(name[i]))
+          valid = false;
       }
-      return false;
+
+      if (name == "")
+        valid = false;
+
+      return valid;
    }
   }
 }
