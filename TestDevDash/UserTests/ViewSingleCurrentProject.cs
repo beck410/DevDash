@@ -32,28 +32,28 @@ namespace TestDevDash.UserTests {
       AndIShouldNotSee("View_Past_Projects_Button");
       AndIShouldSee("Edit_Description_Button");
       AndTextBlockShouldBe("Single_Project_Name","angular_project");
-      AndTextBlockShouldBe("Github","http://github.com/angular_project");
-      AndTextBlockShouldBe("Start_Date","02/03/2015");
-      AndTextBlockShouldBe("End_Date","02/20/2015");
-      AndTextBlockShouldBe("Description","");
+      AndTextBlockShouldBe("Github","Github Link: http://github.com/angular_project");
+      AndTextBlockShouldBe("Start_Date","Start Date: 02/03/2015");
+      AndTextBlockShouldBe("End_Date","End Date: 02/20/2015");
+      AndTextBlockShouldBe("Description","Description:");
       AndIShouldNotSee("Notes_Listbox");
     }
     
     [TestMethod]
     public void ViewSingleCurrentProjectWithOnlyProjectName() {
-      GivenThereAreXProjects("current");
+      GivenIAddProjectWithOnlyNameFilled();
       WhenIClick("Current_Projects_Button");
       ThenIAmOnCurrentProjectsList();
-      AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
+      AndIShouldSeeXNumberOfProjectsInXListBox(1,"Current_Projects_Listbox","current");
       WhenISelect(0,"Current_Projects_Listbox");
       AndIClick("View_Current_Project_Button");
       AndIShouldNotSee("View_Past_Projects_Button");
       AndIShouldSee("Edit_Description_Button");
-      AndTextBlockShouldBe("Single_Project_Name","angular_project");
-      AndTextBlockShouldBe("Github","");
-      AndTextBlockShouldBe("Start_Date","");
-      AndTextBlockShouldBe("End_Date","");
-      AndTextBlockShouldBe("Description","");
+      AndTextBlockShouldBe("Single_Project_Name","js_project");
+      AndTextBlockShouldBe("Github","Github Link: ");
+      AndTextBlockShouldBe("Start_Date","Start Date: ");
+      AndTextBlockShouldBe("End_Date","End Date: ");
+      AndTextBlockShouldBe("Description","Description:");
       AndIShouldNotSee("Notes_Listbox");
     }
 
@@ -75,7 +75,7 @@ namespace TestDevDash.UserTests {
       AndTextBlockShouldBe("End_Date","");
       AndTextBlockShouldBe("Description","");
       AndIShouldSee("Notes_Listbox");
-      AndIShouldSeeXNumberOfProjectsInXListBox(3,"Past_Projects_Listbox","past");
+      AndIShouldSeeXNumberOfNotesInListBox(3);
     }
   }
 }

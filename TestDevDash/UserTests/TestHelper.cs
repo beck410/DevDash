@@ -238,7 +238,21 @@ namespace TestDevDash.UserTests {
       throw new NotImplementedException();
     }
 
-    public void AndTextBlockShouldBe(string p1, string p2) {
+    public void AndTextBlockShouldBe(string element_name, string value) {
+      SearchCriteria searchCriteria = SearchCriteria
+               .ByAutomationId(element_name);
+      Label textbox = (Label)window.Get(searchCriteria);
+
+      Assert.AreEqual(textbox.Text, value);
+    }
+
+    public void GivenIAddProjectWithOnlyNameFilled() {
+        ProjectRepo.Add(new Project("js_project",1,"","",""));
+
+        Assert.AreEqual(1,ProjectRepo.AllCurrentProjects().Count);
+    }
+
+    public void AndIShouldSeeXNumberOfNotesInListBox(int p) {
       throw new NotImplementedException();
     }
   }

@@ -22,6 +22,8 @@ namespace DevDash {
       }
     }
 
+    //add field for notes
+
     public MainWindow() {
       InitializeComponent();
       Current_Projects_Listbox.DataContext = project_repo.AllCurrentProjects();
@@ -74,7 +76,7 @@ namespace DevDash {
       project_repo.Add(new Project(project_name, 1, start_date, end_date, github));
       _show_view(Main_View, false);
       _show_view(Current_Projects_List, true);
-      _DatabindProjects(Current_Projects_Listbox,"current");
+      _DatabindProjects(Current_Projects_Listbox, "current");
     }
 
     public void Switch_To_Current_Projects(object sender, RoutedEventArgs e) {
@@ -145,6 +147,10 @@ namespace DevDash {
 
       _show_view(Current_Projects_List,false);
       _show_view(Single_Project_Container,true);
+
+      if (Notes_Listbox.Items.Count == 0) {
+        _show_list(Notes_Listbox, false);
+      }
     }
 
     public void Delete_Note(object sender, RoutedEventArgs e) {
