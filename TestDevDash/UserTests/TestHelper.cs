@@ -27,7 +27,7 @@ namespace TestDevDash.UserTests {
 
     public static void SetUpClass(TestContext _context) {
       var applicationDir = _context.DeploymentDirectory;
-      applicationPath = Path.Combine(applicationDir, "..\\..\\..\\TestDevDash\\bin\\Debug\\DevDash");
+        applicationPath = Path.Combine(applicationDir, "..\\..\\..\\TestDevDash\\bin\\Debug\\DevDash");
       ProjectRepo.Clear();
     }
 
@@ -232,6 +232,14 @@ namespace TestDevDash.UserTests {
       var project_modal = window.ModalWindow(modal_name);
       var element = project_modal.Get(SearchCriteria.ByAutomationId(modal_element));
       Assert.IsTrue(element.Visible);
+    }
+
+    public void GivenThereAreXNotes() {
+      throw new NotImplementedException();
+    }
+
+    public void AndTextBlockShouldBe(string p1, string p2) {
+      throw new NotImplementedException();
     }
   }
 }

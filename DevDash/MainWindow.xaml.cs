@@ -126,6 +126,14 @@ namespace DevDash {
       }
     }
 
+    public void Delete_Note(object sender, RoutedEventArgs e) {
+
+    }
+
+    public void Edit_Note(object sender, RoutedEventArgs e) {
+
+    }
+
     private void _DatabindProjects(ListBox element, string type) {
       element.DataContext = null;
 
@@ -148,7 +156,6 @@ namespace DevDash {
 
       return valid;
     }
-
 
     private void _show_view(StackPanel panel, bool visible) {
       if (visible == false)

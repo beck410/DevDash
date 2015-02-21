@@ -69,16 +69,23 @@
         </StackPanel>
         <StackPanel Width="1000" x:Name="Single_Project_Container">
             <TextBlock x:Name="Single_Project_Name" FontSize="50" HorizontalAlignment="Center">Project Name</TextBlock>
-            <StackPanel Orientation="Horizontal">
-                <StackPanel Width="500" x:Name="Description_Panel">
-                    <TextBlock>Project Details</TextBlock>
-                    <TextBlock>GitHub: </TextBlock>
-                    <TextBlock>Start Date: </TextBlock>
-                    <TextBlock>End Date: </TextBlock>
-                    <TextBlock>Description: </TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,10">
+                <StackPanel Orientation="Vertical" Width="465" x:Name="Description_Panel" Margin="20,10,10,10">
+                    <StackPanel Orientation="Horizontal">    
+                        <TextBlock FontSize="24" Margin="0,0,0,10">Project Details</TextBlock>
+                        <Button x:Name="Edit_Desciption_Button" Width="40" Height="20" Margin="270,0,0,0">Edit</Button>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock x:Name="Github">GitHub:</TextBlock>
+                        <TextBlock x:Name="Start_Date">Start Date:</TextBlock>
+                        <TextBlock x:Name="End_Date">End Date:</TextBlock>
+                        <TextBlock x:Name="Description">Description:</TextBlock>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Width="500" x:Name="Notes_Panel">
-                    <TextBlock>Notes</TextBlock>
+                <StackPanel Width="465" x:Name="Notes_Panel" Margin="10,10,10,20">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="24" Margin="0,0,0,10">Notes</TextBlock>
+                    </StackPanel>
                     <ListBox x:Name="Notes_Listbox" ItemsSource="{Binding NotifyOnSourceUpdated=True}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>

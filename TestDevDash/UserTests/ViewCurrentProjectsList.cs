@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestDevDash.UserTests {
   [TestClass]
-  public class ViewCurrentProject : TestHelper {
+  public class ViewCurrentProjectsList : TestHelper {
     [ClassInitialize]
     public static void Setup(TestContext _context) {
       TestHelper.SetUpClass(_context);
