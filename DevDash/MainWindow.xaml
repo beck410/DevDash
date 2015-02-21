@@ -76,9 +76,9 @@
                         <Button x:Name="Edit_Description_Button" Width="40" Height="20" Margin="270,0,0,0">Edit</Button>
                     </StackPanel>
                     <StackPanel>
-                        <TextBlock x:Name="Github">GitHub:</TextBlock>
-                        <TextBlock x:Name="Start_Date">Start Date:</TextBlock>
-                        <TextBlock x:Name="End_Date">End Date:</TextBlock>
+                        <TextBlock x:Name="Github" Text="{Binding project_to_display.GithubLink, StringFormat='Github Link: {0}' }"></TextBlock>
+                        <TextBlock x:Name="Start_Date" Text="{Binding project_to_display.ProjectStartDate, StringFormat='Start Date: {0}' }"></TextBlock>
+                        <TextBlock x:Name="End_Date" Text="{Binding project_to_display.ProjectEndDate, StringFormat='End Date: {0}' }"></TextBlock>
                         <TextBlock x:Name="Description">Description:</TextBlock>
                     </StackPanel>
                 </StackPanel>
