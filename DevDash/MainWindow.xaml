@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="700" Width="1000">
     <Grid>
-        <StackPanel x:Name="Main_View" Width="900" Height="573" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="33,0,59,77">
+        <StackPanel x:Name="Main_View" Width="900" Height="573" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="33,0,59,77" Visibility="Collapsed">
             <TextBlock VerticalAlignment="Top" Margin="346,10,345,0" HorizontalAlignment="Center" FontSize="50"><Run Text="Dev Dash"/></TextBlock>
             <StackPanel Height="60" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Button x:Name="Current_Projects_Button" Width="100" Margin="0,0,10,0" Height="50" Click="View_Current_Projects" Content="Current Projects"/>
@@ -66,6 +66,32 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+        </StackPanel>
+        <StackPanel Width="1000" x:Name="Single_Project_Container">
+            <TextBlock x:Name="Single_Project_Name" FontSize="50" HorizontalAlignment="Center">Project Name</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Width="500" x:Name="Description_Panel">
+                    <TextBlock>Project Details</TextBlock>
+                    <TextBlock>GitHub: </TextBlock>
+                    <TextBlock>Start Date: </TextBlock>
+                    <TextBlock>End Date: </TextBlock>
+                    <TextBlock>Description: </TextBlock>
+                </StackPanel>
+                <StackPanel Width="500" x:Name="Notes_Panel">
+                    <TextBlock>Notes</TextBlock>
+                    <ListBox x:Name="Notes_Listbox" ItemsSource="{Binding NotifyOnSourceUpdated=True}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Width="500" Margin="10,10,5,10">
+                                    <TextBlock Text="{Binding Note, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="0,0,100,0"/>
+                                    <Button x:Name="Delete_Note_Button" Click="Delete_Note" Content="Delete" Margin="20,0,0,0"/>
+                                    <Button x:Name="Delete_Edit_Button" Click="Edit_Note" Content="Edit" Margin="20,0,0,0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>
