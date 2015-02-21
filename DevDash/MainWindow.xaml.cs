@@ -3,12 +3,24 @@ using System.Windows;
 using System.Windows.Controls;
 using DevDash.Model;
 using DevDash.Repositories;
+using System.ComponentModel;
 
 namespace DevDash {
 
-  public partial class MainWindow : Window {
+  public partial class MainWindow : Window, INotifyPropertyChanged {
 
     public static ProjectsRepository project_repo = new ProjectsRepository();
+
+    private Project _project_to_display;
+    public Project project_to_display {
+      get {
+        return _project_to_display;
+      }
+      set {
+        _project_to_display = value;
+        OnPropertyChanged("project_to_display");
+      }
+    }
 
     public MainWindow() {
       InitializeComponent();
@@ -126,6 +138,15 @@ namespace DevDash {
       }
     }
 
+    public void View_Current_Project(object sender, RoutedEventArgs e) {
+      Project selected_project = (Project)Current_Projects_Listbox.SelectedItem;
+      this.project_to_display = selected_project;
+      Single_Project_Container.DataContext = this;
+
+      _show_view(Current_Projects_List,false);
+      _show_view(Single_Project_Container,true);
+    }
+
     public void Delete_Note(object sender, RoutedEventArgs e) {
 
     }
@@ -176,6 +197,13 @@ namespace DevDash {
         list.Visibility = Visibility.Collapsed;
       else
         list.Visibility = Visibility.Visible;
+    }
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    private void OnPropertyChanged(string info) {
+      if (PropertyChanged != null) {
+        PropertyChanged(this, new PropertyChangedEventArgs(info));
+      }
     }
   }
 }
