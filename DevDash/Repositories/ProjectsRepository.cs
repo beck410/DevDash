@@ -5,12 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using DevDash.Model;
 using System.Data.Entity;
+using System.Collections.ObjectModel;
 
 namespace DevDash.Repositories {
   public class ProjectsRepository : IProjectRepository{
 
     //set up for db local
     private ProjectContext _dbContext;
+    private ObservableCollection<Project> _current_projects; 
+    private ObservableCollection<Project> _past_projects; 
 
     public DbSet<Project> GetDbSet() {
       return _dbContext.Projects;
@@ -19,6 +22,9 @@ namespace DevDash.Repositories {
     public ProjectsRepository(){
       _dbContext = new ProjectContext();
       _dbContext.Projects.Load();
+
+      _current_projects = new ObservableCollection<Project>(_dbContext.Projects.Where(x => x.ProjectState == 1));
+      _past_projects = new ObservableCollection<Project>(_dbContext.Projects.Where(x => x.ProjectState == 0));
     }
 
     public ProjectContext Context() {
@@ -32,16 +38,12 @@ namespace DevDash.Repositories {
       return query.ToList<Project>();
     }
 
-    public List<Project> AllPastProjects() {
-      var query = _dbContext.Projects.Where(x => x.ProjectState == 0);
-
-     return query.ToList();
+    public ObservableCollection<Project> AllPastProjects() {
+      return _past_projects;
     }
 
-    public List<Project> AllCurrentProjects() {
-     var query = _dbContext.Projects.Where(x => x.ProjectState == 1);
-
-     return query.ToList();
+    public ObservableCollection<Project> AllCurrentProjects() {
+      return _current_projects; 
     }
  
     public int GetCount(){

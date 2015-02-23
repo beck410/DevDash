@@ -120,7 +120,9 @@ namespace TestDevDash.RepoTests {
       repo.Add(js);
       repo.Add(cSharp);
 
-      int project_id = repo.AllCurrentProjects().Find(c => c.ProjectName == "Angular_Project").ProjectId;
+      var obs = repo.AllCurrentProjects();
+      var current_projects_list = new List<Project>(obs);
+      int project_id = current_projects_list.Find(c => c.ProjectName == "Angular_Project").ProjectId;
       Assert.AreEqual(3, repo.All().Count);
       Assert.AreEqual(3, repo.AllCurrentProjects().Count);
       Assert.AreEqual(0, repo.AllPastProjects().Count);

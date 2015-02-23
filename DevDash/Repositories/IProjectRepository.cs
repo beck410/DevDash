@@ -5,13 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using DevDash.Model;
 using System.Windows.Documents;
+using System.Collections.ObjectModel;
 
 namespace DevDash.Repositories {
   public interface IProjectRepository {
 
     List<Project> All();
-    List<Project> AllPastProjects();
-    List<Project> AllCurrentProjects();
+    ObservableCollection<Project> AllPastProjects();
+    ObservableCollection<Project> AllCurrentProjects();
     int GetCount();
     void Add(Project P);
     void Delete(int P);

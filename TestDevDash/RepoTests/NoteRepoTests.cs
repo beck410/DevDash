@@ -61,8 +61,6 @@ namespace TestDevDash.RepoTests {
       int project_id = project_repo.AllCurrentProjects()[0].ProjectId;
       note_repo.Add(new Note("this is a test note", project_id));
       note_repo.Add(new Note("this is note 2", project_id));
-
-
     }
 
     [TestMethod]

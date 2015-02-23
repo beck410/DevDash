@@ -1,12 +1,24 @@
 ﻿using DevDash.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DevDash.Repositories {
   public class NoteRepository : INoteRepository {
+
+    //private ProjectContext _dbContext;
+
+    //public DbSet<Note> GetDbSet() {
+    //  return _dbContext.Notes;
+    //}
+
+    //public NoteRepository() {
+    //  //_dbContext = new ProjectContext();
+
+    //}
 
     public List<Note> GetAllByProjectId(int project_id) {
       throw new NotImplementedException();
