@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace DevDash {
   public class ProjectContext : DbContext {
     public DbSet<Project> Projects { get; set; }
-    public DbSet<NotesPanel> NotesPanels { get; set; }
     public DbSet<Note> Notes { get; set; }
   }
 }
