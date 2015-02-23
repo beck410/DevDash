@@ -26,7 +26,6 @@ namespace DevDash.Repositories {
     }
 
    //Project DB Methods
-      //return qu.ToList<Project>();
     public List<Project> All() {
       var query = from Project in _dbContext.Projects
                   select Project;

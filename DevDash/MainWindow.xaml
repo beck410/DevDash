@@ -3,7 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="700" Width="1000">
     <Grid Background="IndianRed">
-        <StackPanel x:Name="Main_View" Width="900" Height="573" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="33,0,59,77">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="11*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel x:Name="Main_View" Width="900" Height="573" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="33,0,59,77" Grid.ColumnSpan="2">
             <TextBlock VerticalAlignment="Top" Margin="346,10,345,0" HorizontalAlignment="Center" FontSize="50"><Run Text="Dev Dash"/></TextBlock>
             <StackPanel Height="60" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Button x:Name="Current_Projects_Button" Width="100" Margin="0,0,10,0" Height="50" Click="View_Current_Projects" Content="Current Projects"/>
@@ -23,7 +27,7 @@
                 <Button x:Name="Main_New_Project_Button" Click="Create_New_Project" Height="20px" VerticalAlignment="Bottom"  Content="+ Create New Project" Margin="0,20,0,0"/>
             </StackPanel>
         </StackPanel>
-        <StackPanel x:Name="Current_Projects_List" Visibility="Collapsed" Orientation="Vertical" Width="887" Height="536" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,0,59,102">
+        <StackPanel x:Name="Current_Projects_List" Visibility="Collapsed" Orientation="Vertical" Width="887" Height="536" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,0,59,102" Grid.ColumnSpan="2">
             <StackPanel Height="120">
                 <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="50">Current Projects</TextBlock>
                 <StackPanel Orientation="Horizontal" Width="260" HorizontalAlignment="Center">
@@ -46,7 +50,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
-        <StackPanel x:Name="Past_Projects_List" Width="887" Height="536" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,0,59,102" Visibility="Collapsed">
+        <StackPanel x:Name="Past_Projects_List" Width="887" Height="536" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,0,59,102" Visibility="Collapsed" Grid.ColumnSpan="2">
             <StackPanel Height="144" Margin="0,20,0,0">
                 <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="50">Past Projects</TextBlock>
                 <StackPanel Orientation="Horizontal" Width="260" HorizontalAlignment="Center">
@@ -67,11 +71,11 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
-        <StackPanel Width="1000" x:Name="Single_Project_Container" Visibility="Collapsed">
+        <StackPanel Width="1000" x:Name="Single_Project_Container" Visibility="Collapsed" Grid.ColumnSpan="2" Margin="0,0,-8,0">
             <TextBlock x:Name="Single_Project_Name" FontSize="50" HorizontalAlignment="Center" Text="{Binding project_to_display.ProjectName}" />
             <StackPanel Orientation="Horizontal" Margin="0,20,0,10">
                 <StackPanel Orientation="Vertical" Width="465" x:Name="Description_Panel" Margin="20,10,10,10">
-                    <StackPanel Orientation="Horizontal">    
+                    <StackPanel Orientation="Horizontal">
                         <TextBlock FontSize="24" Margin="0,0,0,10">Project Details</TextBlock>
                         <Button x:Name="Edit_Description_Button" Width="40" Height="20" Margin="270,0,0,0">Edit</Button>
                     </StackPanel>

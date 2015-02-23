@@ -67,12 +67,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepoTests\ProjectRepoTests.cs" />
-    <Compile Include="RepoTests\DescriptionPanelRepoTests.cs" />
-    <Compile Include="RepoTests\NotesPanelRepoTest.cs" />
     <Compile Include="RepoTests\NoteRepoTests.cs" />
     <Compile Include="UnitTests\TestProject.cs" />
-    <Compile Include="UnitTests\TestProjectDescriptionPanel.cs" />
-    <Compile Include="UnitTests\TestNotesPanel.cs" />
     <Compile Include="UnitTests\TestNote.cs" />
     <Compile Include="UserTests\TestHelper.cs" />
     <Compile Include="UserTests\AddNewProjectFromMainWindow.cs" />

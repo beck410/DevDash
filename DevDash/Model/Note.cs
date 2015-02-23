@@ -10,14 +10,14 @@ namespace DevDash.Model {
   public class Note {
 
     public int NoteId { get; set; }
-    public int NotesPanelId { get; set; }
+    public int ProjectId { get; set; }
     public string NoteDetails { get; set; }
 
-    public Note(string noteDetails, int notePanelId) {
+    public Note(string noteDetails, int projectId) {
 
       _isEmpty(noteDetails);
 
-      this.NotesPanelId = notePanelId;
+      this.ProjectId = projectId;
       this.NoteDetails = noteDetails;
     }
 

@@ -76,7 +76,7 @@ namespace DevDash {
       project_repo.Add(new Project(project_name, 1, start_date, end_date, github));
       _show_view(Main_View, false);
       _show_view(Current_Projects_List, true);
-      _DatabindProjects(Current_Projects_Listbox, "current");
+      _DatabindProjects(Current_Projects_Listbox, "current"); 
     }
 
     public void Switch_To_Current_Projects(object sender, RoutedEventArgs e) {

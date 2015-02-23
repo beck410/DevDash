@@ -15,6 +15,7 @@ namespace DevDash.Model {
     public string ProjectStartDate { get; set; } //required
     public string ProjectEndDate { get; set; }
     public string GithubLink { get; set; }
+    public string Description { get; set; }
     public event PropertyChangedEventHandler PropertyChanged;
     public Project() {
 

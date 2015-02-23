@@ -9,7 +9,7 @@ namespace TestDevDash.UnitTests {
     public void TestNoteConstructorWithValidParams() {
       Note note = new Note("this is a new note about the project", 1);
       Assert.AreEqual("this is a new note about the project", note.NoteDetails);
-      Assert.AreEqual(1, note.NotesPanelId);
+      Assert.AreEqual(1, note.ProjectId);
     }
 
     [TestMethod]
