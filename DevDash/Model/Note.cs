@@ -7,11 +7,14 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace DevDash.Model {
+
   public class Note {
 
     public int NoteId { get; set; }
     public int ProjectId { get; set; }
     public string NoteDetails { get; set; }
+
+    public Note() { }
 
     public Note(string noteDetails, int projectId) {
 
