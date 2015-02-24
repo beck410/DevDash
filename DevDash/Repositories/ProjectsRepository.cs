@@ -35,9 +35,7 @@ namespace DevDash.Repositories {
     }
 
     public List<Project> AllPastProjects() {
-      var query = from a in _dbContext.Projects
-                  select a;
-      return query.ToList();
+      return _dbContext.Projects.Where<Project>(c => c.ProjectState == 0).ToList();
     }
 
     public List<Project> AllCurrentProjects() {

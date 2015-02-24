@@ -95,7 +95,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Width="500" Margin="10,10,5,10">
-                                    <TextBlock Text="{Binding Note, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="0,0,100,0"/>
+                                    <TextBlock Text="{Binding NoteDetails, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="0,0,100,0"/>
                                     <Button x:Name="Delete_Note_Button" Click="Delete_Note" Content="Delete" Margin="20,0,0,0"/>
                                     <Button x:Name="Delete_Edit_Button" Click="Edit_Note" Content="Edit" Margin="20,0,0,0"/>
                                 </StackPanel>

@@ -11,6 +11,7 @@ namespace DevDash {
   public partial class MainWindow : Window, INotifyPropertyChanged {
 
     public static ProjectsRepository project_repo = new ProjectsRepository();
+    public static NoteRepository note_repo = new NoteRepository();
 
     private Project _project_to_display;
     public Project project_to_display {
@@ -26,7 +27,7 @@ namespace DevDash {
     public MainWindow() {
       InitializeComponent();
       Current_Projects_Listbox.DataContext = project_repo.AllCurrentProjects();
-      Past_Projects_Listbox.DataContext = project_repo.Context().Projects.Local;
+      Past_Projects_Listbox.DataContext = project_repo.AllPastProjects();
     }
 
     private void View_Current_Projects(object sender, RoutedEventArgs e) {
@@ -46,7 +47,7 @@ namespace DevDash {
     }
 
     private void View_Past_Projects(object sender, RoutedEventArgs e) {
-      //_DatabindProjects(Past_Projects_Listbox, "past");
+      _DatabindProjects(Past_Projects_Listbox, "past");
       _show_view(Main_View, false);
 
       if (project_repo.AllPastProjects().Count == 0) {
@@ -145,7 +146,8 @@ namespace DevDash {
       Project selected_project = (Project)Current_Projects_Listbox.SelectedItem;
       this.project_to_display = selected_project;
       Single_Project_Container.DataContext = this;
-
+      int project_to_display_id = this.project_to_display.ProjectId;
+      Notes_Listbox.DataContext = note_repo.GetAllByProjectId(project_to_display_id);
       _show_view(Current_Projects_List,false);
       _show_view(Single_Project_Container,true);
 

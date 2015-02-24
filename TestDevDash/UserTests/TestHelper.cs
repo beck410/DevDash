@@ -20,6 +20,7 @@ namespace TestDevDash.UserTests {
     protected static Window window;
     private static Application application;
     private static ProjectsRepository ProjectRepo = new ProjectsRepository();
+    private static NoteRepository NoteRepo = new NoteRepository();
     private static ProjectContext context;
     private static String applicationPath;
 
@@ -235,7 +236,11 @@ namespace TestDevDash.UserTests {
     }
 
     public void GivenThereAreXNotes() {
-      throw new NotImplementedException();
+      int project_id = ProjectRepo.All()[0].ProjectId;
+      NoteRepo.Add(new Note("This project needs css work",project_id));
+      NoteRepo.Add(new Note("This project needs js work",project_id));
+
+      Assert.AreEqual(2,NoteRepo.GetAllByProjectId(project_id).Count);
     }
 
     public void AndTextBlockShouldBe(string element_name, string value) {
@@ -252,8 +257,12 @@ namespace TestDevDash.UserTests {
         Assert.AreEqual(1,ProjectRepo.AllCurrentProjects().Count);
     }
 
-    public void AndIShouldSeeXNumberOfNotesInListBox(int p) {
-      throw new NotImplementedException();
+    public void AndIShouldSeeXNumberOfNotesInListBox(int count) {
+      SearchCriteria search_criteria = SearchCriteria.ByAutomationId("Notes_Listbox").AndIndex(0);
+
+      ListBox list_box = (ListBox)window.Get(search_criteria);
+
+      Assert.AreEqual(list_box.Items.Count, 2);
     }
   }
 }

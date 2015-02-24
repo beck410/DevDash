@@ -66,16 +66,15 @@ namespace TestDevDash.UserTests {
       AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
       WhenISelect(0,"Current_Projects_Listbox");
       AndIClick("View_Current_Project_Button");
-      ThenIShouldNotSee("Main_View");
-      AndIShouldNotSee("View_Past_Projects_Button"); 
+      ThenIShouldNotSee("View_Past_Projects_Button"); 
       AndIShouldSee("Edit_Description_Button");
       AndTextBlockShouldBe("Single_Project_Name","angular_project");
-      AndTextBlockShouldBe("Github","");
-      AndTextBlockShouldBe("Start_Date","");
-      AndTextBlockShouldBe("End_Date","");
-      AndTextBlockShouldBe("Description","");
+      AndTextBlockShouldBe("Github","Github Link: http://github.com/angular_project");
+      AndTextBlockShouldBe("Start_Date","Start Date: 02/03/2015");
+      AndTextBlockShouldBe("End_Date","End Date: 02/20/2015");
+      AndTextBlockShouldBe("Description","Description:");
       AndIShouldSee("Notes_Listbox");
-      AndIShouldSeeXNumberOfNotesInListBox(3);
+      AndIShouldSeeXNumberOfNotesInListBox(2);
     }
   }
 }
