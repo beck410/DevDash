@@ -18,5 +18,6 @@ namespace DevDash.Repositories {
     void Delete(int P);
     void Clear();
     Project GetById(int id);
+    void Edit(int project_id, string name, string start_date, string end_date, string github, string description);
   }
 }

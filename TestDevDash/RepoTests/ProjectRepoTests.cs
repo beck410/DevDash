@@ -120,18 +120,47 @@ namespace TestDevDash.RepoTests {
       repo.Add(js);
       repo.Add(cSharp);
 
-      var obs = repo.AllCurrentProjects();
-      var current_projects_list = new List<Project>(obs);
-      int project_id = current_projects_list.Find(c => c.ProjectName == "Angular_Project").ProjectId;
+      int project_id =repo.All().Find(c => c.ProjectName == "Angular_Project").ProjectId;
       Assert.AreEqual(3, repo.All().Count);
-      Assert.AreEqual(3, repo.AllCurrentProjects().Count);
-      Assert.AreEqual(0, repo.AllPastProjects().Count);
+
+      List<Project> current_projects_before = repo.All().FindAll(c => c.ProjectState == 1);
+      Assert.AreEqual(3, current_projects_before.Count);
+      
+      List<Project> past_projects_before = repo.All().FindAll(c => c.ProjectState == 0);
+      Assert.AreEqual(0, past_projects_before.Count);
 
       repo.MoveProject(project_id);
 
+      List<Project> past_projects_after = repo.All().FindAll(c => c.ProjectState == 0);
+      List<Project> current_projects_after = repo.All().FindAll(c => c.ProjectState == 1);
       Assert.AreEqual(3, repo.All().Count);
-      Assert.AreEqual(2, repo.AllCurrentProjects().Count);
-      Assert.AreEqual(1, repo.AllPastProjects().Count);
+      Assert.AreEqual(2, current_projects_after.Count);
+      Assert.AreEqual(1, past_projects_after.Count);
+    }
+
+    [TestMethod]
+    public void TestProjectEdit() {
+      Project cSharp = new Project("CSharp_Project",1,"02/14/2015","04/01/2015","http://www.github.com/csharp");
+      repo.Add(cSharp);
+
+      Project project_details_before = repo.All().Find(c => c.ProjectName == "CSharp_Project");
+      
+     
+      Assert.AreEqual("CSharp_Project", project_details_before.ProjectName);
+      Assert.AreEqual(1, project_details_before.ProjectState);
+      Assert.AreEqual("02/14/2015", project_details_before.ProjectStartDate);
+      Assert.AreEqual("04/01/2015", project_details_before.ProjectEndDate);
+      Assert.AreEqual("http://www.github.com/csharp", project_details_before.GithubLink);
+      Assert.AreEqual("", project_details_before.Description);
+
+      repo.Edit(project_details_before.ProjectId, "Angular", "03/12/2014", "09/17/2015", "http://www.github.com/angular", "this is now an angular app");
+      
+      Assert.AreEqual("Angular", project_details_before.ProjectName);
+      Assert.AreEqual(1, project_details_before.ProjectState);
+      Assert.AreEqual("03/12/2014", project_details_before.ProjectStartDate);
+      Assert.AreEqual("09/17/2015", project_details_before.ProjectEndDate);
+      Assert.AreEqual("http://www.github.com/angular", project_details_before.GithubLink);
+      Assert.AreEqual("this is now an angular app", project_details_before.Description);
     }
   }
 }

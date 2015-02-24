@@ -82,5 +82,18 @@ namespace DevDash.Repositories {
 
       _dbContext.SaveChanges();
     }
+
+    public void Edit(int project_id, string name, string start_date, string end_date, string github, string description) {
+      var query = _dbContext.Projects.Where(c => c.ProjectId == project_id);
+
+      foreach (Project project in query) {
+        project.ProjectName = name;
+        project.ProjectStartDate = start_date;
+        project.ProjectEndDate = end_date;
+        project.GithubLink = github;
+        project.Description = description;
+      }
+      _dbContext.SaveChanges();
+    }
   }
 }

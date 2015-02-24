@@ -34,6 +34,7 @@ namespace DevDash.Model {
       this.ProjectStartDate = start_date;
       this.ProjectEndDate = end_date;
       this.GithubLink = link;
+      this.Description = "";
     }
 
     private bool Has_Spaces(string name) {
