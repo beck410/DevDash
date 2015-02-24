@@ -12,19 +12,15 @@ namespace DevDash.Repositories {
 
     //set up for db local
     private ProjectContext _dbContext;
-    private ObservableCollection<Project> _current_projects; 
-    private ObservableCollection<Project> _past_projects; 
 
     public DbSet<Project> GetDbSet() {
       return _dbContext.Projects;
     }
 
+
     public ProjectsRepository(){
       _dbContext = new ProjectContext();
       _dbContext.Projects.Load();
-
-      _current_projects = new ObservableCollection<Project>(_dbContext.Projects.Where(x => x.ProjectState == 1));
-      _past_projects = new ObservableCollection<Project>(_dbContext.Projects.Where(x => x.ProjectState == 0));
     }
 
     public ProjectContext Context() {
@@ -38,12 +34,14 @@ namespace DevDash.Repositories {
       return query.ToList<Project>();
     }
 
-    public ObservableCollection<Project> AllPastProjects() {
-      return _past_projects;
+    public List<Project> AllPastProjects() {
+      var query = from a in _dbContext.Projects
+                  select a;
+      return query.ToList();
     }
 
-    public ObservableCollection<Project> AllCurrentProjects() {
-      return _current_projects; 
+    public List<Project> AllCurrentProjects() {
+      return _dbContext.Projects.Where<Project>(c => c.ProjectState == 1).ToList();
     }
  
     public int GetCount(){

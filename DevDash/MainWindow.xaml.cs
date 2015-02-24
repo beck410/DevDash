@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 
 namespace DevDash {
 
-  public partial class MainWindow : Window {
+  public partial class MainWindow : Window, INotifyPropertyChanged {
 
     public static ProjectsRepository project_repo = new ProjectsRepository();
 
@@ -19,33 +19,18 @@ namespace DevDash {
       }
       set {
         _project_to_display = value;
-      //  OnPropertyChanged("project_to_display");
+        OnPropertyChanged("project_to_display");
       }
-    }
-
-    private ObservableCollection<Project> _current_projects = project_repo.AllCurrentProjects();
-    //public ObservableCollection<Project> current_projects {
-    //  get {
-    //    return _current_projects;
-    //  }
-
-    //  set {
-    //    _current_projects = value;
-    //    OnPropertyChanged("current_projects");  
-    //  }
-    //}
-
-    //add field for notes
+    } 
 
     public MainWindow() {
       InitializeComponent();
-      //current_projects = project_repo.AllCurrentProjects();
-      Current_Projects_Listbox.DataContext = _current_projects; 
-      Past_Projects_Listbox.DataContext = project_repo.AllPastProjects();
+      Current_Projects_Listbox.DataContext = project_repo.AllCurrentProjects();
+      Past_Projects_Listbox.DataContext = project_repo.Context().Projects.Local;
     }
 
     private void View_Current_Projects(object sender, RoutedEventArgs e) {
-      //_DatabindProjects(Current_Projects_Listbox, "current");
+      _DatabindProjects(Current_Projects_Listbox, "current");
       _show_view(Main_View, false);
 
       if (project_repo.AllCurrentProjects().Count == 0) {
@@ -57,6 +42,7 @@ namespace DevDash {
         _show_view(Current_Projects_List, true);
         _show_list(Current_Projects_Listbox, true);
       }
+      Current_Projects_Listbox.Items.Refresh();
     }
 
     private void View_Past_Projects(object sender, RoutedEventArgs e) {
@@ -90,7 +76,7 @@ namespace DevDash {
       project_repo.Add(new Project(project_name, 1, start_date, end_date, github));
       _show_view(Main_View, false);
       _show_view(Current_Projects_List, true);
-      //_DatabindProjects(Current_Projects_Listbox, "current"); 
+      _DatabindProjects(Current_Projects_Listbox, "current"); 
     }
 
     public void Switch_To_Current_Projects(object sender, RoutedEventArgs e) {
@@ -100,7 +86,7 @@ namespace DevDash {
     }
 
     public void Switch_To_Past_Projects(object sender, RoutedEventArgs e) {
-      //_DatabindProjects(Past_Projects_Listbox, "past");
+      _DatabindProjects(Past_Projects_Listbox, "past");
       _show_view(Current_Projects_List, false);
       View_Past_Projects(sender, e);
     }
@@ -114,9 +100,10 @@ namespace DevDash {
       }
 
       project_repo.Delete(project.ProjectId);
-      //_DatabindProjects(Current_Projects_Listbox, "current");
+      Current_Projects_Listbox.Items.Refresh();
+      _DatabindProjects(Current_Projects_Listbox, "current");
     }
-
+    
     public void Delete_Past_Project(object sender, RoutedEventArgs e) {
       Project project = (Project)Past_Projects_Listbox.SelectedItem;
 
@@ -126,7 +113,7 @@ namespace DevDash {
       }
 
       project_repo.Delete(project.ProjectId);
-      //_DatabindProjects(Past_Projects_Listbox, "past");
+      _DatabindProjects(Past_Projects_Listbox, "past");
     }
 
     public void Move_To_Past_Projects(object sender, RoutedEventArgs e) {
@@ -139,8 +126,8 @@ namespace DevDash {
 
       project_repo.MoveProject(project.ProjectId);
 
-      //_DatabindProjects(Current_Projects_Listbox, "current");
-      //_DatabindProjects(Past_Projects_Listbox, "past");
+      _DatabindProjects(Current_Projects_Listbox, "current");
+      _DatabindProjects(Past_Projects_Listbox, "past");
     }
 
     public void New_Project_Modal(object sender, RoutedEventArgs e) {
@@ -148,7 +135,7 @@ namespace DevDash {
       new_project_modal.ShowDialog();
 
       if (new_project_modal.DialogResult == true) {
-        //_DatabindProjects(Current_Projects_Listbox, "current");
+        _DatabindProjects(Current_Projects_Listbox, "current");
         _show_error(No_Current_Projects_Message, false);
         _show_list(Current_Projects_Listbox,true);
       }
@@ -219,11 +206,11 @@ namespace DevDash {
         list.Visibility = Visibility.Visible;
     }
 
-    //public event PropertyChangedEventHandler PropertyChanged;
-    //private void OnPropertyChanged(string info) {
-    //  if (PropertyChanged != null) {
-    //    PropertyChanged(this, new PropertyChangedEventArgs(info));
-    //  }
-    //}
+    public event PropertyChangedEventHandler PropertyChanged;
+    private void OnPropertyChanged(string info) {
+      if (PropertyChanged != null) {
+        PropertyChanged(this, new PropertyChangedEventArgs(info));
+      }
+    }
   }
 }

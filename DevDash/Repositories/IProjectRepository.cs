@@ -11,8 +11,8 @@ namespace DevDash.Repositories {
   public interface IProjectRepository {
 
     List<Project> All();
-    ObservableCollection<Project> AllPastProjects();
-    ObservableCollection<Project> AllCurrentProjects();
+    List<Project> AllPastProjects();
+    List<Project> AllCurrentProjects();
     int GetCount();
     void Add(Project P);
     void Delete(int P);
