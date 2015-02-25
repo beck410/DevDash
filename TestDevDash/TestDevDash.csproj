@@ -77,6 +77,7 @@
     <Compile Include="UserTests\NavigateToCurrentProjectsFromPastProjectList.cs" />
     <Compile Include="UserTests\NavigateToPastProjectsFromCurrentProjectsList.cs" />
     <Compile Include="UserTests\NewProjectFromModal.cs" />
+    <Compile Include="UserTests\EditSingleProjectDetails.cs" />
     <Compile Include="UserTests\ViewSingleCurrentProject.cs" />
     <Compile Include="UserTests\ViewPastProjectsList.cs" />
     <Compile Include="UserTests\ViewCurrentProjectsList.cs" />

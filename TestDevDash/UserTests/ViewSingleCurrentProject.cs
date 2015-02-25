@@ -28,7 +28,6 @@ namespace TestDevDash.UserTests {
       AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
       WhenISelect(0,"Current_Projects_Listbox");
       AndIClick("View_Current_Project_Button");
-      ThenIShouldNotSee("");
       AndIShouldNotSee("View_Past_Projects_Button");
       AndIShouldSee("Edit_Description_Button");
       AndTextBlockShouldBe("Single_Project_Name","angular_project");

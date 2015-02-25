@@ -262,7 +262,31 @@ namespace TestDevDash.UserTests {
 
       ListBox list_box = (ListBox)window.Get(search_criteria);
 
-      Assert.AreEqual(list_box.Items.Count, 2);
+        Assert.AreEqual(list_box.Items.Count,2);
+    }
+
+    public void AndIShouldSeeInModal(string p) {
+      throw new NotImplementedException();
+    }
+
+    public void AndIFillProjectGithub(string github) {
+      throw new NotImplementedException();
+    }
+
+    public void AndIFillProjectDescription(string description) {
+      throw new NotImplementedException();
+    }
+
+    public void AndIFillEndDateInModal(string end_date) {
+      throw new NotImplementedException();
+    }
+
+    public void AndIFillStartDateInModal(string start_date) {
+      throw new NotImplementedException();
+    }
+
+    public void AndIAddProjectDescription(string p) {
+      throw new NotImplementedException();
     }
   }
 }
