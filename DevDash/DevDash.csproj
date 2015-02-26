@@ -66,6 +66,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddNoteModal.xaml.cs">
+      <DependentUpon>AddNoteModal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddProjectModal.xaml.cs">
       <DependentUpon>AddProjectModal.xaml</DependentUpon>
     </Compile>
@@ -76,6 +79,10 @@
     <Compile Include="Repositories\IProjectRepository.cs" />
     <Compile Include="Repositories\NoteRepository.cs" />
     <Compile Include="Repositories\ProjectsRepository.cs" />
+    <Page Include="AddNoteModal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddProjectModal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

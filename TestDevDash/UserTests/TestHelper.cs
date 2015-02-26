@@ -262,7 +262,7 @@ namespace TestDevDash.UserTests {
 
       ListBox list_box = (ListBox)window.Get(search_criteria);
 
-        Assert.AreEqual(list_box.Items.Count,2);
+        Assert.AreEqual(count,list_box.Items.Count);
     }
 
     public void AndTextBoxInModalShouldBe(string modal_name, string element_name, string value) {
@@ -316,8 +316,11 @@ namespace TestDevDash.UserTests {
       Assert.AreEqual(name, textbox.Text);
     }
 
-    public void WhenIFillNoteTextBox(string p) {
-      throw new NotImplementedException();
+    public void WhenIFillNoteTextBox(string note) {
+      var new_note = window.ModalWindow("AddNoteModal");
+      var textbox = (TextBox)new_note.Get(SearchCriteria.ByAutomationId("Modal_Note"));
+      textbox.SetValue(note);
+      Assert.AreEqual(note, textbox.Text);
     }
   }
 }

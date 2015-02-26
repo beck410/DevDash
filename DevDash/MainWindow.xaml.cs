@@ -183,12 +183,27 @@ namespace DevDash {
       }
     }
 
+    public void Add_Note(object sender, RoutedEventArgs e) {
+      AddNoteModal new_note = new AddNoteModal();
+      new_note.projectId = _project_to_display.ProjectId;
+      new_note.ShowDialog();
+
+      if (new_note.DialogResult == true) {
+        _show_list(Notes_Listbox, true);
+        _DataBindNotes(Notes_Listbox);
+      }
+    }
+    
     public void Delete_Note(object sender, RoutedEventArgs e) {
 
     }
 
     public void Edit_Note(object sender, RoutedEventArgs e) {
 
+    }
+
+    private void _DataBindNotes(ListBox element) {
+      element.DataContext = note_repo.GetAllByProjectId(_project_to_display.ProjectId);
     }
 
     private void _DatabindProjects(ListBox element, string type) {

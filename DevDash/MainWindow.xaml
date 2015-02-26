@@ -89,7 +89,7 @@
                 <StackPanel Width="465" x:Name="Notes_Panel" Margin="10,10,10,20">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontSize="24" Margin="0,0,0,10">Notes</TextBlock>
-                        <Button x:Name="Add_Note" Height="20"  Margin="340,0,0,0">Add Note</Button>
+                        <Button x:Name="Add_Note_Button" Click="Add_Note" Height="20"  Margin="340,0,0,0">Add Note</Button>
                     </StackPanel>
                     <ListBox x:Name="Notes_Listbox" ItemsSource="{Binding NotifyOnSourceUpdated=True}">
                         <ListBox.ItemTemplate>
