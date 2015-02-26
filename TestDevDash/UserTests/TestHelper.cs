@@ -315,5 +315,9 @@ namespace TestDevDash.UserTests {
       textbox.SetValue(name);
       Assert.AreEqual(name, textbox.Text);
     }
+
+    public void WhenIFillNoteTextBox(string p) {
+      throw new NotImplementedException();
+    }
   }
 }
