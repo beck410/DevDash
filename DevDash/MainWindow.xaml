@@ -77,13 +77,13 @@
                 <StackPanel Orientation="Vertical" Width="465" x:Name="Description_Panel" Margin="20,10,10,10">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontSize="24" Margin="0,0,0,10">Project Details</TextBlock>
-                        <Button x:Name="Edit_Description_Button" Width="40" Height="20" Margin="270,0,0,0">Edit</Button>
+                        <Button x:Name="Edit_Description_Button" Click="Edit_Project_Details"  Width="40" Height="20" Margin="270,0,0,0">Edit</Button>
                     </StackPanel>
                     <StackPanel>
                         <TextBlock x:Name="Github" Text="{Binding project_to_display.GithubLink, StringFormat='Github Link: {0}' }"></TextBlock>
                         <TextBlock x:Name="Start_Date" Text="{Binding project_to_display.ProjectStartDate, StringFormat='Start Date: {0}' }"></TextBlock>
                         <TextBlock x:Name="End_Date" Text="{Binding project_to_display.ProjectEndDate, StringFormat='End Date: {0}' }"></TextBlock>
-                        <TextBlock x:Name="Description">Description:</TextBlock>
+                        <TextBlock x:Name="Description" Text="{Binding project_to_display.Description, StringFormat='Description: {0}' }"></TextBlock>
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Width="465" x:Name="Notes_Panel" Margin="10,10,10,20">

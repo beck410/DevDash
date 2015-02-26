@@ -5,6 +5,8 @@ using DevDash.Model;
 using DevDash.Repositories;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System;
+using System.Globalization;
 
 namespace DevDash {
 
@@ -156,6 +158,31 @@ namespace DevDash {
       }
     }
 
+    public void Edit_Project_Details(object sender, RoutedEventArgs  e) {
+      var edit_project_modal = new EditProjectDetailsModal();
+      edit_project_modal.populateModal(_project_to_display);
+      edit_project_modal.ShowDialog();
+
+      if (edit_project_modal.DialogResult == true){
+
+        DateTime? start_date = edit_project_modal.Modal_Edit_Project_Start_Date.SelectedDate;
+        DateTime? end_date = edit_project_modal.Modal_Edit_Project_End_Date.SelectedDate;
+
+        Single_Project_Name.Text = edit_project_modal.Modal_Edit_Project_Name.Text;
+        Github.Text = "Github Link: " + edit_project_modal.Modal_Edit_Project_Github.Text;
+        Description.Text = "Description: " + edit_project_modal.Modal_Edit_Project_Description.Text;
+        _add_formatted_date(start_date, Start_Date, "Start Date: ");
+        _add_formatted_date(end_date, End_Date, "End Date: ");
+
+
+        project_to_display.ProjectName = edit_project_modal.Modal_Edit_Project_Name.Text;
+        project_to_display.GithubLink = edit_project_modal.Modal_Edit_Project_Github.Text;
+        project_to_display.ProjectStartDate = edit_project_modal.Modal_Edit_Project_Start_Date.SelectedDate.ToString();
+        project_to_display.ProjectEndDate = edit_project_modal.Modal_Edit_Project_End_Date.SelectedDate.ToString();
+        project_to_display.Description = edit_project_modal.Modal_Edit_Project_Description.Text;
+      }
+    }
+
     public void Delete_Note(object sender, RoutedEventArgs e) {
 
     }
@@ -213,6 +240,13 @@ namespace DevDash {
       if (PropertyChanged != null) {
         PropertyChanged(this, new PropertyChangedEventArgs(info));
       }
+    }
+
+    private void _add_formatted_date(DateTime? date, TextBlock element,string date_text) {
+      if (date == null)
+        element.Text =  date_text;
+      else
+        element.Text = date_text + date.Value.ToString("MM/dd/yyyy");
     }
   }
 }

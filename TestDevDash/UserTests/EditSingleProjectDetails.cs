@@ -27,211 +27,32 @@ namespace TestDevDash.UserTests {
       AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
       WhenISelect(0,"Current_Projects_Listbox");
       AndIClick("View_Current_Project_Button");
-      AndIShouldNotSee("View_Past_Projects_Button");
-      AndIShouldSee("Edit_Description_Button");
       AndTextBlockShouldBe("Single_Project_Name","angular_project");
       AndTextBlockShouldBe("Github","Github Link: http://github.com/angular_project");
       AndTextBlockShouldBe("Start_Date","Start Date: 02/03/2015");
       AndTextBlockShouldBe("End_Date","End Date: 02/20/2015");
-      AndTextBlockShouldBe("Description","Description:");
+      AndTextBlockShouldBe("Description","Description: ");
       AndIShouldNotSee("Notes_Listbox");
-      WhenIClick("Edit_Project_Details");
-      ThenIShouldSeeInModal("AddProjectModal","Modal_New_Project_Button");
-      AndIShouldSeeInModal("AddProjectModal","Add_Project_Description");
-      AndIShouldSeeInModal("AddProjectModal","Modal_Close_Button");
-      AndTextBlockShouldBe("Modal_New_Project_Name","angular_project");
-      AndTextBlockShouldBe("Modal_New_Project_Start_Date","02/03/2015");
-      AndTextBlockShouldBe("Modal_New_Project_End_Date","02/20/2015");
-      AndTextBlockShouldBe("Modal_New_Project_Github","http://github.com/angular_project");
-      AndTextBlockShouldBe("Modal_New_Project_Description","");
-      WhenIFillModalProjectName("new_angular_project");
-      AndIFillStartDateInModal("02/04/2015");
-      AndIFillEndDateInModal("02/21/2015");
+      WhenIClick("Edit_Description_Button");
+      ThenIShouldSeeInModal("EditProjectDetailsModal","Modal_Edit_Project_Button");
+      AndIShouldSeeInModal("EditProjectDetailsModal","Modal_Edit_Project_Description");
+      AndIShouldSeeInModal("EditProjectDetailsModal","Modal_Close_Button");
+      AndTextBoxInModalShouldBe("EditProjectDetailsModal","Modal_Edit_Project_Name","angular_project");
+      AndDatePickerInModalShouldBe("EditProjectDetailsModal","Modal_Edit_Project_Start_Date","2/3/2015 12:00:00 AM");
+      AndDatePickerInModalShouldBe("EditProjectDetailsModal","Modal_Edit_Project_End_Date","2/20/2015 12:00:00 AM");
+      AndTextBoxInModalShouldBe("EditProjectDetailsModal","Modal_Edit_Project_Github","http://github.com/angular_project");
+      AndTextBoxInModalShouldBe("EditProjectDetailsModal","Modal_Edit_Project_Description","");
+      WhenIFillProjectNameInEditModal("new_angular_project");
+      AndIFillStartDateInModal(new DateTime(2015, 02, 04));
+      AndIFillEndDateInModal(new DateTime(2015, 02, 21));
       AndIFillProjectDescription("this is an awesome angular app");
-      AndIFillProjectGithub("http://github.com/new_angular_app");
-      AndIClickInModal("AddProjectModal","Modal_New_Project_Button");
-      AndTextBlockShouldBe("Single_Project_Name","new_angular_project");
-      AndTextBlockShouldBe("Github","Github Link: http://github.com/new_angular_app");
-      AndTextBlockShouldBe("Start_Date","Start Date: 02/04/2015");
-      AndTextBlockShouldBe("End_Date","End Date: 02/21/2015");
-      AndTextBlockShouldBe("Description","Description: this is an awesome angular app");
-    }
-
-    public void EditProjectWithExistingDescription() {
-      GivenThereAreXProjects("current");
-      AndIAddProjectDescription("this is a project");
-      WhenIClick("Current_Projects_Button");
-      ThenIAmOnCurrentProjectsList();
-      AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
-      WhenISelect(0,"Current_Projects_Listbox");
-      AndIClick("View_Current_Project_Button");
-      AndIShouldNotSee("View_Past_Projects_Button");
-      AndIShouldSee("Edit_Description_Button");
-      AndTextBlockShouldBe("Single_Project_Name","angular_project");
-      AndTextBlockShouldBe("Github","Github Link: http://github.com/angular_project");
-      AndTextBlockShouldBe("Start_Date","Start Date: 02/03/2015");
-      AndTextBlockShouldBe("End_Date","End Date: 02/20/2015");
-      AndTextBlockShouldBe("Description","Description: this is a project");
-      AndIShouldNotSee("Notes_Listbox");
-      WhenIClick("Edit_Project_Details");
-      ThenIShouldSeeInModal("AddProjectModal","Modal_New_Project_Button");
-      AndIShouldSeeInModal("AddProjectModal","Add_Project_Description");
-      AndIShouldSeeInModal("AddProjectModal","Modal_Close_Button");
-      AndTextBlockShouldBe("Modal_New_Project_Name","angular_project");
-      AndTextBlockShouldBe("Modal_New_Project_Start_Date","02/03/2015");
-      AndTextBlockShouldBe("Modal_New_Project_End_Date","02/20/2015");
-      AndTextBlockShouldBe("Modal_New_Project_Github","http://github.com/angular_project");
-      AndTextBlockShouldBe("Modal_New_Project_Description","");
-      WhenIFillModalProjectName("new_angular_project");
-      AndIFillStartDateInModal("02/04/2015");
-      AndIFillEndDateInModal("02/21/2015");
-      AndIFillProjectDescription("this is an awesome angular app");
-      AndIFillProjectGithub("http://github.com/new_angular_app");
-      AndIClickInModal("AddProjectModal","Modal_New_Project_Button");
+      AndIFillProjectGithubInModal("http://github.com/new_angular_app");
+      AndIClickInModal("EditProjectDetailsModal","Modal_Edit_Project_Button");
       AndTextBlockShouldBe("Single_Project_Name","new_angular_project");
       AndTextBlockShouldBe("Github","Github Link: http://github.com/new_angular_app");
       AndTextBlockShouldBe("Start_Date","Start Date: 02/04/2015");
       AndTextBlockShouldBe("End_Date","End Date: 02/21/2015");
       AndTextBlockShouldBe("Description","Description: this is an awesome angular app");
     } 
-
-    [TestMethod]
-    public void EditOnlyProjectStartDate() {
-      GivenThereAreXProjects("current");
-      WhenIClick("Current_Projects_Button");
-      ThenIAmOnCurrentProjectsList();
-      AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
-      WhenISelect(0,"Current_Projects_Listbox");
-      AndIClick("View_Current_Project_Button");
-      AndIShouldNotSee("View_Past_Projects_Button");
-      AndIShouldSee("Edit_Description_Button");
-      AndTextBlockShouldBe("Single_Project_Name","angular_project");
-      AndTextBlockShouldBe("Github","Github Link: http://github.com/angular_project");
-      AndTextBlockShouldBe("Start_Date","Start Date: 02/03/2015");
-      AndTextBlockShouldBe("End_Date","End Date: 02/20/2015");
-      AndTextBlockShouldBe("Description","Description:");
-      AndIShouldNotSee("Notes_Listbox");
-      WhenIClick("Edit_Project_Details");
-      ThenIShouldSeeInModal("AddProjectModal","Modal_New_Project_Button");
-      AndIShouldSeeInModal("AddProjectModal","Add_Project_Description");
-      AndIShouldSeeInModal("AddProjectModal","Modal_Close_Button");
-      AndTextBlockShouldBe("Modal_New_Project_Name","angular_project");
-      AndTextBlockShouldBe("Modal_New_Project_Start_Date","02/03/2015");
-      AndTextBlockShouldBe("Modal_New_Project_End_Date","02/20/2015");
-      AndTextBlockShouldBe("Modal_New_Project_Github","http://github.com/angular_project");
-      AndTextBlockShouldBe("Modal_New_Project_Description","");
-      AndIFillStartDateInModal("02/04/2015");
-      AndIClickInModal("AddProjectModal","Modal_New_Project_Button");
-      AndTextBlockShouldBe("Single_Project_Name","angular_project");
-      AndTextBlockShouldBe("Github","Github Link: http://github.com/angular_project");
-      AndTextBlockShouldBe("Start_Date","Start Date: 02/04/2015");
-      AndTextBlockShouldBe("End_Date","End Date: 02/20/2015");
-      AndTextBlockShouldBe("Description","Description:");
-    }
-
-
-    [TestMethod]
-    public void EditOnlyProjectName() {
-      GivenThereAreXProjects("current");
-      WhenIClick("Current_Projects_Button");
-      ThenIAmOnCurrentProjectsList();
-      AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
-      WhenISelect(0,"Current_Projects_Listbox");
-      AndIClick("View_Current_Project_Button");
-      AndIShouldNotSee("View_Past_Projects_Button");
-      AndIShouldSee("Edit_Description_Button");
-      AndTextBlockShouldBe("Single_Project_Name","angular_project");
-      AndTextBlockShouldBe("Github","Github Link: http://github.com/angular_project");
-      AndTextBlockShouldBe("Start_Date","Start Date: 02/03/2015");
-      AndTextBlockShouldBe("End_Date","End Date: 02/20/2015");
-      AndTextBlockShouldBe("Description","Description:");
-      AndIShouldNotSee("Notes_Listbox");
-      WhenIClick("Edit_Project_Details");
-      ThenIShouldSeeInModal("AddProjectModal","Modal_New_Project_Button");
-      AndIShouldSeeInModal("AddProjectModal","Add_Project_Description");
-      AndIShouldSeeInModal("AddProjectModal","Modal_Close_Button");
-      AndTextBlockShouldBe("Modal_New_Project_Name","angular_project");
-      AndTextBlockShouldBe("Modal_New_Project_Start_Date","02/03/2015");
-      AndTextBlockShouldBe("Modal_New_Project_End_Date","02/20/2015");
-      AndTextBlockShouldBe("Modal_New_Project_Github","http://github.com/angular_project");
-      AndTextBlockShouldBe("Modal_New_Project_Description","");
-      WhenIFillModalProjectName("new_angular_app");
-      AndIClickInModal("AddProjectModal","Modal_New_Project_Button");
-      AndTextBlockShouldBe("Single_Project_Name","new_angular_app");
-      AndTextBlockShouldBe("Github","Github Link: http://github.com/angular_project");
-      AndTextBlockShouldBe("Start_Date","Start Date: 02/03/2015");
-      AndTextBlockShouldBe("End_Date","End Date: 02/20/2015");
-      AndTextBlockShouldBe("Description","Description:");
-    }
-
-
-    [TestMethod]
-    public void EditOnlyProjectEndDate(){
-      GivenThereAreXProjects("current");
-      WhenIClick("Current_Projects_Button");
-      ThenIAmOnCurrentProjectsList();
-      AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
-      WhenISelect(0,"Current_Projects_Listbox");
-      AndIClick("View_Current_Project_Button");
-      AndIShouldNotSee("View_Past_Projects_Button");
-      AndIShouldSee("Edit_Description_Button");
-      AndTextBlockShouldBe("Single_Project_Name","angular_project");
-      AndTextBlockShouldBe("Github","Github Link: http://github.com/angular_project");
-      AndTextBlockShouldBe("Start_Date","Start Date: 02/03/2015");
-      AndTextBlockShouldBe("End_Date","End Date: 02/20/2015");
-      AndTextBlockShouldBe("Description","Description:");
-      AndIShouldNotSee("Notes_Listbox");
-      WhenIClick("Edit_Project_Details");
-      ThenIShouldSeeInModal("AddProjectModal","Modal_New_Project_Button");
-      AndIShouldSeeInModal("AddProjectModal","Add_Project_Description");
-      AndIShouldSeeInModal("AddProjectModal","Modal_Close_Button");
-      AndTextBlockShouldBe("Modal_New_Project_Name","angular_project");
-      AndTextBlockShouldBe("Modal_New_Project_Start_Date","02/03/2015");
-      AndTextBlockShouldBe("Modal_New_Project_End_Date","02/20/2015");
-      AndTextBlockShouldBe("Modal_New_Project_Github","http://github.com/angular_project");
-      AndTextBlockShouldBe("Modal_New_Project_Description","");
-      AndIFillEndDateInModal("02/21/2014");
-      AndIClickInModal("AddProjectModal","Modal_New_Project_Button");
-      AndTextBlockShouldBe("Single_Project_Name","angular_project");
-      AndTextBlockShouldBe("Github","Github Link: http://github.com/angular_project");
-      AndTextBlockShouldBe("Start_Date","Start Date: 02/03/2015");
-      AndTextBlockShouldBe("End_Date","End Date: 02/21/2015");
-      AndTextBlockShouldBe("Description","Description:");
-    }
-
-
-    [TestMethod]
-    public void EditOnlyProjectGithubLink(){
-      GivenThereAreXProjects("current");
-      WhenIClick("Current_Projects_Button");
-      ThenIAmOnCurrentProjectsList();
-      AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
-      WhenISelect(0,"Current_Projects_Listbox");
-      AndIClick("View_Current_Project_Button");
-      AndIShouldNotSee("View_Past_Projects_Button");
-      AndIShouldSee("Edit_Description_Button");
-      AndTextBlockShouldBe("Single_Project_Name","angular_project");
-      AndTextBlockShouldBe("Github","Github Link: http://github.com/angular_project");
-      AndTextBlockShouldBe("Start_Date","Start Date: 02/03/2015");
-      AndTextBlockShouldBe("End_Date","End Date: 02/20/2015");
-      AndTextBlockShouldBe("Description","Description:");
-      AndIShouldNotSee("Notes_Listbox");
-      WhenIClick("Edit_Project_Details");
-      ThenIShouldSeeInModal("AddProjectModal","Modal_New_Project_Button");
-      AndIShouldSeeInModal("AddProjectModal","Add_Project_Description");
-      AndIShouldSeeInModal("AddProjectModal","Modal_Close_Button");
-      AndTextBlockShouldBe("Modal_New_Project_Name","angular_project");
-      AndTextBlockShouldBe("Modal_New_Project_Start_Date","02/03/2015");
-      AndTextBlockShouldBe("Modal_New_Project_End_Date","02/20/2015");
-      AndTextBlockShouldBe("Modal_New_Project_Github","http://github.com/angular_project");
-      AndTextBlockShouldBe("Modal_New_Project_Description","");
-      AndIFillGithubLink("http://github/new_project_app");
-      AndIClickInModal("AddProjectModal","Modal_New_Project_Button");
-      AndTextBlockShouldBe("Single_Project_Name","angular_project");
-      AndTextBlockShouldBe("Github","Github Link: http://github.com/new_angular_app");
-      AndTextBlockShouldBe("Start_Date","Start Date: 02/03/2015");
-      AndTextBlockShouldBe("End_Date","End Date: 02/20/2015");
-      AndTextBlockShouldBe("Description","Description:");
-    }
   }
 }

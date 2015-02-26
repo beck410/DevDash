@@ -246,9 +246,9 @@ namespace TestDevDash.UserTests {
     public void AndTextBlockShouldBe(string element_name, string value) {
       SearchCriteria searchCriteria = SearchCriteria
                .ByAutomationId(element_name);
-      Label textbox = (Label)window.Get(searchCriteria);
+      Label textblock = (Label)window.Get(searchCriteria);
 
-      Assert.AreEqual(textbox.Text, value);
+      Assert.AreEqual(value,textblock.Text);
     }
 
     public void GivenIAddProjectWithOnlyNameFilled() {
@@ -265,28 +265,55 @@ namespace TestDevDash.UserTests {
         Assert.AreEqual(list_box.Items.Count,2);
     }
 
-    public void AndIShouldSeeInModal(string p) {
-      throw new NotImplementedException();
+    public void AndTextBoxInModalShouldBe(string modal_name, string element_name, string value) {
+      var project_modal = window.ModalWindow(modal_name);
+      TextBox textbox = (TextBox)project_modal.Get(SearchCriteria.ByAutomationId(element_name));
+      Assert.AreEqual(value, textbox.Text);
     }
 
-    public void AndIFillProjectGithub(string github) {
-      throw new NotImplementedException();
+    public void AndDatePickerInModalShouldBe(string modal_name, string element_name, string value) {
+      var project_modal = window.ModalWindow(modal_name);
+      var date = project_modal.Get<DateTimePicker>(SearchCriteria.ByAutomationId(element_name));
+      Assert.AreEqual(value,date.Date.ToString());
+    }
+   
+    public void AndIFillProjectGithubInModal(string github) {
+      var project_modal = window.ModalWindow("EditProjectDetailsModal");
+      var textbox = (TextBox)project_modal.Get(SearchCriteria.ByAutomationId("Modal_Edit_Project_Github"));
+      textbox.SetValue(github);
+      Assert.AreEqual(github, textbox.Text);
     }
 
     public void AndIFillProjectDescription(string description) {
-      throw new NotImplementedException();
+      var project_modal = window.ModalWindow("EditProjectDetailsModal");
+      var textbox = (TextBox)project_modal.Get(SearchCriteria.ByAutomationId("Modal_Edit_Project_Description"));
+      textbox.SetValue(description);
+      Assert.AreEqual(description, textbox.Text);
     }
 
-    public void AndIFillEndDateInModal(string end_date) {
-      throw new NotImplementedException();
+    public void AndIFillEndDateInModal(DateTime? end_date) {
+      var project_modal = window.ModalWindow("EditProjectDetailsModal");
+      DateTimePicker picker = project_modal.Get<DateTimePicker>("Modal_Edit_Project_End_Date");
+      picker.Date = end_date;
+      Assert.AreEqual(end_date, picker.Date);
     }
 
-    public void AndIFillStartDateInModal(string start_date) {
-      throw new NotImplementedException();
+    public void AndIFillStartDateInModal(DateTime? start_date) {
+      var project_modal = window.ModalWindow("EditProjectDetailsModal");
+      DateTimePicker picker = project_modal.Get<DateTimePicker>("Modal_Edit_Project_Start_Date");
+      picker.Date = start_date;
+      Assert.AreEqual(start_date, picker.Date);
     }
 
     public void AndIAddProjectDescription(string p) {
       throw new NotImplementedException();
+    }
+
+    public void WhenIFillProjectNameInEditModal(string name) {
+      var project_modal = window.ModalWindow("EditProjectDetailsModal");
+      var textbox = (TextBox)project_modal.Get(SearchCriteria.ByAutomationId("Modal_Edit_Project_Name"));
+      textbox.SetValue(name);
+      Assert.AreEqual(name, textbox.Text);
     }
   }
 }
