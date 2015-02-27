@@ -204,8 +204,13 @@ namespace DevDash {
       _DataBindNotes(Notes_Listbox);
     }
 
-    public void Edit_Note(object sender, RoutedEventArgs e) {
+    public void Show_Edit_Note_Modal(object sender, RoutedEventArgs e) {
 
+    }
+
+    public void Back_To_Projects(object sender, RoutedEventArgs e) {
+      _show_view(Main_View, true);
+      _show_view(Single_Project_Container, false);
     }
 
     private void _DataBindNotes(ListBox element) {

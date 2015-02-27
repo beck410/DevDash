@@ -322,5 +322,13 @@ namespace TestDevDash.UserTests {
       textbox.SetValue(note);
       Assert.AreEqual(note, textbox.Text);
     }
+
+    public void AndNoteShouldBe(string p) {
+      throw new NotImplementedException();
+    }
+
+    public void AndIFillNoteInEditModal(string p) {
+      throw new NotImplementedException();
+    }
   }
 }
