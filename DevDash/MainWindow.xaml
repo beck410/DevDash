@@ -2,11 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="700" Width="1000">
-    <Grid Background="IndianRed">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="21*"/>
-            <ColumnDefinition Width="11*"/>
-        </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/school.png"></ImageBrush>
+        </Grid.Background>
         <StackPanel x:Name="Main_View" Width="900" Height="573" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="33,0,59,77" Grid.ColumnSpan="2">
             <TextBlock VerticalAlignment="Top" Margin="346,10,345,0" HorizontalAlignment="Center" FontSize="50"><Run Text="Dev Dash"/></TextBlock>
             <StackPanel Height="60" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
