@@ -4,6 +4,8 @@ using DevDash.Model;
 using DevDash.Repositories;
 using System.ComponentModel;
 using System;
+using System.Collections.ObjectModel;
+using System.Windows.Media;
 
 namespace DevDash {
 
@@ -21,7 +23,17 @@ namespace DevDash {
         _project_to_display = value;
         OnPropertyChanged("project_to_display");
       }
-    } 
+    }
+
+    private ObservableCollection<Note> _notes;
+    public ObservableCollection<Note> Notes {
+      get {
+        return _notes;
+      }
+      set {
+        _notes = value;
+      }
+    }
 
     public MainWindow() {
       InitializeComponent();
@@ -147,9 +159,13 @@ namespace DevDash {
       Single_Project_Container.DataContext = this;
 
       int project_to_display_id = this.project_to_display.ProjectId;
-      Notes_Listbox.DataContext = note_repo.GetAllByProjectId(project_to_display_id);
+
+      Notes = note_repo.GetAllByProjectId(project_to_display_id);
+      Notes_Listbox.DataContext = Notes;
       _show_view(Current_Projects_List, false);
       _show_view(Single_Project_Container, true);
+
+
 
       if (Notes_Listbox.Items.Count == 0) {
         _show_list(Notes_Listbox, false);
@@ -204,8 +220,18 @@ namespace DevDash {
       _DataBindNotes(Notes_Listbox);
     }
 
-    public void Show_Edit_Note_Modal(object sender, RoutedEventArgs e) {
+    public void Show_Edit_Note_Textbox(object sender, RoutedEventArgs e) {
+      Note note_item = (Note)Notes_Listbox.SelectedItem;
+      Edit_Note_Container.Visibility = Visibility.Visible;
 
+      Edit_Note_textbox.Text = note_item.NoteDetails;
+    }
+
+    public void Edit_Note(object sender, RoutedEventArgs e) {
+      Edit_Note_Container.Visibility = Visibility.Collapsed;
+      Note note_item = (Note)Notes_Listbox.SelectedItem;
+      note_repo.Edit(note_item.NoteId, Edit_Note_textbox.Text);
+      _DataBindNotes(Notes_Listbox);
     }
 
     public void Back_To_Projects(object sender, RoutedEventArgs e) {

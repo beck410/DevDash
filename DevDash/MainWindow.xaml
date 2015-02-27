@@ -93,13 +93,17 @@
                         <Button x:Name="Add_Note_Button" Click="Add_Note" Height="20"  Margin="340,0,0,0">Add Note</Button>
                     </StackPanel>
                     <TextBlock Margin="10,10,0,0" FontSize="24" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="Delete_Note_Error_Message">Please select note first</TextBlock>
+                    <StackPanel Orientation="Horizontal" x:Name="Edit_Note_Container" Visibility="Collapsed">
+                        <TextBox x:Name="Edit_Note_textbox" TextWrapping="Wrap" Margin="0,5,0,10" Width="380"></TextBox>
+                        <Button Click="Edit_Note" Width="60" Margin="20,0,0,10">Edit Note</Button>
+                    </StackPanel>
                     <ListBox x:Name="Notes_Listbox" ItemsSource="{Binding NotifyOnSourceUpdated=True}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" Width="340" Margin="10,10,5,10">
                                     <TextBlock x:Name="Note_Item" Width="200" TextWrapping="Wrap" Text="{Binding NoteDetails, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="0,0,0,0"/>
                                     <Button x:Name="Delete_Note_Button" Click="Delete_Note" Content="Delete" Margin="20,0,0,0"/>
-                                    <Button x:Name="Edit_Note_Button" Click="Show_Edit_Note_Modal" Content="Edit" Margin="20,0,0,0"/>
+                                    <Button x:Name="Edit_Note_Button" Click="Show_Edit_Note_Textbox" Content="Edit" Margin="20,0,0,0"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

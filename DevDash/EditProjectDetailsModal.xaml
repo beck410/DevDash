@@ -20,4 +20,4 @@
             <Button x:Name="Modal_Close_Button" Click="Close_btn" Height="20px" VerticalAlignment="Bottom"  Content="Cancel" Margin="0,20,0,0"/>
         </StackPanel>
     </StackPanel>
-</Window>
+</Window> 

@@ -31,7 +31,7 @@ namespace TestDevDash.UserTests {
       AndIShouldNotSee("Notes_Listbox");
       WhenIClick("Add_Note_Button");
       ThenIShouldSeeInModal("AddNoteModal","Modal_New_Note_Button");
-      WhenIFillNoteTextBox("this is a new note");
+      WhenIFillNoteTextBox("AddNoteModal","this is a new note");
       AndIClickInModal("AddNoteModal","Modal_New_Note_Button");
       ThenIShouldSee("Notes_Listbox");
       AndIShouldSeeXNumberOfNotesInListBox(1);
@@ -51,7 +51,7 @@ namespace TestDevDash.UserTests {
       AndTextBlockShouldBe("Single_Project_Name","angular_project");
       WhenIClick("Add_Note_Button");
       ThenIShouldSeeInModal("AddNoteModal","Modal_New_Note_Button");
-      WhenIFillNoteTextBox("this is a new note");
+      WhenIFillNoteTextBox("AddNoteModal","this is a new note");
       AndIClickInModal("AddNoteModal","Modal_New_Note_Button");
       ThenIShouldSee("Notes_Listbox");
       AndIShouldSeeXNumberOfNotesInListBox(3);

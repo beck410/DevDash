@@ -17,32 +17,32 @@ namespace DevDash {
       _current_project = project;
       _add_existing_project_details();
     }
-    
+
     public EditProjectDetailsModal() {
-      
+
       InitializeComponent();
     }
-    
+
     private void Edit_New_Project(object sender, RoutedEventArgs e) {
 
       Modal_Edit_Project_Error.Visibility = Visibility.Collapsed;
-     
+
       string project_name = Modal_Edit_Project_Name.Text;
       string start_date = Modal_Edit_Project_Start_Date.SelectedDate.ToString();
       string end_date = Modal_Edit_Project_End_Date.SelectedDate.ToString();
       string github = Modal_Edit_Project_Github.Text;
       string description = Modal_Edit_Project_Description.Text;
 
-      
 
-     if (_Valid_Name(project_name) == true) {
-       project_repo.Edit(_current_project.ProjectId,project_name,start_date,end_date,github,description);
-       DialogResult = true;
-       this.Close();
-     }
-     else {
-       Modal_Edit_Project_Error.Visibility = Visibility.Visible;
-     }
+
+      if (_Valid_Name(project_name) == true) {
+        project_repo.Edit(_current_project.ProjectId, project_name, start_date, end_date, github, description);
+        DialogResult = true;
+        this.Close();
+      }
+      else {
+        Modal_Edit_Project_Error.Visibility = Visibility.Visible;
+      }
     }
 
     private void Close_btn(object sender, RoutedEventArgs e) {
@@ -76,6 +76,6 @@ namespace DevDash {
         valid = false;
 
       return valid;
-   }
+    }
   }
 }

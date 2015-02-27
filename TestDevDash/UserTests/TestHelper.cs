@@ -316,19 +316,20 @@ namespace TestDevDash.UserTests {
       Assert.AreEqual(name, textbox.Text);
     }
 
-    public void WhenIFillNoteTextBox(string note) {
-      var new_note = window.ModalWindow("AddNoteModal");
+    public void WhenIFillNoteTextBox(string modal,string note) {
+      var new_note = window.ModalWindow(modal);
       var textbox = (TextBox)new_note.Get(SearchCriteria.ByAutomationId("Modal_Note"));
       textbox.SetValue(note);
       Assert.AreEqual(note, textbox.Text);
     }
 
-    public void AndNoteShouldBe(string p) {
-      throw new NotImplementedException();
-    }
+    public void AndNoteShouldBe(string list, string note) {
 
-    public void AndIFillNoteInEditModal(string p) {
-      throw new NotImplementedException();
+      ListBox list_box = (ListBox)window.Get(SearchCriteria.ByAutomationId(list));
+      list_box.Select(0);
+
+      var text = list_box.SelectedItem.Text;
+      Assert.AreEqual(note, text);
     }
   }
 }
