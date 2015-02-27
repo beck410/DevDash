@@ -111,11 +111,11 @@ namespace TestDevDash.UserTests {
     }
 
     public void WhenISelect(int index, string list ) {
-      SearchCriteria search_criteria = SearchCriteria.ByAutomationId(list).AndIndex(0);
+      SearchCriteria search_criteria = SearchCriteria.ByAutomationId(list);
 
       ListBox list_box = (ListBox)window.Get(search_criteria);
-      list_box.Select(0);
-      Assert.IsTrue(list_box.Item(0).IsSelected);
+      list_box.Select(index);
+      Assert.IsTrue(list_box.Item(index).IsSelected);
     }
 
     public void ThenIShouldSee(string element) {

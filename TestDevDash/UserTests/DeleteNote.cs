@@ -3,8 +3,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestDevDash.UserTests {
   [TestClass]
-  public class AddNewNoteToProject : TestHelper{
-   [ClassInitialize]
+  public class DeleteNote : TestHelper {
+
+    [ClassInitialize]
     public static void Setup(TestContext _context) {
       TestHelper.SetUpClass(_context);
     }
@@ -20,25 +21,7 @@ namespace TestDevDash.UserTests {
     }
 
     [TestMethod]
-    public void AddNewNoteWhenNoNotesExist() {
-      GivenThereAreXProjects("current");
-      WhenIClick("Current_Projects_Button");
-      ThenIAmOnCurrentProjectsList();
-      AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
-      WhenISelect(0,"Current_Projects_Listbox");
-      AndIClick("View_Current_Project_Button");
-      AndTextBlockShouldBe("Single_Project_Name","angular_project");
-      AndIShouldNotSee("Notes_Listbox");
-      WhenIClick("Add_Note_Button");
-      ThenIShouldSeeInModal("AddNoteModal","Modal_New_Note_Button");
-      WhenIFillNoteTextBox("this is a new note");
-      AndIClickInModal("AddNoteModal","Modal_New_Note_Button");
-      ThenIShouldSee("Notes_Listbox");
-      AndIShouldSeeXNumberOfNotesInListBox(1);
-    }
-    
-    [TestMethod]
-    public void AddNewNoteWhenNotesExist() {
+    public void DeleteNoteFromListBox() {
       GivenThereAreXProjects("current");
       GivenThereAreXNotes();
       WhenIClick("Current_Projects_Button");
@@ -48,13 +31,25 @@ namespace TestDevDash.UserTests {
       AndIClick("View_Current_Project_Button");
       AndTextBlockShouldBe("Single_Project_Name","angular_project");
       AndIShouldSeeXNumberOfNotesInListBox(2);
+      WhenISelect(0,"Notes_Listbox");
+      AndIClick("Delete_Note_Button"); 
+      AndIShouldSeeXNumberOfNotesInListBox(1); 
+    }
+
+    [TestMethod]
+    public void DeleteNoteWithoutSelectingFirst() {
+      GivenThereAreXProjects("current");
+      GivenThereAreXNotes();
+      WhenIClick("Current_Projects_Button");
+      ThenIAmOnCurrentProjectsList();
+      AndIShouldSeeXNumberOfProjectsInXListBox(3,"Current_Projects_Listbox","current");
+      WhenISelect(0,"Current_Projects_Listbox");
+      AndIClick("View_Current_Project_Button");
       AndTextBlockShouldBe("Single_Project_Name","angular_project");
-      WhenIClick("Add_Note_Button");
-      ThenIShouldSeeInModal("AddNoteModal","Modal_New_Note_Button");
-      WhenIFillNoteTextBox("this is a new note");
-      AndIClickInModal("AddNoteModal","Modal_New_Note_Button");
-      ThenIShouldSee("Notes_Listbox");
-      AndIShouldSeeXNumberOfNotesInListBox(3);
+      AndIShouldSeeXNumberOfNotesInListBox(2);
+      AndIClick("Delete_Note_Button"); 
+      AndIShouldSeeXNumberOfNotesInListBox(2);
+      AndIShouldSee("Delete_Note_Error_Message");
     }
   }
 }

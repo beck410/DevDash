@@ -19,6 +19,7 @@ namespace TestDevDash.UserTests {
     public void CleanUp() {
       TestHelper.CleanThisUp();
     }
+
     [TestMethod]
     public void MoveCurrentProjectsToPastProjects() {
       GivenThereAreXProjects("past");

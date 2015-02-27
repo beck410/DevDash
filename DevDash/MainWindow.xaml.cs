@@ -1,12 +1,9 @@
-﻿﻿using System.Collections.Generic;
-using System.Windows;
+﻿﻿using System.Windows;
 using System.Windows.Controls;
 using DevDash.Model;
 using DevDash.Repositories;
 using System.ComponentModel;
-using System.Collections.ObjectModel;
 using System;
-using System.Globalization;
 
 namespace DevDash {
 
@@ -83,7 +80,7 @@ namespace DevDash {
     }
 
     public void Switch_To_Current_Projects(object sender, RoutedEventArgs e) {
-      //_DatabindProjects(Current_Projects_Listbox, "current");
+      _DatabindProjects(Current_Projects_Listbox, "current");
       _show_view(Past_Projects_List, false);
       View_Current_Projects(sender, e);
     }
@@ -148,10 +145,11 @@ namespace DevDash {
       Project selected_project = (Project)Current_Projects_Listbox.SelectedItem;
       this.project_to_display = selected_project;
       Single_Project_Container.DataContext = this;
+
       int project_to_display_id = this.project_to_display.ProjectId;
       Notes_Listbox.DataContext = note_repo.GetAllByProjectId(project_to_display_id);
-      _show_view(Current_Projects_List,false);
-      _show_view(Single_Project_Container,true);
+      _show_view(Current_Projects_List, false);
+      _show_view(Single_Project_Container, true);
 
       if (Notes_Listbox.Items.Count == 0) {
         _show_list(Notes_Listbox, false);
@@ -195,7 +193,15 @@ namespace DevDash {
     }
     
     public void Delete_Note(object sender, RoutedEventArgs e) {
+      Note note = (Note)Notes_Listbox.SelectedItem;
+      _show_error(Delete_Note_Error_Message, false);
 
+      if (note == null) {
+        _show_error(Delete_Note_Error_Message, true);
+        return;
+      }
+      note_repo.Delete(note.NoteId);
+      _DataBindNotes(Notes_Listbox);
     }
 
     public void Edit_Note(object sender, RoutedEventArgs e) {
@@ -257,9 +263,9 @@ namespace DevDash {
       }
     }
 
-    private void _add_formatted_date(DateTime? date, TextBlock element,string date_text) {
+    private void _add_formatted_date(DateTime? date, TextBlock element, string date_text) {
       if (date == null)
-        element.Text =  date_text;
+        element.Text = date_text;
       else
         element.Text = date_text + date.Value.ToString("MM/dd/yyyy");
     }
