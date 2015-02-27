@@ -65,7 +65,7 @@
                         <StackPanel Orientation="Horizontal" Width="650" Margin="10,10,5,10">
                             <TextBlock Text="{Binding ProjectName, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="0,0,100,0"/>
                             <Button x:Name="Delete_Past_Project_Button" Click="Delete_Past_Project" Content="Delete" Margin="20,0,0,0"/>
-                            <Button x:Name="View_Current_Project_Button" Content="View Current Projects" Margin="20,0,0,0"/>
+                            <Button Click="View_Past_Project" x:Name="View_Past_Project_Button" Content="View Past Project" Margin="20,0,0,0"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -73,7 +73,7 @@
         </StackPanel>
         <StackPanel Width="1000" x:Name="Single_Project_Container" Visibility="Collapsed" Grid.ColumnSpan="2" Margin="0,0,-8,0">
             <TextBlock x:Name="Single_Project_Name" FontSize="50" HorizontalAlignment="Center" Text="{Binding project_to_display.ProjectName}" />
-            <Button Width="150" x:Name="Back_Button" Click="Back_To_Projects">Back To Current Projects</Button>
+            <Button Width="150" x:Name="Back_Button" Click="Back_To_Projects">Back To Projects</Button>
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,10">
                 <StackPanel Orientation="Vertical" Width="465" x:Name="Description_Panel" Margin="20,10,10,10">
                     <StackPanel Orientation="Horizontal">

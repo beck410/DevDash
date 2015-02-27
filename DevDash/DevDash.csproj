@@ -72,9 +72,6 @@
     <Compile Include="AddProjectModal.xaml.cs">
       <DependentUpon>AddProjectModal.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EditNoteModal.xaml.cs">
-      <DependentUpon>EditNoteModal.xaml</DependentUpon>
-    </Compile>
     <Compile Include="EditProjectDetailsModal.xaml.cs">
       <DependentUpon>EditProjectDetailsModal.xaml</DependentUpon>
     </Compile>
@@ -87,10 +84,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddProjectModal.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="EditNoteModal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

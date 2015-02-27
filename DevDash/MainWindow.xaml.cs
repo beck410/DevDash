@@ -153,6 +153,23 @@ namespace DevDash {
       }
     }
 
+    public void View_Past_Project(object sender, RoutedEventArgs e) {
+      Project selected_project = (Project)Past_Projects_Listbox.SelectedItem;
+      this.project_to_display = selected_project;
+      Single_Project_Container.DataContext = this;
+
+      int project_to_display_id = this.project_to_display.ProjectId;
+
+      Notes = note_repo.GetAllByProjectId(project_to_display_id);
+      Notes_Listbox.DataContext = Notes;
+      _show_view(Past_Projects_List, false);
+      _show_view(Single_Project_Container, true);
+
+      if (Notes_Listbox.Items.Count == 0) {
+        _show_list(Notes_Listbox, false);
+      }
+    }
+
     public void View_Current_Project(object sender, RoutedEventArgs e) {
       Project selected_project = (Project)Current_Projects_Listbox.SelectedItem;
       this.project_to_display = selected_project;
