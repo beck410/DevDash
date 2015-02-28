@@ -66,6 +66,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddColorModal.xaml.cs">
+      <DependentUpon>AddColorModal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddDependencyModal.xaml.cs">
       <DependentUpon>AddDependencyModal.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,10 @@
     <Compile Include="Repositories\IProjectRepository.cs" />
     <Compile Include="Repositories\NoteRepository.cs" />
     <Compile Include="Repositories\ProjectsRepository.cs" />
+    <Page Include="AddColorModal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddDependencyModal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

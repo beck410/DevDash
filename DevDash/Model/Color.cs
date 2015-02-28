@@ -10,12 +10,15 @@ namespace DevDash.Model {
     public int ColorId { get; set; }
     public int ProjectId { get; set; }
     public string Hex { get; set; }
+    public string Name { get; set; }
 
-    public Color(int projectId, string hex) {
+    public Color(int projectId, string hex, string name) {
       _isEmpty(hex);
+      _isEmpty(name);
 
       this.ProjectId = projectId;
       this.Hex = hex;
+      this.Name = name;
     }
 
     public Color(){

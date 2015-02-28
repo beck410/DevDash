@@ -39,7 +39,7 @@ namespace TestDevDash.RepoTests {
       var projects = project_repo.All();
       Assert.AreEqual(projects.Count, 2);
       int project_id = projects[0].ProjectId;
-      color_repo.Add(new Color(project_id, "#FFFFFF"));
+      color_repo.Add(new Color(project_id, "#FFFFFF","primary color"));
 
       Assert.AreEqual(color_repo.GetCount(), 1);
     }
@@ -47,8 +47,8 @@ namespace TestDevDash.RepoTests {
     [TestMethod]
     public void TestColorsGetAllByProjectIdMethod() {
       int project_id = project_repo.All()[0].ProjectId;
-      color_repo.Add(new Color(project_id, "#FFFFFF"));
-      color_repo.Add(new Color(project_id, "#000000"));
+      color_repo.Add(new Color(project_id, "#FFFFFF","primary color"));
+      color_repo.Add(new Color(project_id, "#000000","primary color"));
 
       var notes = color_repo.GetAllByProjectId(project_id);
       Assert.AreEqual(notes.Count, 2);
@@ -63,8 +63,8 @@ namespace TestDevDash.RepoTests {
     [TestMethod]
     public void TestColorsGetById() {
       int project_id = project_repo.All()[0].ProjectId;
-      color_repo.Add(new Color(project_id,"#FFFFFF"));
-      color_repo.Add(new Color(project_id, "#000000"));
+      color_repo.Add(new Color(project_id,"#FFFFFF","primary color"));
+      color_repo.Add(new Color(project_id, "#000000","primary color"));
 
       Color First_Color = color_repo.GetAllByProjectId(project_id)[0];
 
@@ -77,8 +77,8 @@ namespace TestDevDash.RepoTests {
       List<Project> project_list = project_repo.All();
       var project = project_list[0];
       int project_id = project.ProjectId;
-      color_repo.Add(new Color(project_id,"#FFFFFF"));
-      color_repo.Add(new Color(project_id, "#000000"));
+      color_repo.Add(new Color(project_id,"#FFFFFF","primary color"));
+      color_repo.Add(new Color(project_id, "#000000","primary color"));
 
       color_repo.Clear();
 
@@ -91,8 +91,8 @@ namespace TestDevDash.RepoTests {
       var project = project_list[0];
       int project_id = project.ProjectId;
 
-      color_repo.Add(new Color(project_id,"#FFFFFF"));
-      color_repo.Add(new Color(project_id, "#000000")); 
+      color_repo.Add(new Color(project_id,"#FFFFFF","primary color"));
+      color_repo.Add(new Color(project_id, "#000000","primary color")); 
 
       int last_color_id = color_repo.GetAllByProjectId(project_id)[0].ColorId;
       

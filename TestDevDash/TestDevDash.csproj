@@ -83,6 +83,7 @@
     <Compile Include="UserTests\AddNewNoteToProject.cs" />
     <Compile Include="UserTests\DeleteNote.cs" />
     <Compile Include="UserTests\NavigateBackToProjectsListFromSingleProject.cs" />
+    <Compile Include="UserTests\AddColor.cs" />
     <Compile Include="UserTests\ViewSinglePastProject.cs" />
     <Compile Include="UserTests\ViewSingleCurrentProject.cs" />
     <Compile Include="UserTests\ViewPastProjectsList.cs" />
