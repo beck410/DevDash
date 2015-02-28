@@ -3,6 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="AddNoteModal" Height="400" Width="700">
     <StackPanel>
+        <StackPanel.Background>
+            <ImageBrush ImageSource="/Images/school.png"></ImageBrush>
+        </StackPanel.Background>
         <StackPanel Orientation="Vertical" x:Name="Modal_Add_Note_Container">
             <TextBlock HorizontalAlignment="Center" FontSize="36" Margin="0,10,0,10" Width="300">Add New Note</TextBlock>
             <StackPanel x:Name="Modal_Add_Note_Form" Width="600" HorizontalAlignment="center" Height="150" Margin="0">
