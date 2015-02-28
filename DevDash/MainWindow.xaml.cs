@@ -292,11 +292,17 @@ namespace DevDash {
     }
 
     public void Edit_Dependency(object sender, RoutedEventArgs e) {
-
+      Edit_Dependency_Container.Visibility = Visibility.Collapsed;
+      Dependency dependency_item = (Dependency)Dependency_Listbox.SelectedItem;
+      dependency_repo.Edit(dependency_item.DependencyId, Edit_Dependency_textbox.Text);
+      _DataBindDependencies(Dependency_Listbox);
     }
 
     public void Show_Edit_Dependency_Textbox(object sender, RoutedEventArgs e) {
+      Dependency dependency_item = (Dependency)Dependency_Listbox.SelectedItem;
+      Edit_Dependency_Container.Visibility = Visibility.Visible;
 
+      Edit_Dependency_textbox.Text = dependency_item.DependencyDetails;
     }
 
     private void _DataBindDependencies(ListBox element) {

@@ -103,8 +103,8 @@
                         </StackPanel>
                         <TextBlock Margin="10,10,0,0" FontSize="24" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="Delete_Dependency_Error_Message">Please select dependency first</TextBlock>
                         <StackPanel Orientation="Horizontal" x:Name="Edit_Dependency_Container" Visibility="Collapsed">
-                            <TextBox x:Name="Edit_Dependency_textbox" TextWrapping="Wrap" Margin="10,5,0,10" Height="20" Width="800"></TextBox>
-                            <Button Click="Edit_Dependency" Width="60" Background="DarkSalmon" Margin="20,0,0,10">Edit Note</Button>
+                            <TextBox x:Name="Edit_Dependency_textbox" TextWrapping="Wrap" Margin="10,5,0,10" Height="20" Width="375"></TextBox>
+                            <Button Click="Edit_Dependency" Width="40" Background="DarkSalmon" Margin="10,0,0,10">Edit</Button>
                         </StackPanel>
                         <ListBox x:Name="Dependency_Listbox" Margin="10,0,10,10" Height="240" ItemsSource="{Binding NotifyOnSourceUpdated=True}" ScrollViewer.VerticalScrollBarVisibility="Visible">
                             <ListBox.ItemTemplate>
