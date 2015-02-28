@@ -29,54 +29,54 @@
                 <Button x:Name="Main_New_Project_Button" Click="Create_New_Project" Height="20px" VerticalAlignment="Bottom"  Content="+ Create New Project" Margin="20,20,20,0"/>
             </StackPanel>
         </StackPanel>
-        <StackPanel x:Name="Current_Projects_List" Visibility="Collapsed" Orientation="Vertical" Width="887" Height="572" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,0,59,191">
-            <StackPanel Height="120">
-                <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="50">Current Projects</TextBlock>
-                <StackPanel Orientation="Horizontal" Width="260" HorizontalAlignment="Center">
+        <StackPanel x:Name="Current_Projects_List" Orientation="Vertical" Width="887" Height="572" VerticalAlignment="Bottom" Visibility="Collapsed" HorizontalAlignment="Center" Margin="46,0,59,191">
+            <StackPanel Height="135">
+                <TextBlock HorizontalAlignment="Center" Margin="264,20,243,0" FontSize="50" Height="69"><Run Text="Current Projects"/></TextBlock>
+                <StackPanel Orientation="Horizontal" Width="260" HorizontalAlignment="Center" Margin="314,10,313,0" Height="25">
                     <Button x:Name="List_Add_New_Project" Click="New_Project_Modal" Background="DarkSalmon"  Margin="0,0,20,0" Width="120" Content="+ Add New Project"/>
                     <Button x:Name="View_Past_Projects_Button" Margin="0,0,0,0" Background="DarkSalmon" Click="Switch_To_Past_Projects" Width="120" Content="Past Projects"/>
                 </StackPanel>
             </StackPanel>
-            <TextBlock Margin="10,10,0,0" FontSize="30" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="No_Current_Projects_Message">No Current Projects To Show</TextBlock>
-            <TextBlock Margin="10,10,0,0" FontSize="24" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="Delete_Current_Project_Message">Select Project First</TextBlock>
+            <TextBlock Margin="10,10,0,0" FontSize="30" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="No_Current_Projects_Message"><Run Text="No Current Projects To Show"/></TextBlock>
+            <TextBlock Margin="10,10,0,0" FontSize="24" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="Delete_Current_Project_Message"><Run Text="Select Project First"/></TextBlock>
             <ListBox x:Name="Current_Projects_Listbox" HorizontalAlignment="Center" Height="391" Width="700" Margin="94,20,93,0" ItemsSource="{Binding NotifyOnSourceUpdated=True}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Width="650" Margin="10,10,5,10">
-                            <TextBlock Text="{Binding ProjectName, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="0,0,100,0"/>
-                            <Button x:Name="Move_Current_Project_Button" Click="Move_To_Past_Projects"  Content="Move To Past Projects" Margin="20,0,0,0"/>
-                            <Button x:Name="Delete_Current_Project_Button" Click="Delete_Current_Project" Content="Delete" Margin="20,0,0,0"/>
-                            <Button x:Name="View_Current_Project_Button" Click="View_Current_Project" Content="View Dashboard" Margin="20,0,0,0"/>
+                            <TextBlock Text="{Binding ProjectName, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Width="320" TextWrapping="Wrap"/>
+                            <Button x:Name="Move_Current_Project_Button" Click="Move_To_Past_Projects"  Content="Move To Past Projects" Margin="20,0,0,0" Background="DarkSalmon"/>
+                            <Button x:Name="Delete_Current_Project_Button" Click="Delete_Current_Project" Content="Delete" Margin="20,0,0,0" Background="DarkSalmon"/>
+                            <Button x:Name="View_Current_Project_Button" Click="View_Current_Project" Content="View Dashboard" Margin="20,0,10,0" Background="DarkSalmon"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
-        <StackPanel x:Name="Past_Projects_List" Width="887" Height="536" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,0,59,227" Visibility="Collapsed">
-            <StackPanel Height="130">
-                <TextBlock HorizontalAlignment="Center" Margin="290,10,290,0" FontSize="50">Past Projects</TextBlock>
+        <StackPanel x:Name="Past_Projects_List" Width="887" Height="546" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="46,0,59,227" Visibility="Collapsed">
+            <StackPanel Height="131">
+                <TextBlock HorizontalAlignment="Center" Margin="290,30,290,0" FontSize="50">Past Projects</TextBlock>
                 <StackPanel Orientation="Horizontal" Width="260" HorizontalAlignment="Center">
                     <Button x:Name="View_Current_Projects_Button" Background="DarkSalmon" Click="Switch_To_Current_Projects" Margin="70,0,0,0" Width="120" Content="Current Projects"/>
                 </StackPanel>
             </StackPanel>
             <TextBlock Margin="10,10,0,0" x:Name="No_Past_Projects_Message" HorizontalAlignment="Center" FontSize="30" Visibility="Collapsed" Height="40">No Past Projects To Show</TextBlock>
-            <TextBlock Margin="10,10,0,0" FontSize="24" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="Delete_Past_Project_Message">Select Project to Delete</TextBlock>
-            <ListBox x:Name="Past_Projects_Listbox" HorizontalAlignment="Center" Height="300" Width="700" Margin="94,5,93,0" ItemsSource="{Binding NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
+            <ListBox x:Name="Past_Projects_Listbox" HorizontalAlignment="Center" Height="290" Width="700" Margin="94,20,93,0" ItemsSource="{Binding NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Width="650" Margin="10,10,5,10">
-                            <TextBlock Text="{Binding ProjectName, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="0,0,100,0"/>
-                            <Button x:Name="Delete_Past_Project_Button" Click="Delete_Past_Project" Content="Delete" Margin="20,0,0,0"/>
-                            <Button Click="View_Past_Project" x:Name="View_Past_Project_Button" Content="View Past Project" Margin="20,0,0,0"/>
+                            <TextBlock Text="{Binding ProjectName, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Width="460"/>
+                            <Button x:Name="Delete_Past_Project_Button" Click="Delete_Past_Project" Content="Delete" Margin="20,0,0,0" Background="DarkSalmon"/>
+                            <Button Click="View_Past_Project" x:Name="View_Past_Project_Button" Content="View Past Project" Margin="20,0,0,0" Background="DarkSalmon"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            <TextBlock Margin="10,10,0,0" FontSize="24" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="Delete_Past_Project_Message">Select Project to Delete</TextBlock>
         </StackPanel>
         <StackPanel Width="1000" x:Name="Single_Project_Container" Visibility="Collapsed" Grid.ColumnSpan="2" Margin="0,0,-8,0">
             <StackPanel>
-            <TextBlock x:Name="Single_Project_Name" FontSize="50" HorizontalAlignment="Center" Text="{Binding project_to_display.ProjectName}" />
-            <Button Width="150" x:Name="Back_Button" Background="DarkSalmon" Click="Back_To_Projects">Back To Projects</Button>
+                <TextBlock x:Name="Single_Project_Name" FontSize="50" HorizontalAlignment="Center" Text="{Binding project_to_display.ProjectName}" />
+                <Button Width="150" x:Name="Back_Button" Background="DarkSalmon" Click="Back_To_Projects">Back To Projects</Button>
                 <StackPanel Orientation="Horizontal" Margin="0,20,0,10">
                     <StackPanel Orientation="Vertical" Width="465" x:Name="Description_Panel" Margin="20,10,10,10">
                         <StackPanel.Background>
@@ -99,14 +99,14 @@
                         </StackPanel.Background>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock FontSize="24" Margin="10,0,0,10">Dependencies And Tools</TextBlock>
-                            <Button x:Name="Add_Dependency_Button" Background="DarkSalmon" Click="Open_Dependency_Modal" VerticalAlignment="Top"  Width="40" Height="20" Margin="160,5,0,0">Add</Button>
+                            <Button x:Name="Add_Dependency_Button" Background="DarkSalmon" Click="Open_Dependency_Modal" VerticalAlignment="Top"  Width="40" Height="20" Margin="100,5,0,0">Add</Button>
                         </StackPanel>
                         <TextBlock Margin="10,10,0,0" FontSize="24" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="Delete_Dependency_Error_Message">Please select dependency first</TextBlock>
                         <StackPanel Orientation="Horizontal" x:Name="Edit_Dependency_Container" Visibility="Collapsed">
                             <TextBox x:Name="Edit_Dependency_textbox" TextWrapping="Wrap" Margin="10,5,0,10" Height="20" Width="375"></TextBox>
                             <Button Click="Edit_Dependency" Width="40" Background="DarkSalmon" Margin="10,0,0,10">Edit</Button>
                         </StackPanel>
-                        <ListBox x:Name="Dependency_Listbox" Margin="10,0,10,10" Height="240" ItemsSource="{Binding NotifyOnSourceUpdated=True}" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                        <ListBox x:Name="Dependency_Listbox" Margin="10,0,10,10" Height="240" ItemsSource="{Binding NotifyOnSourceUpdated=True}" >
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" Margin="10,10,5,10">
@@ -121,30 +121,30 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Width="940" HorizontalAlignment="Left" x:Name="Notes_Panel" Margin="20,10,10,20">
-                  <StackPanel.Background>
+                <StackPanel.Background>
                     <SolidColorBrush Color="FloralWhite" Opacity="0.5"></SolidColorBrush>
-                    </StackPanel.Background>                 
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock FontSize="24" Margin="10,0,0,10">Notes</TextBlock>
-                        <Button x:Name="Add_Note_Button" Background="DarkSalmon" Click="Add_Note" Height="20" VerticalAlignment="Top"  Margin="800,5,0,0">Add Note</Button>
-                    </StackPanel>
-                    <TextBlock Margin="10,10,0,0" FontSize="24" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="Delete_Note_Error_Message">Please select note first</TextBlock>
-                    <StackPanel Orientation="Horizontal" x:Name="Edit_Note_Container" Visibility="Collapsed">
-                        <TextBox x:Name="Edit_Note_textbox" TextWrapping="Wrap" Margin="10,5,0,10" Height="20" Width="800"></TextBox>
-                        <Button Click="Edit_Note" Width="60" Background="DarkSalmon" Margin="20,0,0,10">Edit Note</Button>
-                    </StackPanel>
-                    <ListBox x:Name="Notes_Listbox" Margin="10,0,10,10" ItemsSource="{Binding NotifyOnSourceUpdated=True}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal" Margin="10,10,5,10">
-                                    <TextBlock x:Name="Note_Item" Width="760" TextWrapping="Wrap" Text="{Binding NoteDetails, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="0,0,0,0"/>
-                                    <Button x:Name="Delete_Note_Button" Background="DarkSalmon" Click="Delete_Note" Content="Delete" Height="20" Margin="20,0,0,0"/>
-                                    <Button x:Name="Edit_Note_Button" Click="Show_Edit_Note_Textbox" Background="DarkSalmon" Content="Edit" Height="20" Margin="20,0,0,0"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                </StackPanel.Background>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="24" Margin="10,0,0,10">Notes</TextBlock>
+                    <Button x:Name="Add_Note_Button" Background="DarkSalmon" Click="Add_Note" Height="20" VerticalAlignment="Top"  Margin="790,5,0,0">Add Note</Button>
                 </StackPanel>
+                <TextBlock Margin="10,10,0,0" FontSize="24" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="Delete_Note_Error_Message">Please select note first</TextBlock>
+                <StackPanel Orientation="Horizontal" x:Name="Edit_Note_Container" Visibility="Collapsed">
+                    <TextBox x:Name="Edit_Note_textbox" TextWrapping="Wrap" Margin="10,5,0,10" Height="20" Width="800"></TextBox>
+                    <Button Click="Edit_Note" Width="60" Background="DarkSalmon" Margin="20,0,0,10">Edit Note</Button>
+                </StackPanel>
+                <ListBox x:Name="Notes_Listbox" Margin="10,0,10,10" ItemsSource="{Binding NotifyOnSourceUpdated=True}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="10,10,5,10">
+                                <TextBlock x:Name="Note_Item" Width="760" TextWrapping="Wrap" Text="{Binding NoteDetails, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="0,0,0,0"/>
+                                <Button x:Name="Delete_Note_Button" Background="DarkSalmon" Click="Delete_Note" Content="Delete" Height="20" Margin="20,0,0,0"/>
+                                <Button x:Name="Edit_Note_Button" Click="Show_Edit_Note_Textbox" Background="DarkSalmon" Content="Edit" Height="20" Margin="20,0,0,0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>
