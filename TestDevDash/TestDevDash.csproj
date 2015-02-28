@@ -69,6 +69,7 @@
     <Compile Include="RepoTests\ProjectRepoTests.cs" />
     <Compile Include="RepoTests\NoteRepoTests.cs" />
     <Compile Include="RepoTests\DependencyRepoTests.cs" />
+    <Compile Include="RepoTests\ColorRepoTests.cs" />
     <Compile Include="UnitTests\TestProject.cs" />
     <Compile Include="UnitTests\TestNote.cs" />
     <Compile Include="UserTests\TestHelper.cs" />

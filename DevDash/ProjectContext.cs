@@ -12,5 +12,6 @@ namespace DevDash {
     public DbSet<Project> Projects { get; set; }
     public DbSet<Note> Notes { get; set; }
     public DbSet<Dependency> Dependencies { get; set; }
+    public DbSet<Color> Colors { get; set; }
   }
 }

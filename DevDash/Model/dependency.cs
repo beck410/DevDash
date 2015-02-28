@@ -23,8 +23,8 @@ namespace DevDash {
 
     }
 
-    private void _isEmpty(string note) {
-      if (string.IsNullOrWhiteSpace(note))
+    private void _isEmpty(string dependency) {
+      if (string.IsNullOrWhiteSpace(dependency))
         throw new ArgumentException("no description provided"); 
     }
   }
