@@ -279,6 +279,18 @@ namespace DevDash {
       }
     }
 
+    public void Delete_Dependency(object sender, RoutedEventArgs e) {
+      Dependency dependency = (Dependency)Dependency_Listbox.SelectedItem;
+      _show_error(Delete_Dependency_Error_Message, false);
+
+      if (dependency == null) {
+        _show_error(Delete_Dependency_Error_Message, true);
+        return;
+      }
+      dependency_repo.Delete(dependency.DependencyId);
+      _DataBindDependencies(Dependency_Listbox);
+    }
+
     public void Edit_Dependency(object sender, RoutedEventArgs e) {
 
     }

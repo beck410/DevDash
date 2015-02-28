@@ -111,7 +111,7 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal" Margin="10,10,5,10">
                                         <TextBlock x:Name="Dependency_Item" Width="260" TextWrapping="Wrap" Text="{Binding DependencyDetails, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="0,0,0,0"/>
-                                        <Button x:Name="Delete_Dependency_Button" Background="DarkSalmon" Click="Delete_Note" Content="Delete" Height="20" Margin="20,0,0,0"/>
+                                        <Button x:Name="Delete_Dependency_Button"  Click="Delete_Dependency"  Background="DarkSalmon" Content="Delete" Height="20" Margin="20,0,0,0"/>
                                         <Button x:Name="Edit_Dependency_Button" Click="Show_Edit_Dependency_Textbox" Background="DarkSalmon" Content="Edit" Height="20" Margin="20,0,0,0"/>
                                     </StackPanel>
                                 </DataTemplate>
