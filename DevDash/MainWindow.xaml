@@ -145,6 +145,15 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </StackPanel>
+            <StackPanel x:Name="Color_Panel" Height="100" Width="940" Margin="20,10,10,20" HorizontalAlignment="Left">
+                <StackPanel.Background>
+                    <SolidColorBrush Color="FloralWhite" Opacity="0.5"></SolidColorBrush>
+                </StackPanel.Background>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontSize="24" Margin="10,0,0,10">Project Colors</TextBlock>
+                    <Button x:Name="Add_Color_Button" Background="DarkSalmon" Click="Add_Color" Height="20" VerticalAlignment="Top"  Margin="700,5,0,0">Add Color</Button>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

@@ -305,6 +305,10 @@ namespace DevDash {
       Edit_Dependency_textbox.Text = dependency_item.DependencyDetails;
     }
 
+    public void Add_Color(object sender, RoutedEventArgs e) {
+
+    }
+
     private void _DataBindDependencies(ListBox element) {
       element.DataContext = dependency_repo.GetAllByProjectId(_project_to_display.ProjectId);
     }
