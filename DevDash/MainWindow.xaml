@@ -151,6 +151,7 @@
                     <TextBlock FontSize="24" Margin="10,0,0,10">Project Colors</TextBlock>
                     <Button x:Name="Add_Color_Button" Background="DarkSalmon" Click="Add_Color" Height="20" VerticalAlignment="Top"  Margin="700,5,0,0">Add Color</Button>
                 </StackPanel>
+                <TextBlock Margin="10,5,0,0" FontSize="12" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="Delete_Color_Error_Message">Please select color first</TextBlock>
                 <ListBox Height="100" x:Name="Colors_Listbox" Margin="10,0,10,10" ItemsSource="{Binding NotifyOnSourceUpdated=True}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>

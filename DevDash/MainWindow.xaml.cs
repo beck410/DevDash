@@ -323,7 +323,15 @@ namespace DevDash {
     }
 
     public void Delete_Color(object sender, RoutedEventArgs e) {
+       DevDash.Model.Color color = (DevDash.Model.Color)Colors_Listbox.SelectedItem;
+      _show_error(Delete_Color_Error_Message, false);
 
+      if (color == null) {
+        _show_error(Delete_Color_Error_Message, true);
+        return;
+      }
+      color_repo.Delete(color.ColorId);
+      _DataBindColors(Colors_Listbox);
     }
 
     private void _DataBindDependencies(ListBox element) {
