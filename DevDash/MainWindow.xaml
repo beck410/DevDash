@@ -6,9 +6,9 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Images/school.png"></ImageBrush>
         </Grid.Background>
-        <StackPanel x:Name="Main_View" Width="900" Height="740" VerticalAlignment="Bottom" HorizontalAlignment="Center" Visibility="Visible">
+        <StackPanel x:Name="Main_View" Width="900" Height="740" VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <TextBlock VerticalAlignment="Top" Margin="334,10,318,0" HorizontalAlignment="Center" FontSize="50" Width="248"><Run Text="Dev Dash"/></TextBlock>
-            <StackPanel Height="60" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Height="70" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <Button x:Name="Current_Projects_Button" Background="DarkSalmon" Width="100" Margin="0,0,10,0" Height="50" Click="View_Current_Projects" Content="Current Projects"/>
                 <Button x:Name="Past_Projects_Button" Width="100" Background="DarkSalmon" Margin="10,0,0,0"  Height="50" Click="View_Past_Projects" Content="Past Projects"/>
             </StackPanel>
@@ -33,8 +33,8 @@
             <StackPanel Height="120">
                 <TextBlock HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="50">Current Projects</TextBlock>
                 <StackPanel Orientation="Horizontal" Width="260" HorizontalAlignment="Center">
-                    <Button x:Name="List_Add_New_Project" Click="New_Project_Modal" Background="DarkSalmon"  Margin="0,10,20,0" Width="120" Content="+ Add New Project"/>
-                    <Button x:Name="View_Past_Projects_Button" Margin="0,10,0,0" Background="DarkSalmon" Click="Switch_To_Past_Projects" Width="120" Content="Past Projects"/>
+                    <Button x:Name="List_Add_New_Project" Click="New_Project_Modal" Background="DarkSalmon"  Margin="0,0,20,0" Width="120" Content="+ Add New Project"/>
+                    <Button x:Name="View_Past_Projects_Button" Margin="0,0,0,0" Background="DarkSalmon" Click="Switch_To_Past_Projects" Width="120" Content="Past Projects"/>
                 </StackPanel>
             </StackPanel>
             <TextBlock Margin="10,10,0,0" FontSize="30" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="No_Current_Projects_Message">No Current Projects To Show</TextBlock>
@@ -74,22 +74,49 @@
             </ListBox>
         </StackPanel>
         <StackPanel Width="1000" x:Name="Single_Project_Container" Visibility="Collapsed" Grid.ColumnSpan="2" Margin="0,0,-8,0">
+            <StackPanel>
             <TextBlock x:Name="Single_Project_Name" FontSize="50" HorizontalAlignment="Center" Text="{Binding project_to_display.ProjectName}" />
             <Button Width="150" x:Name="Back_Button" Background="DarkSalmon" Click="Back_To_Projects">Back To Projects</Button>
-            <StackPanel Orientation="Horizontal" Margin="0,20,0,10">
-                <StackPanel Orientation="Vertical" Width="465" x:Name="Description_Panel" Margin="20,10,10,10">
-                 <StackPanel.Background>
-                    <SolidColorBrush Color="FloralWhite" Opacity="0.5"></SolidColorBrush>
-                </StackPanel.Background>                  
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock FontSize="24" Margin="10,0,0,10">Project Details</TextBlock>
-                        <Button x:Name="Edit_Description_Button" Background="DarkSalmon" Click="Edit_Project_Details" VerticalAlignment="Top"  Width="40" Height="20" Margin="240,5,0,0">Edit</Button>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,10">
+                    <StackPanel Orientation="Vertical" Width="465" x:Name="Description_Panel" Margin="20,10,10,10">
+                        <StackPanel.Background>
+                            <SolidColorBrush Color="FloralWhite" Opacity="0.5"></SolidColorBrush>
+                        </StackPanel.Background>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontSize="24" Margin="10,0,0,10">Project Details</TextBlock>
+                            <Button x:Name="Edit_Description_Button" Background="DarkSalmon" Click="Edit_Project_Details" VerticalAlignment="Top"  Width="40" Height="20" Margin="240,5,0,0">Edit</Button>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock x:Name="Github" Margin="10,5,0,0" TextWrapping="Wrap" Text="{Binding project_to_display.GithubLink, StringFormat='Github Link: {0}' }"></TextBlock>
+                            <TextBlock x:Name="Start_Date" Margin="10,5,0,0" Text="{Binding project_to_display.ProjectStartDate, StringFormat='Start Date: {0}' }"></TextBlock>
+                            <TextBlock x:Name="End_Date" Margin="10,5,0,0" Text="{Binding project_to_display.ProjectEndDate, StringFormat='End Date: {0}' }"></TextBlock>
+                            <TextBlock x:Name="Description" TextWrapping="Wrap" Margin="10,5,0,0" Text="{Binding project_to_display.Description, StringFormat='Description: {0}' }"></TextBlock>
+                        </StackPanel>
                     </StackPanel>
-                    <StackPanel>
-                        <TextBlock x:Name="Github" Margin="10,5,0,0" TextWrapping="Wrap" Text="{Binding project_to_display.GithubLink, StringFormat='Github Link: {0}' }"></TextBlock>
-                        <TextBlock x:Name="Start_Date" Margin="10,5,0,0" Text="{Binding project_to_display.ProjectStartDate, StringFormat='Start Date: {0}' }"></TextBlock>
-                        <TextBlock x:Name="End_Date" Margin="10,5,0,0" Text="{Binding project_to_display.ProjectEndDate, StringFormat='End Date: {0}' }"></TextBlock>
-                        <TextBlock x:Name="Description" TextWrapping="Wrap" Margin="10,5,0,0" Text="{Binding project_to_display.Description, StringFormat='Description: {0}' }"></TextBlock>
+                    <StackPanel Height="300" Width="445" x:Name="Dependency_Panel" Margin="20,10,30,10">
+                        <StackPanel.Background>
+                            <SolidColorBrush Color="FloralWhite" Opacity="0.5"></SolidColorBrush>
+                        </StackPanel.Background>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontSize="24" Margin="10,0,0,10">Dependencies And Tools</TextBlock>
+                            <Button x:Name="Add_Dependency_Button" Background="DarkSalmon" Click="Open_Dependency_Modal" VerticalAlignment="Top"  Width="40" Height="20" Margin="160,5,0,0">Add</Button>
+                        </StackPanel>
+                        <TextBlock Margin="10,10,0,0" FontSize="24" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="Delete_Dependency_Error_Message">Please select dependency first</TextBlock>
+                        <StackPanel Orientation="Horizontal" x:Name="Edit_Dependency_Container" Visibility="Collapsed">
+                            <TextBox x:Name="Edit_Dependency_textbox" TextWrapping="Wrap" Margin="10,5,0,10" Height="20" Width="800"></TextBox>
+                            <Button Click="Edit_Dependency" Width="60" Background="DarkSalmon" Margin="20,0,0,10">Edit Note</Button>
+                        </StackPanel>
+                        <ListBox x:Name="Dependency_Listbox" Margin="10,0,10,10" Height="240" ItemsSource="{Binding NotifyOnSourceUpdated=True}" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="10,10,5,10">
+                                        <TextBlock x:Name="Dependency_Item" Width="260" TextWrapping="Wrap" Text="{Binding DependencyDetails, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" Margin="0,0,0,0"/>
+                                        <Button x:Name="Delete_Dependency_Button" Background="DarkSalmon" Click="Delete_Note" Content="Delete" Height="20" Margin="20,0,0,0"/>
+                                        <Button x:Name="Edit_Dependency_Button" Click="Show_Edit_Dependency_Textbox" Background="DarkSalmon" Content="Edit" Height="20" Margin="20,0,0,0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
@@ -99,12 +126,12 @@
                     </StackPanel.Background>                 
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontSize="24" Margin="10,0,0,10">Notes</TextBlock>
-                        <Button x:Name="Add_Note_Button" Background="DarkSalmon" Click="Add_Note" Height="20" VerticalAlignment="Top"  Margin="780,5,0,0">Add Note</Button>
+                        <Button x:Name="Add_Note_Button" Background="DarkSalmon" Click="Add_Note" Height="20" VerticalAlignment="Top"  Margin="800,5,0,0">Add Note</Button>
                     </StackPanel>
                     <TextBlock Margin="10,10,0,0" FontSize="24" HorizontalAlignment="Center" Visibility="Collapsed" x:Name="Delete_Note_Error_Message">Please select note first</TextBlock>
                     <StackPanel Orientation="Horizontal" x:Name="Edit_Note_Container" Visibility="Collapsed">
-                        <TextBox x:Name="Edit_Note_textbox" TextWrapping="Wrap" Margin="0,5,0,10" Width="380"></TextBox>
-                        <Button Click="Edit_Note" Width="60" Margin="500,0,0,10">Edit Note</Button>
+                        <TextBox x:Name="Edit_Note_textbox" TextWrapping="Wrap" Margin="10,5,0,10" Height="20" Width="800"></TextBox>
+                        <Button Click="Edit_Note" Width="60" Background="DarkSalmon" Margin="20,0,0,10">Edit Note</Button>
                     </StackPanel>
                     <ListBox x:Name="Notes_Listbox" Margin="10,0,10,10" ItemsSource="{Binding NotifyOnSourceUpdated=True}">
                         <ListBox.ItemTemplate>

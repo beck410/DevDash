@@ -13,6 +13,7 @@ namespace DevDash {
 
     public static ProjectsRepository project_repo = new ProjectsRepository();
     public static NoteRepository note_repo = new NoteRepository();
+    public static DependencyRepository dependency_repo = new DependencyRepository();
 
     private Project _project_to_display;
     public Project project_to_display {
@@ -162,11 +163,18 @@ namespace DevDash {
 
       Notes = note_repo.GetAllByProjectId(project_to_display_id);
       Notes_Listbox.DataContext = Notes;
+
+      Dependency_Listbox.DataContext = dependency_repo.GetAllByProjectId(project_to_display_id);
+
       _show_view(Past_Projects_List, false);
       _show_view(Single_Project_Container, true);
 
       if (Notes_Listbox.Items.Count == 0) {
         _show_list(Notes_Listbox, false);
+      }
+
+      if (Dependency_Listbox.Items.Count == 0) {
+        _show_list(Dependency_Listbox, false);
       }
     }
 
@@ -177,15 +185,19 @@ namespace DevDash {
 
       int project_to_display_id = this.project_to_display.ProjectId;
 
+      Dependency_Listbox.DataContext = dependency_repo.GetAllByProjectId(project_to_display_id);
       Notes = note_repo.GetAllByProjectId(project_to_display_id);
+
       Notes_Listbox.DataContext = Notes;
       _show_view(Current_Projects_List, false);
       _show_view(Single_Project_Container, true);
 
-
-
       if (Notes_Listbox.Items.Count == 0) {
         _show_list(Notes_Listbox, false);
+      }
+
+      if (Dependency_Listbox.Items.Count == 0) {
+        _show_list(Dependency_Listbox, false);
       }
     }
 
@@ -254,6 +266,29 @@ namespace DevDash {
     public void Back_To_Projects(object sender, RoutedEventArgs e) {
       _show_view(Main_View, true);
       _show_view(Single_Project_Container, false);
+    }
+
+    public void Open_Dependency_Modal(object sender, RoutedEventArgs e) {
+      AddDependencyModal modal = new AddDependencyModal();
+      modal.projectid = _project_to_display.ProjectId;
+      modal.ShowDialog();
+
+      if (modal.DialogResult == true) {
+        _DataBindDependencies(Dependency_Listbox);
+        _show_list(Dependency_Listbox, true);
+      }
+    }
+
+    public void Edit_Dependency(object sender, RoutedEventArgs e) {
+
+    }
+
+    public void Show_Edit_Dependency_Textbox(object sender, RoutedEventArgs e) {
+
+    }
+
+    private void _DataBindDependencies(ListBox element) {
+      element.DataContext = dependency_repo.GetAllByProjectId(_project_to_display.ProjectId);
     }
 
     private void _DataBindNotes(ListBox element) {
