@@ -331,5 +331,26 @@ namespace TestDevDash.UserTests {
       var text = list_box.SelectedItem.Text;
       Assert.AreEqual(note, text);
     }
+
+    public void AndIShouldSeeXNumberOfItemsInColorListBox() {
+
+      ListBox list_box = (ListBox)window.Get(SearchCriteria.ByAutomationId("Colors_Listbox"));
+
+       Assert.AreEqual(1,list_box.Items.Count);
+    }
+
+    public void AndIFillHexCodeInModal() {
+      var modal = window.ModalWindow("AddColorModal");
+      var textbox = (TextBox)modal.Get(SearchCriteria.ByAutomationId("Modal_Color_Hex"));
+      textbox.SetValue("#FFFFFF");
+      Assert.AreEqual("#FFFFFF", textbox.Text);
+    }
+
+    public void AndIFillColorNameInModal() {
+      var modal = window.ModalWindow("AddColorModal");
+      var textbox = (TextBox)modal.Get(SearchCriteria.ByAutomationId("Modal_Color_Name"));
+      textbox.SetValue("primary_color");
+      Assert.AreEqual("primary_color", textbox.Text);
+    }
   }
 }

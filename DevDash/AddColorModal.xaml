@@ -1,0 +1,21 @@
+﻿<Window x:Class="DevDash.AddColorModal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AddColorModal" Height="300" Width="500">
+    <StackPanel Margin="0,0,0,-94">
+        <StackPanel.Background>
+            <ImageBrush ImageSource="/Images/school.png"></ImageBrush>
+        </StackPanel.Background>
+        <StackPanel Orientation="Vertical">
+            <TextBlock HorizontalAlignment="Center" FontSize="36" Margin="113,10,116,10" Width="263" Height="43"><Run Text="Add New Color"/></TextBlock>
+            <StackPanel Width="222" HorizontalAlignment="Center" Height="177" Margin="128,0,142,0">
+                <Label FontSize="16" Content="Color Identifier"/>
+                <TextBox HorizontalAlignment="Left" x:Name="Modal_Color_Name" Width="200"/>
+                <Label FontSize="16" Content="Type In Hex Code"/>
+                <TextBox HorizontalAlignment="Left" x:Name="Modal_Color_Hex" Width="200"/>
+                <Button x:Name="Modal_New_Color_Button" Click="Add_Color" Margin="0,10,0,0" Background="DarkSalmon" Width="100">Add Color</Button>
+                <Button x:Name="Modal_Close_Button" Click="Close_Btn" Margin="0,10,0,0" Background="DarkSalmon" Width="100">Cancel</Button>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>

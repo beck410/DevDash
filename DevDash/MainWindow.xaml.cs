@@ -13,7 +13,8 @@ namespace DevDash {
 
     public static ProjectsRepository project_repo = new ProjectsRepository();
     public static NoteRepository note_repo = new NoteRepository();
-    public static DependencyRepository dependency_repo = new DependencyRepository();
+    public static DependencyRepository dependency_repo = new DependencyRepository(); 
+    public static ColorRepository color_repo = new ColorRepository();
 
     private Project _project_to_display;
     public Project project_to_display {
@@ -165,17 +166,19 @@ namespace DevDash {
       Notes_Listbox.DataContext = Notes;
 
       Dependency_Listbox.DataContext = dependency_repo.GetAllByProjectId(project_to_display_id);
+      Colors_Listbox.DataContext = color_repo.GetAllByProjectId(project_to_display_id);
 
       _show_view(Past_Projects_List, false);
       _show_view(Single_Project_Container, true);
 
-      if (Notes_Listbox.Items.Count == 0) {
-        _show_list(Notes_Listbox, false);
-      }
+      if (Colors_Listbox.Items.Count == 0)
+        _show_list(Colors_Listbox,false);
 
-      if (Dependency_Listbox.Items.Count == 0) {
+      if (Notes_Listbox.Items.Count == 0) 
+        _show_list(Notes_Listbox, false);
+
+      if (Dependency_Listbox.Items.Count == 0)
         _show_list(Dependency_Listbox, false);
-      }
     }
 
     public void View_Current_Project(object sender, RoutedEventArgs e) {
@@ -192,13 +195,16 @@ namespace DevDash {
       _show_view(Current_Projects_List, false);
       _show_view(Single_Project_Container, true);
 
-      if (Notes_Listbox.Items.Count == 0) {
-        _show_list(Notes_Listbox, false);
-      }
+      Colors_Listbox.DataContext = color_repo.GetAllByProjectId(project_to_display_id);
 
-      if (Dependency_Listbox.Items.Count == 0) {
+      if (Notes_Listbox.Items.Count == 0) 
+        _show_list(Notes_Listbox, false);
+
+      if (Colors_Listbox.Items.Count == 0)
+        _show_list(Colors_Listbox,false);
+
+      if (Dependency_Listbox.Items.Count == 0) 
         _show_list(Dependency_Listbox, false);
-      }
     }
 
     public void Edit_Project_Details(object sender, RoutedEventArgs  e) {
@@ -306,11 +312,26 @@ namespace DevDash {
     }
 
     public void Add_Color(object sender, RoutedEventArgs e) {
+      AddColorModal modal = new AddColorModal();
+      modal.projectId = _project_to_display.ProjectId;
+      modal.ShowDialog();
+      
+      if (modal.DialogResult == true) {
+        _DataBindColors(Colors_Listbox);
+        _show_list(Colors_Listbox, true);
+      }
+    }
+
+    public void Delete_Color(object sender, RoutedEventArgs e) {
 
     }
 
     private void _DataBindDependencies(ListBox element) {
       element.DataContext = dependency_repo.GetAllByProjectId(_project_to_display.ProjectId);
+    }
+
+    private void _DataBindColors(ListBox element) {
+      element.DataContext = color_repo.GetAllByProjectId(_project_to_display.ProjectId);
     }
 
     private void _DataBindNotes(ListBox element) {
