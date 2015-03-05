@@ -1,7 +1,7 @@
 # DevDash
 
 ##Synopsis
-Individual Project for [NSS]http://nashvillesoftwareschool.com/) Cohort 7 
+Individual Project for [NSS](http://nashvillesoftwareschool.com/) Cohort 7. 
 
 WPF Application for keeping track of current and past development projects. Each project has the following panels for a snapshot of project components:
 
@@ -10,10 +10,12 @@ WPF Application for keeping track of current and past development projects. Each
 - Dependencies and tools panel
 - Color palette panel
 
-Includes the ability to create, read, update and delete (CRUD) projects. Purpose is to keep track of current projects and view past project details and tools. 
+Includes the ability to create, read, update and delete (CRUD) projects. Purpose is to keep track of current projects and view past project details and tools. Built with TDD and BDD.  
 
 ## Languages & Tools
 - WPF
 - C#
 - XAML
+- NUnit Unit Testing Framework
+- TestWhite BDD Framework
 
